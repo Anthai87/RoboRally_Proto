@@ -1,21 +1,24 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
+
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
+import javafx.scene.control.MenuBar;
 
 import java.awt.*;
 
 public class RoboRallyMenuBar extends MenuBar {
     private AppController appController;
 
-    public RoboRallyMenuBar(AppController appController) throws HeadlessException {
+
+    public RoboRallyMenuBar(AppController appController) {
         this.appController = appController;
 
-        Menu controlMenu = new Menu("New File");
-        this.getMenus(1).add(controlMenu);
+        Menu file = new Menu("File");
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().add(file);
 
         MenuItem newGame = new MenuItem("New Game");
-        controlMenu.getItem(2).add(newGame);
-
+        MenuItem saveGame = new MenuItem("Save Game");
 
     }
 }
