@@ -59,6 +59,7 @@ public class RoboRally extends Application {
         // the board view (which initially is empty); it will be filled
         // when the user creates a new game or loads a game
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
+
         boardRoot = new BorderPane();
         VBox vbox = new VBox(menuBar, boardRoot);
         vbox.setMinWidth(MIN_APP_WIDTH);
@@ -88,6 +89,8 @@ public class RoboRally extends Application {
         stage.sizeToScene();
     }
 
+
+
     @Override
     public void stop() throws Exception {
         super.stop();
@@ -99,7 +102,7 @@ public class RoboRally extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 
 }

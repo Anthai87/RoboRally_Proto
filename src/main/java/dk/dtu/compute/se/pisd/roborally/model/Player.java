@@ -42,16 +42,19 @@ public class Player extends Subject {
     private String name;
     private String color;
 
+    final public int no;
+
     private Space space;
     private Heading heading = SOUTH;
 
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
-    public Player(@NotNull Board board, String color, @NotNull String name) {
+    public Player(@NotNull Board board, String color, @NotNull String name, int no) {
         this.board = board;
         this.name = name;
         this.color = color;
+        this.no = no;
 
         this.space = null;
 

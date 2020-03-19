@@ -1,3 +1,4 @@
+package dk.dtu.compute.se.pisd.roborally.view;
 /*
  *  This file is part of the initial project provided for the
  *  course "Project in Software Development (02362)" held at
@@ -19,13 +20,10 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-package dk.dtu.compute.se.pisd.roborally.dal;
 
-import dk.dtu.compute.se.pisd.roborally.model.Board;
-
-import java.util.List;
-
-// An interface can only method headers and class constans.
+import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
+import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import javafx.application.Platform;
 
 /**
  * ...
@@ -33,20 +31,22 @@ import java.util.List;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-// abstract methods (we only declare their names and signatures; we dont
-	// specify how they will be implemented.
-	// an interface cannot be instantiated; that is, you cannot create objects of its type
-	// in our case, any code trying to create a new Irepository() would not compile.
-	// it is however legal to declare variables of type IRepository that can refer to any
-	// object that implements the Irepository interface.
-public interface IRepository {
-	
- 	boolean createGameInDB(Board game);
-	
-	boolean updateGameInDB(Board game);
-	
-	Board loadGameFromDB(int id);
-	
-	List<GameInDB> getGames();
 
+public interface ViewObserver extends Observer {
+
+    void updateView(Subject subject);
+
+    @Override
+    default void update(Subject subject) {
+        // This default implementation of the update method makes sure that ViewObserver implementations
+        // are doing the update only in the FX application thread. The update of the view is instead
+        // done in the updateView() method;
+        if (Platform.isFxApplicationThread()) {
+            updateView(subject);
+        } else {
+            Platform.runLater(() -> {
+                updateView(subject);
+            });
+        }
+    }
 }
