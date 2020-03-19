@@ -3,8 +3,7 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import javafx.scene.control.MenuBar;
-
-import java.awt.*;
+import javafx.scene.control.*;
 
 public class RoboRallyMenuBar extends MenuBar {
     private AppController appController;
@@ -14,6 +13,7 @@ public class RoboRallyMenuBar extends MenuBar {
         this.appController = appController;
 
         Menu file = new Menu("File");
+        // Ændr til this :-) og opret ikke ny
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().add(file);
 
