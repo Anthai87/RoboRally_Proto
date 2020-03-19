@@ -40,9 +40,9 @@ public class AppController {
 
             int no = result.get();
             for (int i = 0; i < no; i++) {
-                Player player = new Player(board, PLAYER_COLORS.get(i), "Player" + (i + 1));
-                board.addPlayer(player);
-                player.setSpace(board.getSpace(i,i));
+                //Player player = new Player(board, PLAYER_COLORS.get(i), "Player" + (i + 1));
+              //  board.addPlayer(player);
+                //player.setSpace(board.getSpace(i,i));
 
             }
             board.setCurrentPlayer(board.getPlayer(0));
