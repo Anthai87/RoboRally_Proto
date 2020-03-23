@@ -60,13 +60,33 @@ public class Board extends Subject {
         this.height = height;
         spaces = new Space[width][height];
         for (int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
+            for (int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 if (x == 1 && y == 1) {
                     space.addWall(Heading.WEST);
                     space.addWall(Heading.NORTH);
+                    space.addWall(Heading.EAST);
+                    space.addWall(Heading.SOUTH);
+
                 }
                 spaces[x][y] = space;
+                Space space1 = new Space(this, x, y);
+                if (x == 2 && y == 2) {
+                    space1.addWall(Heading.WEST);
+                    space1.addWall(Heading.NORTH);
+                    space1.addWall(Heading.EAST);
+                    space1.addWall(Heading.SOUTH);
+                }
+                spaces[x][y] = space1;
+                Space space2 = new Space(this, x, y);
+                if (x == 4 && y == 4) {
+                    space2.addWall(Heading.WEST);
+                    space2.addWall(Heading.NORTH);
+                    space2.addWall(Heading.EAST);
+                    space2.addWall(Heading.SOUTH);
+                }
+                spaces[x][y] = space2;
+
             }
         }
         this.stepMode = false;
