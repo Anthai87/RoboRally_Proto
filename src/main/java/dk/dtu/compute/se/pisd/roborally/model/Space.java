@@ -76,6 +76,10 @@ public class Space extends Subject {
         return walls;
     }
 
+    public void addWall(Heading heading) {
+        walls.add(heading);
+    }
+
     public List<FieldAction> getActions() {
         return actions;
     }
