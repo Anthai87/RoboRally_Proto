@@ -60,7 +60,7 @@ public class RoboRally extends Application {
     @Override
     public void start(Stage primaryStage) {
         // creates the model
-        board = new Board(3, 3);
+        board = new Board(8, 8);
         // and game controller
         gameController = new GameController(board);
 
