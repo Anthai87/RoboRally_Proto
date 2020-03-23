@@ -13,16 +13,14 @@ public class RoboRallyMenuBar extends MenuBar {
         this.appController = appController;
 
         Menu file = new Menu("File");
-        // Ændr til this :-) og opret ikke ny
-        MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().add(file);
-        //this.getMenus().add(file);
-
         MenuItem newGame = new MenuItem("New Game");
+        MenuItem saveGame = new MenuItem("Save Game");
+        file.getItems().addAll(newGame, saveGame);
+
         //newGame.seOntAction(e->{this.appController.newGame();});
         //file.getItems().add(newGame);
 
-        MenuItem saveGame = new MenuItem("Save Game");
+        this.getMenus().add(file);
 
     }
 }

@@ -36,7 +36,6 @@ import javafx.stage.Stage;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class RoboRally extends Application {
 
@@ -71,7 +70,8 @@ public class RoboRally extends Application {
         stage.setOnCloseRequest(
                 e -> {
                     e.consume();
-                    appController.exit();} );
+                    appController.exit();
+                });
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();
@@ -89,7 +89,6 @@ public class RoboRally extends Application {
 
         stage.sizeToScene();
     }
-
 
 
     @Override
