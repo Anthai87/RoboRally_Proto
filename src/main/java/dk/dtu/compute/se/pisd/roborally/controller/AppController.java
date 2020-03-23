@@ -1,7 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.scene.control.ChoiceDialog;
 
 import java.util.Arrays;

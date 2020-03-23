@@ -36,7 +36,6 @@ public class Player extends Subject {
 
     final public static int NO_REGISTERS = 5;
     final public static int NO_CARDS = 8;
-    private static int playerCount = 0;
 
     final public Board board;
 
@@ -52,7 +51,6 @@ public class Player extends Subject {
     private CommandCardField[] cards;
 
     public Player(@NotNull Board board, String color, @NotNull String name, int no) {
-        playerCount++;
         this.board = board;
         this.name = name;
         this.color = color;
