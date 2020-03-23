@@ -23,6 +23,8 @@ package dk.dtu.compute.se.pisd.roborally;
 
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import dk.dtu.compute.se.pisd.roborally.model.Board;
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.BoardView;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
@@ -32,12 +34,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import static dk.dtu.compute.se.pisd.roborally.model.Heading.WEST;
+
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class RoboRally extends Application {
+    private Board board;
+    private BoardView boardView;
+
+    private GameController gameController;
 
     private static final int MIN_APP_WIDTH = 600;
 
@@ -51,7 +59,40 @@ public class RoboRally extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // creates the model
+        board = new Board(8, 8);
+        // and game controller
+        gameController = new GameController(board);
+
+        Player player = new Player(board, "red", "Anton",0);
+        board.addPlayer(player);
+        board.setCurrentPlayer(player);
+
+        player.setSpace(board.getSpace(0,0));
+        player.setHeading(WEST);
+
+        Player player2 = new Player(board, "green", "RezaJoon",1);
+        player2.setSpace(board.getSpace(1,0));
+        board.addPlayer(player2);
+        primaryStage.setTitle("Initial Application");
+
+        BorderPane root = new BorderPane();
+        Scene primaryScene = new Scene(root);
+        primaryStage.setScene(primaryScene);
+
+        // creates the view (for the model)
+        boardView = new BoardView(gameController);
+
+        // add the view and show it
+        root.setCenter(boardView);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
+        primaryStage.show();
+
+        gameController.initializeProgrammingPhase();
+        /*
         stage = primaryStage;
+
 
         AppController appController = new AppController(this);
 
@@ -74,7 +115,7 @@ public class RoboRally extends Application {
                 });
         stage.setResizable(false);
         stage.sizeToScene();
-        stage.show();
+        stage.show();*/
     }
 
     public void createBoardView(GameController gameController) {
