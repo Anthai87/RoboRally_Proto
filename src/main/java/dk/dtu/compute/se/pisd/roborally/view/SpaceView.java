@@ -24,6 +24,8 @@ package dk.dtu.compute.se.pisd.roborally.view;
 import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.application.Platform;
@@ -91,6 +93,17 @@ public class SpaceView extends Button implements ViewObserver {
     @Override
     public void updateView(Subject subject) {
         if (subject == this.space) {
+            this.getChildren().clear();
+
+            for (FieldAction action : space.getActions()){
+                if (action instanceof ConveyorBelt) {
+                    ConveyorBelt belt = (ConveyorBelt) action;
+                    Polygon arrow = new Polygon(0.0,0.0,30.0,60.0,60.0,0.0);
+                    arrow.setFill(Color.LIGHTGRAY);
+                    arrow.setRotate(90*belt.getHeading().ordinal()%360);
+                    this.getChildren().add(arrow);
+                }
+            }
             // update the style of the space according to the changes;
             updatePlayer();
         }

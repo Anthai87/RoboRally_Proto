@@ -90,6 +90,7 @@ public class RoboRally extends Application {
         primaryStage.show();
 
         gameController.initializeProgrammingPhase();
+
         /*
         stage = primaryStage;
 
