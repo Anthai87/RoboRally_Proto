@@ -91,7 +91,7 @@ public class RoboRally extends Application {
         primaryStage.setOnCloseRequest(
                 e -> {
                     e.consume();
-                    appController.exit("Exit","Are you Sure");
+                    appController.exit();
                 });
 
 

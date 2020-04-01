@@ -1,5 +1,8 @@
-.RoboRally{
+.scene{
     -fx-background-color: #383838;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 10;
+}
+.button{
+    -fx-background-color: red;
 }
