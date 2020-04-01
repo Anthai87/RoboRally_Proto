@@ -2,6 +2,7 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +69,10 @@ public class AppController {
 
     public void exit() {
         // TODO needs to be implemented
+        Boolean svar = ConfirmBox.display("Exit","Hov! Er du nu helt sikker?");
+        if(svar)
+            saveGame();
+
 
     }
 }

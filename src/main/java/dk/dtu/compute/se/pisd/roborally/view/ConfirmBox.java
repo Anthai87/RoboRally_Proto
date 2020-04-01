@@ -12,7 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ConfirmBox {
-    public static void display(String title, String text) {
+    public static Boolean display(String title, String text) {
         Stage window = new Stage();
 
         // basic window setup
@@ -56,5 +56,6 @@ public class ConfirmBox {
         Scene scene = new Scene(heleLayout);
         window.setScene(scene);
         window.showAndWait();
+        return null;
     }
 }

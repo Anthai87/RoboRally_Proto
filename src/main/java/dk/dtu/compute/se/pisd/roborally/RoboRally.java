@@ -26,6 +26,7 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.BoardView;
+import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -93,9 +94,6 @@ public class RoboRally extends Application {
                     e.consume();
                     appController.exit();
                 });
-
-
-
 
         // create the primary scene with the a menu bar and a pane for
         // the board view (which initially is empty); it will be filled
