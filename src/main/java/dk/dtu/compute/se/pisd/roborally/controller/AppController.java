@@ -12,10 +12,8 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(1,2,3);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magneta");
-
-
-   private RoboRally roboRally;
-   private GameController gameController;
+    private RoboRally roboRally;
+    private GameController gameController;
 
 
     public AppController(RoboRally roboRally) {
@@ -49,7 +47,10 @@ public class AppController {
             gameController.initializeProgrammingPhase();
         }
 
-    // TODO most methods missing here!
+    //
+    public void saveGame(){
+        //TODO need to be implemented
+    }
 
     public void exit() {
         // TODO needs to be implemented

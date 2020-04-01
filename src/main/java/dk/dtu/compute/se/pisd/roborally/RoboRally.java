@@ -28,11 +28,14 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.BoardView;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Heading.WEST;
 
@@ -44,11 +47,8 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.WEST;
 public class RoboRally extends Application {
     private Board board;
     private BoardView boardView;
-
     private GameController gameController;
-
     private static final int MIN_APP_WIDTH = 600;
-
     private Stage stage;
     private BorderPane boardRoot;
 
@@ -74,49 +74,41 @@ public class RoboRally extends Application {
         Player player2 = new Player(board, "green", "RezaJoon",1);
         player2.setSpace(board.getSpace(1,0));
         board.addPlayer(player2);
-        primaryStage.setTitle("Initial Application");
 
-        BorderPane root = new BorderPane();
-        Scene primaryScene = new Scene(root);
-        primaryStage.setScene(primaryScene);
-
-        // creates the view (for the model)
+       // creates the view (for the model)
         boardView = new BoardView(gameController);
-
-        // add the view and show it
-        root.setCenter(boardView);
-        primaryStage.setResizable(false);
-        primaryStage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
-        primaryStage.show();
-
         gameController.initializeProgrammingPhase();
-
-        /*
-        stage = primaryStage;
-
 
         AppController appController = new AppController(this);
 
-        // create the primary scene with the a menu bar and a pane for
-        // the board view (which initially is empty); it will be filled
-        // when the user creates a new game or loads a game
+        primaryStage.setTitle("Robot Rally");
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
 
-        boardRoot = new BorderPane();
-        VBox vbox = new VBox(menuBar, boardRoot);
-        vbox.setMinWidth(MIN_APP_WIDTH);
-        Scene primaryScene = new Scene(vbox);
+        GridPane topMenu = new GridPane();
+        topMenu.getChildren().addAll(menuBar);
 
-        stage.setScene(primaryScene);
-        stage.setTitle("RoboRally");
-        stage.setOnCloseRequest(
+
+        primaryStage.setOnCloseRequest(
                 e -> {
                     e.consume();
                     appController.exit();
                 });
-        stage.setResizable(false);
-        stage.sizeToScene();
-        stage.show();*/
+
+
+        // create the primary scene with the a menu bar and a pane for
+        // the board view (which initially is empty); it will be filled
+        // when the user creates a new game or loads a game
+
+        BorderPane root = new BorderPane();
+        root.setTop(topMenu);
+        root.setCenter(boardView);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        // add the view and show it
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
+        primaryStage.show();
     }
 
     public void createBoardView(GameController gameController) {
@@ -144,7 +136,7 @@ public class RoboRally extends Application {
     }
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
 
 }
