@@ -93,6 +93,7 @@ public class RoboRally extends Application {
                 e -> {
                     e.consume();
                     appController.exit();
+
                 });
 
         // create the primary scene with the a menu bar and a pane for
@@ -123,7 +124,6 @@ public class RoboRally extends Application {
 
         stage.sizeToScene();
     }
-
 
     @Override
     public void stop() throws Exception {

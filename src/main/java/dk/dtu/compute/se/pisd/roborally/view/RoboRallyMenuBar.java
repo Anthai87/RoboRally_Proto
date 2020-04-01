@@ -2,12 +2,9 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+
 
 public class RoboRallyMenuBar extends MenuBar{
     private AppController appController;

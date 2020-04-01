@@ -3,6 +3,7 @@ import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,17 +36,17 @@ public class AppController {
     }
 
     public void newGame() {
-        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0),PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
 
         if (result.isPresent()) {
+
             if (gameController != null) {
-                // if (!stopGame){
+                 //if (!stopGame){
                 return;
             }
-            ;
         }
         Board board = new Board(8, 8);
         gameController = new GameController(board);
@@ -65,13 +66,14 @@ public class AppController {
     //
     public void saveGame() {
         //TODO need to be implemented
+
     }
 
     public void exit() {
-        // TODO needs to be implemented
-        Boolean svar = ConfirmBox.display("Exit","Hov! Er du nu helt sikker?");
-        if(svar)
-            saveGame();
+        // Checking the answer, if yes, it terminates the game.
+        Boolean svar = ConfirmBox.display("Exit","Are you for REAL nigga?");
+        if (svar)
+            Platform.exit();
 
 
     }
