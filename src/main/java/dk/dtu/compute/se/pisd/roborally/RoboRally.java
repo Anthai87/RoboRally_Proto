@@ -81,7 +81,7 @@ public class RoboRally extends Application {
 
         AppController appController = new AppController(this);
 
-        primaryStage.setTitle("Robot Rally");
+        primaryStage.setTitle("Gruppe D");
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
 
         GridPane topMenu = new GridPane();
@@ -91,8 +91,10 @@ public class RoboRally extends Application {
         primaryStage.setOnCloseRequest(
                 e -> {
                     e.consume();
-                    appController.exit();
+                    appController.exit("Exit","Are you Sure");
                 });
+
+
 
 
         // create the primary scene with the a menu bar and a pane for
@@ -136,7 +138,7 @@ public class RoboRally extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 
 }
