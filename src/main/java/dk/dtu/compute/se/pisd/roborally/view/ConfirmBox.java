@@ -34,8 +34,8 @@ public class ConfirmBox {
         window.setMinHeight(150);
         Text label = new Text(text);
         label.setText(text);
-        label.setFont(Font.font(null, FontWeight.SEMI_BOLD, 20));
-        label.setFill(Color.rgb(50, 45, 38));
+        label.setFont(Font.font(null, FontWeight.SEMI_BOLD, 18));
+        label.setFill(Color.rgb(255, 255, 255));
 
 
         GridPane teksten = new GridPane();
@@ -44,9 +44,11 @@ public class ConfirmBox {
         // creating two buttons (yes, no)
         Button yes = new Button(" Yes ");
         yes.setStyle("-fx-font-size: 11pt");
+        yes.setStyle("-fx-background-color: lightblue");
 
         Button no = new Button(" No ");
         no.setStyle("-fx-font-size: 11pt");
+        no.setStyle("-fx-background-color: lightblue");
 
         // lambda expression
         yes.setOnAction(event -> {
@@ -70,6 +72,7 @@ public class ConfirmBox {
         heleLayout.setVgap(10);
         heleLayout.add(teksten, 2, 1);
         heleLayout.add(buttons, 2, 2);
+        heleLayout.setStyle("-fx-background-color: green;");
 
         Scene scene = new Scene(heleLayout);
         window.setScene(scene);

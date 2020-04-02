@@ -27,9 +27,9 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magneta");
+
     private RoboRally roboRally;
     private GameController gameController;
-
 
     public AppController(RoboRally roboRally) {
         this.roboRally = roboRally;
@@ -42,25 +42,25 @@ public class AppController {
         Optional<Integer> result = dialog.showAndWait();
 
         if (result.isPresent()) {
-
             if (gameController != null) {
+
+            Board board = new Board(9,9);
+            gameController = new GameController(board);
+            int no = result.get();
+            for (int i = 0; i < no ; i++) {
+                Player player = new Player(board,PLAYER_COLORS.get(i),"Anthony" ,(i+1));
+                board.addPlayer(player);
+                player.setSpace(board.getSpace(i,i));
+            }
+            board.setCurrentPlayer(board.getPlayer(0));
+            roboRally.createBoardView(gameController);
+            gameController.initializeProgrammingPhase();
+
+
                  //if (!stopGame){
                 return;
             }
         }
-        Board board = new Board(8, 8);
-        gameController = new GameController(board);
-
-        int no = result.get();
-        for (int i = 0; i < no; i++) {
-            Player player = new Player(board, "", "", (i + 1));
-            board.addPlayer(player);
-            player.setSpace(board.getSpace(i, i));
-
-        }
-        board.setCurrentPlayer(board.getPlayer(0));
-        roboRally.createBoardView(gameController);
-        gameController.initializeProgrammingPhase();
     }
 
     //
@@ -74,7 +74,6 @@ public class AppController {
         Boolean svar = ConfirmBox.display("Exit","Are you for REAL nigga?");
         if (svar)
             Platform.exit();
-
 
     }
 }
