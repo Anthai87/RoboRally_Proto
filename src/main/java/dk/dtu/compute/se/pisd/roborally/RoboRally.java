@@ -26,17 +26,11 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.BoardView;
-import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Heading.WEST;
 
@@ -138,5 +132,4 @@ public class RoboRally extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
-
 }
