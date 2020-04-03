@@ -50,7 +50,7 @@ public class Player extends Subject {
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
-    public Player(@NotNull Board board, String color, @NotNull String name, int no) {
+    public Player(@NotNull Board board, String color, @NotNull String name,int no) {
         this.board = board;
         this.name = name;
         this.color = color;

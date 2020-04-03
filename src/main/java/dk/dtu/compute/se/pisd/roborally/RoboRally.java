@@ -68,7 +68,7 @@ public class RoboRally extends Application {
 
 
 
-       Player player = new Player(board,"","",1);
+       Player player = new Player(board,"","",0);
         board.addPlayer(player);
         board.setCurrentPlayer(player);
         player.setHeading(SOUTH);
