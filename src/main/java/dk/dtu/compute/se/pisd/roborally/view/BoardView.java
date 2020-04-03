@@ -43,14 +43,10 @@ import javafx.scene.layout.VBox;
     public class BoardView extends VBox implements ViewObserver {
 
         private Board board;
-
         private GridPane mainBoardPane;
         private SpaceView[][] spaces;
-
         private PlayersView playersView;
-
         private Label statusLabel;
-
         private GameController gameController;
         private SpaceEventHandler spaceEventHandler;
 
@@ -76,6 +72,7 @@ import javafx.scene.layout.VBox;
                     SpaceView spaceView = new SpaceView(space);
                     spaces[x][y] = spaceView;
                     mainBoardPane.add(spaceView, x, y);
+
                     spaceView.setOnMouseClicked(spaceEventHandler);
                 }
             }

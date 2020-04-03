@@ -32,7 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import static dk.dtu.compute.se.pisd.roborally.model.Heading.WEST;
+import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 
 /**
  * ...
@@ -54,56 +54,54 @@ public class RoboRally extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        stage = primaryStage;
+        stage.setTitle("Gruppe D");
+
         // creates the model
-        board = new Board(9, 9);
+        board = new Board(8, 8);
+
         // and game controller
         gameController = new GameController(board);
 
-        Player player = new Player(board, "red", "Anton",0);
+        AppController appController = new AppController(this);
+
+
+
+
+       Player player = new Player(board,"","",1);
         board.addPlayer(player);
         board.setCurrentPlayer(player);
-
-        player.setSpace(board.getSpace(0,0));
-        player.setHeading(WEST);
-
-        Player player2 = new Player(board, "green", "RezaJoon",1);
-        player2.setSpace(board.getSpace(1,0));
-        board.addPlayer(player2);
+        player.setHeading(SOUTH);
 
        // creates the view (for the model)
         boardView = new BoardView(gameController);
         gameController.initializeProgrammingPhase();
 
-        AppController appController = new AppController(this);
-
-        primaryStage.setTitle("Gruppe D");
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
-
         GridPane topMenu = new GridPane();
         topMenu.getChildren().addAll(menuBar);
 
-
-        primaryStage.setOnCloseRequest(
+        stage.setOnCloseRequest(
                 e -> {
                     e.consume();
                     appController.exit();
 
                 });
-
         // create the primary scene with the a menu bar and a pane for
         // the board view (which initially is empty); it will be filled
         // when the user creates a new game or loads a game
 
-        BorderPane root = new BorderPane();
-        root.setTop(topMenu);
-        root.setCenter(boardView);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+        boardRoot = new BorderPane();
+        boardRoot.setTop(topMenu);
+        boardRoot.setCenter(boardView);
+
+        Scene scene = new Scene(boardRoot);
+        stage.setScene(scene);
 
         // add the view and show it
-        primaryStage.setResizable(false);
-        primaryStage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
-        primaryStage.show();
+        stage.setResizable(false);
+        stage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
+        stage.show();
     }
 
     public void createBoardView(GameController gameController) {

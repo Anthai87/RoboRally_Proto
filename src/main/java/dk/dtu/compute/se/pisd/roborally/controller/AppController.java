@@ -4,20 +4,8 @@ import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +13,7 @@ import java.util.Optional;
 
 public class AppController {
 
-    final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
+    final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(1, 2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magneta");
 
     private RoboRally roboRally;
@@ -41,27 +29,29 @@ public class AppController {
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
 
-        if (result.isPresent()) {
+       /* if (result.isPresent()) {
             if (gameController != null) {
-
-            Board board = new Board(9,9);
+            */
+            Board board = new Board(8,8);
             gameController = new GameController(board);
+
             int no = result.get();
             for (int i = 0; i < no ; i++) {
-                Player player = new Player(board,PLAYER_COLORS.get(i),"Anthony" ,(i+1));
+                Player player = new Player(board,PLAYER_COLORS.get(i),"Player",(i+1));
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(i,i));
             }
+
+
             board.setCurrentPlayer(board.getPlayer(0));
             roboRally.createBoardView(gameController);
             gameController.initializeProgrammingPhase();
 
-
                  //if (!stopGame){
                 return;
             }
-        }
-    }
+        //}
+   // }
 
     //
     public void saveGame() {
