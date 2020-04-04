@@ -23,8 +23,6 @@ package dk.dtu.compute.se.pisd.roborally;
 
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
-import dk.dtu.compute.se.pisd.roborally.model.Board;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.BoardView;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
@@ -32,18 +30,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
-
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class RoboRally extends Application {
-    private Board board;
-    private BoardView boardView;
-    private GameController gameController;
-    private static final int MIN_APP_WIDTH = 600;
+    private static final int MIN_APP_WIDTH  = 600;
     private Stage stage;
     private BorderPane boardRoot;
 
@@ -57,46 +50,27 @@ public class RoboRally extends Application {
         stage = primaryStage;
         stage.setTitle("Gruppe D");
 
-        // creates the model
-        board = new Board(8, 8);
-
-        // and game controller
-        gameController = new GameController(board);
-
         AppController appController = new AppController(this);
 
-
-
-
-       Player player = new Player(board,"","",0);
-        board.addPlayer(player);
-        board.setCurrentPlayer(player);
-        player.setHeading(SOUTH);
-
        // creates the view (for the model)
-        boardView = new BoardView(gameController);
-        gameController.initializeProgrammingPhase();
 
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
-        GridPane topMenu = new GridPane();
-        topMenu.getChildren().addAll(menuBar);
+         boardRoot= new BorderPane();
+         VBox vBox = new VBox(menuBar,boardRoot);
+         vBox.setMinWidth(MIN_APP_WIDTH);
+         Scene primaryScene = new Scene(vBox);
 
+        stage.setScene(primaryScene);
         stage.setOnCloseRequest(
                 e -> {
                     e.consume();
                     appController.exit();
-
                 });
         // create the primary scene with the a menu bar and a pane for
         // the board view (which initially is empty); it will be filled
         // when the user creates a new game or loads a game
 
-        boardRoot = new BorderPane();
-        boardRoot.setTop(topMenu);
-        boardRoot.setCenter(boardView);
 
-        Scene scene = new Scene(boardRoot);
-        stage.setScene(scene);
 
         // add the view and show it
         stage.setResizable(false);
@@ -112,8 +86,8 @@ public class RoboRally extends Application {
             // create and add view for new board
             BoardView boardView = new BoardView(gameController);
             boardRoot.setCenter(boardView);
-        }
 
+        }
         stage.sizeToScene();
     }
 

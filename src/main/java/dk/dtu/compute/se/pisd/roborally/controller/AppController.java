@@ -1,11 +1,17 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
+import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
+import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
+import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 
+import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +19,12 @@ import java.util.Optional;
 
 public class AppController {
 
-    final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(1, 2, 3, 4, 5, 6);
-    final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magneta");
+    final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
+    final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "magneta", "cyan");
 
     private RoboRally roboRally;
     private GameController gameController;
+    private boolean saveNeeded;
 
     public AppController(RoboRally roboRally) {
         this.roboRally = roboRally;
@@ -30,39 +37,80 @@ public class AppController {
         Optional<Integer> result = dialog.showAndWait();
 
         if (result.isPresent()) {
-            if (gameController == null) {
+            if (gameController != null) {
 
-            Board board = new Board(8,8);
+               // if (!stopGame()){
+                    return;
+                }
+
+            Board board = LoadBoard.loadBoard(null);
             gameController = new GameController(board);
 
             int no = result.get();
             for (int i = 0; i < no ; i++) {
-                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " +(i+1)+ "",(i+1));
+                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1),0);
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i,i));
+                player.setSpace(board.getSpace(i%board.width,i));
             }
 
-            //board.setCurrentPlayer(board.getPlayer(0));
             board.setCurrentPlayer(board.getPlayer(0));
-
             roboRally.createBoardView(gameController);
             gameController.initializeProgrammingPhase();
 
-                // if (!exitGame()){
-                return;
+            RepositoryAccess.getRepository().createGameInDB(board);
+           // attachSaveNeedObserver();
+
+
             }
         }
-   }
+  // }
 
 
     public void saveGame() {
         //TODO need to be implemented
+        if (gameController != null && saveNeeded){
+            Board board = gameController.board;
+            if (board.getGameId() != null){
+                RepositoryAccess.getRepository().updateGameInDB(board);
+                saveNeeded = false;
+            }
+        }
 
+    }
+    public void loadGame(){
+        if(gameController == null){
+            List<GameInDB> games = RepositoryAccess.getRepository().getGames();
+            if(!games.isEmpty()){
+                ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size()-1),games);
+                dialog.setTitle("Select Game");
+                dialog.setHeaderText("Select a game number");
+                Optional<GameInDB> result = dialog.showAndWait();
+
+                if (result.isPresent()){
+                    Board board = RepositoryAccess.getRepository().loadGameFromDB(result.get().id);
+                    if (board != null) {
+                        gameController = new GameController(board);
+                      //  attachSaveNeedObserver();
+                        roboRally.createBoardView(gameController);
+                    }else{
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Problem loading Game");
+                        alert.setHeaderText("There was a problem loading the game!");
+                        alert.showAndWait();
+                    }
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("No Game");
+                alert.setHeaderText("There is no games in the database yet!");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void exit() {
         // Checking the answer, if yes, it terminates the game.
-        Boolean svar = ConfirmBox.display("Exit","Sure you want to exit?");
+        Boolean svar = ConfirmBox.display("Confirm Exit","Are you sure you want to exit RoboRally?");
         if (svar)
             Platform.exit();
     }

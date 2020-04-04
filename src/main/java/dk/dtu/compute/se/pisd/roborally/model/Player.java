@@ -34,8 +34,8 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
  */
 public class Player extends Subject {
 
-    final public static int NO_REGISTERS = 6;
-    final public static int NO_CARDS = 8;
+    final public static int NO_REGISTERS = 5; // Spilleren har 5 skridt ad gangen
+    final public static int NO_CARDS = 8; // antal kort spilleren har ved hånden.
 
     final public Board board;
 
@@ -50,7 +50,7 @@ public class Player extends Subject {
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
-    public Player(@NotNull Board board, String color, @NotNull String name,int no) {
+    public Player(@NotNull Board board, String color, @NotNull String name, int no) {
         this.board = board;
         this.name = name;
         this.color = color;

@@ -137,7 +137,7 @@ public class GameController {
         }
     }
 
-    public boolean moveCards(@com.sun.istack.internal.NotNull CommandCardField source, @com.sun.istack.internal.NotNull CommandCardField target) {
+    public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
         CommandCard sourceCard = source.getCard();
         CommandCard targetCard = target.getCard();
         if (sourceCard != null & targetCard == null) {

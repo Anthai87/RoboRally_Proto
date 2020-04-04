@@ -30,7 +30,7 @@ public class ConfirmBox {
 
         // window setup
         window.setTitle(title);
-        window.setMinWidth(350);
+        window.setMinWidth(400);
         window.setMinHeight(150);
         Text label = new Text(text);
         label.setText(text);
@@ -72,7 +72,7 @@ public class ConfirmBox {
         heleLayout.setVgap(10);
         heleLayout.add(teksten, 2, 1);
         heleLayout.add(buttons, 2, 2);
-        heleLayout.setStyle("-fx-background-color: green;");
+        heleLayout.setStyle("-fx-background-color: gray;");
 
         Scene scene = new Scene(heleLayout);
         window.setScene(scene);
