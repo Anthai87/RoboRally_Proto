@@ -173,8 +173,12 @@ public class PlayerView extends Tab implements ViewObserver {
                         executeButton.setDisable(false);
                         stepButton.setDisable(false);
                         for (int i = 0; i < programCardViews.length; i++) {
+
                             if (player.board.getStep() == i) {
                                 programCardViews[i].setBackground(CardFieldView.BG_ACTIVE);
+                            }else if(player.board.getStep() > i){
+                                programCardViews[i].setBackground(CardFieldView.BG_DONE);
+
                             } else {
                                 programCardViews[i].setBackground(CardFieldView.BG_DEFAULT);
                             }

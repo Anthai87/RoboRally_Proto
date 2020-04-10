@@ -149,7 +149,6 @@ public class GameController {
         }
     }
 
-
     // TODO lot of stuff missing here
 
 
@@ -168,8 +167,6 @@ public class GameController {
                     // exception so that we do no pass it on to the caller
                     // (which would be very bad style).
                 }
-
-
             }
         }
     }

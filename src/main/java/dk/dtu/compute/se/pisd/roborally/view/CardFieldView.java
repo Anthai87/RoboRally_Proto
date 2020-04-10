@@ -151,17 +151,16 @@ public class CardFieldView extends GridPane implements ViewObserver {
         if (subject == field && subject != null) {
             CommandCard card = field.getCard();
             if (card != null) {
-
-                //  TODO make sure that the card (its label) is shown
-                //      only when it is visible
-                label.setText(card.getName());
-                label.setFont(Font.font(null, FontWeight.BOLD, 14));
-
-            } else {
-                label.setText("");
+                if (field.isVisible()) {
+                    label.setText(card.getName());
+                    label.setFont(Font.font(null, FontWeight.BOLD, 14));
+                } else {
+                    label.setText("");
+                }}else{
+                        label.setText("");
+                    }
+                }
             }
-        }
-    }
 
     private class OnDragDetectedHandler implements EventHandler<MouseEvent> {
 
@@ -189,7 +188,6 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
 
     private class OnDragOverHandler implements EventHandler<DragEvent> {
