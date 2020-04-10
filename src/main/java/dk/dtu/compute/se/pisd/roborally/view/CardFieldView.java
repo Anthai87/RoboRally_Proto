@@ -37,6 +37,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * ...
@@ -50,14 +52,14 @@ public class CardFieldView extends GridPane implements ViewObserver {
     // programs which can copy/paste Strings.
     final public static  DataFormat ROBO_RALLY_CARD = new DataFormat("games/roborally/cards");
 
-    final public static int CARDFIELD_WIDTH = 65;
+    final public static int CARDFIELD_WIDTH = 65; // 65
     final public static int CARDFIELD_HEIGHT = 100;
 
-    final public static Border BORDER = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2)));
+    final public static Border BORDER = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(3)));
 
     final public static Background BG_DEFAULT = new Background(new BackgroundFill(Color.WHITE, null, null));
     final public static Background BG_DRAG = new Background(new BackgroundFill(Color.GRAY, null, null));
-    final public static Background BG_DROP = new Background(new BackgroundFill(Color.LIGHTGRAY, null, null));
+    final public static Background BG_DROP = new Background(new BackgroundFill(Color.DARKRED, null, null));
 
     final public static Background BG_ACTIVE = new Background(new BackgroundFill(Color.YELLOW, null, null));
     final public static Background BG_DONE = new Background(new BackgroundFill(Color.GREENYELLOW,  null, null));
@@ -150,10 +152,11 @@ public class CardFieldView extends GridPane implements ViewObserver {
             CommandCard card = field.getCard();
             if (card != null) {
 
-
                 //  TODO make sure that the card (its label) is shown
                 //      only when it is visible
                 label.setText(card.getName());
+                label.setFont(Font.font(null, FontWeight.BOLD, 14));
+
             } else {
                 label.setText("");
             }
@@ -254,7 +257,6 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
 
     private class OnDragDroppedHandler implements EventHandler<DragEvent> {
@@ -305,8 +307,8 @@ public class CardFieldView extends GridPane implements ViewObserver {
                 CardFieldView source = (CardFieldView) t;
                 CommandCardField cardField = source.field;
                 //if (event.getTransferMode() == TransferMode.MOVE && cardField != null) {
-                //     cardField.setCard(null);
-                // }
+                  //   cardField.setCard(null);
+                 //}
                 source.setBackground(BG_DEFAULT);
             }
             event.consume();

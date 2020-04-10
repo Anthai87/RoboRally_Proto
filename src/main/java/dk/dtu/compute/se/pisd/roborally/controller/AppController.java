@@ -1,5 +1,4 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
@@ -11,7 +10,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +63,6 @@ public class AppController {
         }
   // }
 
-
     public void saveGame() {
         //TODO need to be implemented
         if (gameController != null && saveNeeded){
@@ -75,7 +72,6 @@ public class AppController {
                 saveNeeded = false;
             }
         }
-
     }
     public void loadGame(){
         if(gameController == null){

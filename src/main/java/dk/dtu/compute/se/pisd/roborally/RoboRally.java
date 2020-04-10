@@ -66,13 +66,7 @@ public class RoboRally extends Application {
                     e.consume();
                     appController.exit();
                 });
-        // create the primary scene with the a menu bar and a pane for
-        // the board view (which initially is empty); it will be filled
-        // when the user creates a new game or loads a game
 
-
-
-        // add the view and show it
         stage.setResizable(false);
         stage.sizeToScene(); // this is to fix a likely bug with the nonresizable stage
         stage.show();

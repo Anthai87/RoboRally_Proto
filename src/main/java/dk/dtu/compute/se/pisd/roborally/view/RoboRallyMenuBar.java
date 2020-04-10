@@ -1,6 +1,4 @@
 package dk.dtu.compute.se.pisd.roborally.view;
-
-
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.*;

@@ -104,7 +104,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             for (FieldAction action : space.getActions()){
 
-                // tjekkes for  om det er en Conveorbelt
+                // tjekkes for om det er en Conveyorbelt
                 if (action instanceof ConveyorBelt) {
                     ConveyorBelt belt = (ConveyorBelt) action;
                     Polygon arrow = new Polygon(0.0,0.0,30.0,60.0,60.0,0.0);

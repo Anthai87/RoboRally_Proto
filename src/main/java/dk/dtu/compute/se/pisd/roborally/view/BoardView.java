@@ -1,3 +1,4 @@
+
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import com.sun.istack.internal.NotNull;
@@ -12,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-    /*
+/*
      *  This file is part of the initial project provided for the
      *  course "Project in Software Development (02362)" held at
      *  DTU Compute at the Technical University of Denmark.
@@ -34,12 +35,15 @@ import javafx.scene.layout.VBox;
      *
      */
 
-    /**
+
+
+/**
      * ...
      *
      * @author Ekkart Kindler, ekki@dtu.dk
      *
      */
+
     public class BoardView extends VBox implements ViewObserver {
 
         private Board board;

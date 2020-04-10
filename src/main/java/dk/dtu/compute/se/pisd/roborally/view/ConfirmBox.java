@@ -55,7 +55,6 @@ public class ConfirmBox {
             svar = true;
             window.close();
             Platform.exit();
-
         });
 
         no.setOnAction(event -> {
