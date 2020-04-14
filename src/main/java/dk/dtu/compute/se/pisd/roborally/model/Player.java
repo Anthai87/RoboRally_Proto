@@ -54,8 +54,8 @@ public class Player extends Subject {
         this.board = board;
         this.name = name;
         this.color = color;
-        this.no=no;
         this.space = null;
+        this.no = no;
 
         program = new CommandCardField[NO_REGISTERS];
         for (int i = 0; i < program.length; i++) {

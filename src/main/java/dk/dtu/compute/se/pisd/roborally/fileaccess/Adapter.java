@@ -53,15 +53,15 @@ public class Adapter<E> implements JsonSerializer<E>, JsonDeserializer<E>{
     private static final String INSTANCE  = "INSTANCE";
 
     @Override
-    public JsonElement serialize(E src, Type typeOfSrc,
-            JsonSerializationContext context) {
+        public JsonElement serialize(E src, Type typeOfSrc,
+                JsonSerializationContext context) {
 
-        JsonObject retValue = new JsonObject();
-        String className = src.getClass().getName();
-        retValue.addProperty(CLASSNAME, className);
-        JsonElement elem = context.serialize(src); 
-        retValue.add(INSTANCE, elem);
-        return retValue;
+            JsonObject retValue = new JsonObject();
+            String className = src.getClass().getName();
+            retValue.addProperty(CLASSNAME, className);
+            JsonElement elem = context.serialize(src);
+            retValue.add(INSTANCE, elem);
+            return retValue;
     }
 
     @Override

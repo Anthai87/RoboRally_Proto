@@ -76,8 +76,10 @@ class Repository implements IRepository {
 
 				PreparedStatement ps = getInsertGameStatementRGK();
 				// TODO: the name should eventually set by the user
-				//       for the game and should be then used 
+				//       for the game and should be then used
 				//       game.getName();
+				// Only if spare time is available
+
 				ps.setString(1, "Date: " +  new Date()); // instead of name
 				ps.setNull(2, Types.TINYINT); // game.getPlayerNumber(game.getCurrentPlayer())); is inserted after players!
 				ps.setInt(3, game.getPhase().ordinal());
@@ -89,20 +91,20 @@ class Repository implements IRepository {
 				// validates on a per row basis.
 				// Statement statement = connection.createStatement();
 				// statement.execute("SET foreign_key_checks = 0");
-				
+
 				int affectedRows = ps.executeUpdate();
 				ResultSet generatedKeys = ps.getGeneratedKeys();
 				if (affectedRows == 1 && generatedKeys.next()) {
 					game.setGameId(generatedKeys.getInt(1));
 				}
 				generatedKeys.close();
-				
+
 				// Enable foreign key constraint check again:
 				// statement.execute("SET foreign_key_checks = 1");
 				// statement.close();
 
 				createPlayersInDB(game);
-				/* TOODO this method needs to be implemented first
+				/* TODO this method needs to be implemented first
 				createCardFieldsInDB(game);
 				 */
 
@@ -129,7 +131,7 @@ class Repository implements IRepository {
 				// TODO error handling
 				e.printStackTrace();
 				System.err.println("Some DB error");
-				
+
 				try {
 					connection.rollback();
 					connection.setAutoCommit(true);
@@ -143,6 +145,7 @@ class Repository implements IRepository {
 		}
 		return false;
 	}
+
 		
 	@Override
 	public boolean updateGameInDB(Board game) {

@@ -24,10 +24,7 @@ package dk.dtu.compute.se.pisd.roborally.dal;
 import com.mysql.cj.util.StringUtils;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.IOUtil;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * ...
@@ -49,7 +46,7 @@ class Connector {
         
     Connector() {
         try {
-			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
+			//String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 

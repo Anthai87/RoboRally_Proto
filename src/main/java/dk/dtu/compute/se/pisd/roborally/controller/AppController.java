@@ -46,7 +46,7 @@ public class AppController {
 
             int no = result.get();
             for (int i = 0; i < no ; i++) {
-                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1),0);
+                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1), i);
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(i%board.width,i));
             }
@@ -61,7 +61,6 @@ public class AppController {
 
             }
         }
-  // }
 
     public void saveGame() {
         //TODO need to be implemented
