@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-
 public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);

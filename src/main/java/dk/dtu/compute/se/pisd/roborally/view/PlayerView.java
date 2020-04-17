@@ -40,7 +40,8 @@ import java.util.List;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
+ * This class extends Tab, which is a control that allows switching between a group of Tabs.
+ * Only one tab is visible at time.
  */
 public class PlayerView extends Tab implements ViewObserver {
 
