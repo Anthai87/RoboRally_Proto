@@ -25,11 +25,14 @@ import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.model.Constants;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -45,8 +48,9 @@ import javafx.scene.shape.StrokeLineCap;
 // StackPane layout, det der kommer først ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 75;
-    final public static int SPACE_WIDTH = 75;
+
+    final public static int SPACE_HEIGHT = 60;
+    final public static int SPACE_WIDTH = 60;
 
     public final Space space;
 
@@ -147,6 +151,14 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
                 arrow.setRotate((90*player.getHeading().ordinal())%360);
                 this.getChildren().add(arrow);
+
+                   // Image checkpoint = new Image("C:\\Users\\haida\\OneDrive\\Desktop\\checkPoint.jpg");
+                    //this.getChildren().add(new ImageView(checkpoint));
+
+
+
+
+
             }
         }
     }

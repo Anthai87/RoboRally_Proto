@@ -36,6 +36,11 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
  *
  */
 public class Board extends Subject {
+   /* private final int tileSize = Constants.TILE_SIZE;
+    private final int columns = Constants.NUM_COLS;
+    private final int rows = Constants.NUM_ROWS;
+    private final int width = (tileSize * columns) + columns;
+    private final int height = (tileSize * rows) + rows;*/
 
     public final int width;
 
@@ -176,6 +181,7 @@ public class Board extends Subject {
         if (space.getWalls().contains(heading)) {
             return null;
         }
+
         // TODO needs to be implemented based on the actual spaces
         //      and obstacles and walls placed there. For now it,
         //      just calculates the next space in the respective
