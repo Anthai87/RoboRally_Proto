@@ -134,6 +134,7 @@ public class GameController {
                 }
             }
 
+            //Check for win
             currentPlayer.getAccount().setFirstCheckPoint(currentPlayer.getSpace().getCheckpoint());
             currentPlayer.getAccount().setSecondCheckPoint(currentPlayer.getSpace().getCheckpoint());
 
