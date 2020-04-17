@@ -37,6 +37,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 
+import java.io.FileInputStream;
+
 /**
  * ...
  *
@@ -71,6 +73,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
         if (space.getCheckpoint() == 1) {
             this.setStyle("-fx-background-color: red");
+            //Image image = new Image(new FileInputStream("C:\\Users\\haida\\OneDrive\\Desktop\\checkPoint.jpg"));
         }
         if (space.getCheckpoint() == 2) {
             this.setStyle("-fx-background-color: blue");

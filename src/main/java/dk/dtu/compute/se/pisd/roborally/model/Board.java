@@ -66,10 +66,10 @@ public class Board extends Subject {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int checkpoint = 0;
-                if (x == 7 && y == 7) {
+                if (x == 7 && y == 0) {
                     checkpoint = 1;
                 }
-                if (x == 7 && y == 0) {
+                if (x == 3 && y == 6) {
                     checkpoint = 2;
                 }
                 Space space = new Space(this, x, y, checkpoint);
