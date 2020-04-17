@@ -49,13 +49,15 @@ public class Player extends Subject {
 
     private CommandCardField[] program;
     private CommandCardField[] cards;
+    private Account account;
 
-    public Player(@NotNull Board board, String color, @NotNull String name,int no) {
+    public Player(@NotNull Board board, String color, @NotNull String name,int no, Account account) {
         this.board = board;
         this.name = name;
         this.color = color;
         this.space = null;
         this.no = no;
+        this.account = account;
 
         program = new CommandCardField[NO_REGISTERS];
         for (int i = 0; i < program.length; i++) {
@@ -92,6 +94,10 @@ public class Player extends Subject {
         if (space != null) {
             space.playerChanged();
         }
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public Space getSpace() {

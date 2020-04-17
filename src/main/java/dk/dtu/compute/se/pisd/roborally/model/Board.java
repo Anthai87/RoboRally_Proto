@@ -33,7 +33,6 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class Board extends Subject {
 
@@ -61,7 +60,14 @@ public class Board extends Subject {
         spaces = new Space[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                Space space = new Space(this,x,y);
+                int checkpoint = 0;
+                if (x == 8 && y == 8) {
+                    checkpoint = 1;
+                }
+                if (x == 8 && y == 0) {
+                    checkpoint = 2;
+                }
+                Space space = new Space(this, x, y, checkpoint);
                 spaces[x][y] = space;
             }
         }
@@ -168,7 +174,7 @@ public class Board extends Subject {
      * (no walls or obstacles in either of the involved spaces); otherwise,
      * null will be returned.
      *
-     * @param space the space for which the neighbour should be computed
+     * @param space   the space for which the neighbour should be computed
      * @param heading the heading of the neighbour
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
@@ -200,7 +206,7 @@ public class Board extends Subject {
                 x = (x + 1) % width;
                 break;
         }
-        Heading reverse = Heading.values()[(heading.ordinal() + 2)% Heading.values().length];
+        Heading reverse = Heading.values()[(heading.ordinal() + 2) % Heading.values().length];
         Space result = getSpace(x, y);
         if (result != null) {
             if (result.getWalls().contains(reverse)) {

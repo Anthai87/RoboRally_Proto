@@ -39,17 +39,19 @@ public class Space extends Subject {
 
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
+    private int checkpoint;
 
     public final Board board;
 
     public final int x;
     public final int y;
 
-    public Space(Board board, int x, int y) {
+    public Space(Board board, int x, int y, int checkpoint) {
         this.board = board;
         this.x = x;
         this.y = y;
         player = null;
+        this.checkpoint = checkpoint;
     }
 
     public Player getPlayer() {
@@ -91,4 +93,7 @@ public class Space extends Subject {
         notifyChange();
     }
 
+    public int getCheckpoint() {
+        return checkpoint;
+    }
 }

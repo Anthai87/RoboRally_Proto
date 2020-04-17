@@ -3,6 +3,7 @@ import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+import dk.dtu.compute.se.pisd.roborally.model.Account;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
@@ -46,7 +47,7 @@ public class AppController {
 
             int no = result.get();
             for (int i = 0; i < no ; i++) {
-                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1), i);
+                Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1), i, new Account());
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(i%board.width,i));
             }
