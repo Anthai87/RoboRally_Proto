@@ -23,9 +23,11 @@ public class Account {
     }
 
     public void setFirstCheckPoint(int firstCheckPoint) {
+        System.out.println(firstCheckPoint);
         if (firstCheckPoint == 1) {
             this.firstCheckPoint = true;
         }
+        System.out.println(this.firstCheckPoint);
     }
 
     public boolean isSecondCheckPoint() {

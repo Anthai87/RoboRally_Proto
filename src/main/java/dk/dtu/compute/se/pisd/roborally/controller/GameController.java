@@ -133,13 +133,17 @@ public class GameController {
                     }
                 }
             }
-            // tjek for win
+
+            currentPlayer.getAccount().setFirstCheckPoint(currentPlayer.getSpace().getCheckpoint());
+            currentPlayer.getAccount().setSecondCheckPoint(currentPlayer.getSpace().getCheckpoint());
+
             if (currentPlayer.getAccount().isSecondCheckPoint()) {
                 board.setGameWon(true);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(currentPlayer.getName() + " has won");
                 alert.setHeaderText("Congratz");
                 alert.showAndWait();
+                return;
             }
 
             if (board.getPhase() == Phase.ACTIVATION && (step < 0 || step >= Player.NO_REGISTERS)) {
