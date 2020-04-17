@@ -22,13 +22,13 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class GameController {
 
@@ -65,10 +65,10 @@ public class GameController {
             }
         }
     }
+
     public void executePrograms() {
         board.setStepMode(false);
         while (board.getPhase() == Phase.ACTIVATION) {
-
 
 
             executeStep(null);
@@ -81,6 +81,7 @@ public class GameController {
             executePrograms();
         }
     }
+
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
         int random = (int) (Math.random() * commands.length);
@@ -110,6 +111,7 @@ public class GameController {
         executeStep(null);
 
     }
+
     private void executeStep(Command option) {
         Player currentPlayer = board.getCurrentPlayer();
         if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null) {
@@ -131,7 +133,16 @@ public class GameController {
                     }
                 }
             }
-            if (board.getPhase() == Phase.ACTIVATION  && (step < 0 || step >= Player.NO_REGISTERS)) {
+            // tjek for win
+            if (currentPlayer.getAccount().isSecondCheckPoint()) {
+                board.setGameWon(true);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(currentPlayer.getName() + " has won");
+                alert.setHeaderText("Congratz");
+                alert.showAndWait();
+            }
+
+            if (board.getPhase() == Phase.ACTIVATION && (step < 0 || step >= Player.NO_REGISTERS)) {
                 initializeProgrammingPhase();
             }
         }
@@ -156,7 +167,6 @@ public class GameController {
     // TODO lot of stuff missing here
 
 
-
     public void moveForward(@NotNull Player player) {
         if (player.board == board) {
             Space space = player.getSpace();
@@ -178,7 +188,7 @@ public class GameController {
     void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // make sure the move to here is possible in principle
         Player other = space.getPlayer();
-        if (other != null){
+        if (other != null) {
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
                 // XXX Note that there might be additional problems with
@@ -210,28 +220,33 @@ public class GameController {
             this.heading = heading;
         }
     }
+
     private void executeCommandCard(@com.sun.istack.internal.NotNull Player player, CommandCard card) {
         if (card != null) {
             executeCommand(player, card.command);
         }
     }
+
     public void executePlayersOption(Player player, Command option) {
         if (player != null && player.board == board && board.getCurrentPlayer() == player) {
             board.setPhase(Phase.ACTIVATION);
             execute(option);
         }
     }
+
     public void turnRight(Player player) {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().next());
         }
     }
+
     public void turnLeft(Player player) {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
 
         }
     }
+
     public void fastForward(Player player) {
         moveForward(player);
         moveForward(player);

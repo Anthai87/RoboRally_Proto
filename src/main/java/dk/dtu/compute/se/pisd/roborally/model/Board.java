@@ -59,6 +59,8 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
+    private boolean isGameWon;
+
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
@@ -77,6 +79,7 @@ public class Board extends Subject {
             }
         }
         this.stepMode = false;
+        this.isGameWon = false;
     }
 
     public Integer getGameId() {
@@ -222,4 +225,11 @@ public class Board extends Subject {
         return result;
     }
 
+    public boolean isGameWon() {
+        return isGameWon;
+    }
+
+    public void setGameWon(boolean gameWon) {
+        isGameWon = gameWon;
+    }
 }
