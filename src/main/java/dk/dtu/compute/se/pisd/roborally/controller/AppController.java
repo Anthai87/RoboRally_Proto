@@ -64,11 +64,11 @@ public class AppController {
 
     public void saveGame() {
         //TODO need to be implemented
-        if (gameController != null && saveNeeded){
+        if (gameController != null){
             Board board = gameController.board;
             if (board.getGameId() != null){
                 RepositoryAccess.getRepository().updateGameInDB(board);
-                saveNeeded = false;
+
             }
         }
     }

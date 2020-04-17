@@ -21,6 +21,7 @@
  */
 package dk.dtu.compute.se.pisd.roborally.dal;
 
+import com.mysql.cj.protocol.Resultset;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 
@@ -103,9 +104,9 @@ class Repository implements IRepository {
 				// statement.execute("SET foreign_key_checks = 1");
 				// statement.close();
 
-				createPlayersInDB(game);
+				createPlayersInDB(game);  // Look at line #276 	- Reza
 				/* TODO this method needs to be implemented first
-				createCardFieldsInDB(game);
+				   createCardFieldsInDB(game);
 				 */
 
 				// since current player is a foreign key, it can oly be
@@ -170,7 +171,7 @@ class Repository implements IRepository {
 			rs.close();
 
 			updatePlayersInDB(game);
-			/* TOODO this method needs to be implemented first
+			/* TODO this method needs to be implemented first
 			updateCardFieldsInDB(game);
 			*/
 
@@ -324,7 +325,40 @@ class Repository implements IRepository {
 		}
 		rs.close();
 	}
-	
+
+	/* private void loadCardFieldsFromDB (Board game) throws SQLException (
+
+			PreparedStatement ps = getSelectCardFieldStatement();
+			ps.setInt( 1, game.getGameId());
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+			int playerId = rs.getInt(FIELD_PLAYERID):
+			Player player = game.getPlayer(playerId);
+			int type = rs.getInt(FIELD_TYPE);
+			int pos = rs.getInt(FIELD_POS);
+			CommandCardField field;
+			if (type == FIELD_TYPE_REGISTER) {
+				field = player.getProgramField(pos);
+			} else if (type == FIELD_TYPE_HAND) {
+				field = player.getCardField(pos);
+			} else {
+				field = null;
+			}
+			if (field != null) {
+				field.setVisible(rs.getBoolean(FIELD_VISIBLE));
+				Object c = rs.getObject(FIELD_COMMAND);
+				if (c != null) {
+					Command card = Command.values() [rs.getInt(FIELD_COMMAND)];
+					field.setCard (new CommandCard(card));
+				}
+			}
+			}
+			rs.close();
+}
+			)
+
+ */
 	private void updatePlayersInDB(Board game) throws SQLException {
 		PreparedStatement ps = getSelectPlayersStatementU();
 		ps.setInt(1, game.getGameId());
@@ -406,10 +440,49 @@ class Repository implements IRepository {
 				e.printStackTrace();
 			}
 		}
-		return select_players_stmt;
+		return select_players_stmt;												/////////////
+	}
+ /*
+	private static final String SQL_SELECT_CARD_FIELDS = "SELECT * FROM CardField WHERE gameID = ?";
+
+	private PreparedStatement select_card_field_stmt = null;
+
+	private PreparedStatement getSelectCardFieldStatement() {
+			if (select_card_field_stmt == null) {
+					Connection connection = connector.getConnection();
+					try {
+							select_card_field_stmt = connection.prepareStatement {
+									SQL_SELECT_CARD_FIELDS);
+							} catch (SQLException e) {
+								// TODO error handling
+								e.printStackTrace();
+					}
+			}
+			return select_card_field_stmt;
 	}
 
-	private static final String SQL_SELECT_PLAYERS_ASC =
+	private PreparedStatement select_card_field_stmt = null;
+
+	private PreparedStatement getSelectCardFieldStatementU() {
+		if (select_card_field_stmt_u == null) {
+			Connection connection = connector.getConnection();
+			try {
+				select_card_field_stmt_u == connection.prepareStatement {
+					SQL_SELECT_CARD_FIELDS;
+					Resultset.TYPE_FORWARD_ONLY,
+					Resultset.CONCUR_UPDATABLE;
+				} catch (SQLException e){
+					// TODO error handling
+
+					e.printStackTrace();
+				}
+			}
+			return select_card_field_stmt_u;
+		}
+ */
+
+
+	private static final String SQL_SELECT_PLAYERS_ASC =						/////////////
 			"SELECT * FROM Player WHERE gameID = ? ORDER BY playerID ASC";
 	
 	private PreparedStatement select_players_asc_stmt = null;

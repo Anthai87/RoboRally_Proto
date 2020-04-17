@@ -29,6 +29,5 @@ CREATE TABLE IF NOT EXISTS Player (
   FOREIGN KEY (gameID) REFERENCES Game(gameID)
 );;
 
-SET FOREIGN_KEY_CHECKS = 1;;
+SET FOREIGN_KEY_CHECKS = 1
 
-// TODO still some stuff missing here
