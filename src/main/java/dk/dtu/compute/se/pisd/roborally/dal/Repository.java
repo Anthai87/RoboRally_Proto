@@ -62,6 +62,24 @@ class Repository implements IRepository {
 
 	private static final String PLAYER_HEADING = "heading";
 
+	private static final String FIELD_GAMEID = "gameID";
+
+	private static final String FIELD_PLAYERID = "playerID";
+
+	private static final String FIELD_TYPE = "type";
+
+	private static final int  FIELD_TYPE_REGISTER = 0;
+
+	private static final int  FIELD_TYPE_HAND = 0;
+
+	private static final String FIELD_POS = "position";
+
+	private static final String	FIELD_VISIBLE = "visible";
+
+	private static final String	FIELD_COMMAND = "command";
+
+
+
 	private Connector connector;
 	
 	Repository(Connector connector){
@@ -442,7 +460,7 @@ class Repository implements IRepository {
 		}
 		return select_players_stmt;												/////////////
 	}
- /*
+
 	private static final String SQL_SELECT_CARD_FIELDS = "SELECT * FROM CardField WHERE gameID = ?";
 
 	private PreparedStatement select_card_field_stmt = null;
@@ -479,7 +497,7 @@ class Repository implements IRepository {
 			}
 			return select_card_field_stmt_u;
 		}
- */
+
 
 
 	private static final String SQL_SELECT_PLAYERS_ASC =						/////////////
