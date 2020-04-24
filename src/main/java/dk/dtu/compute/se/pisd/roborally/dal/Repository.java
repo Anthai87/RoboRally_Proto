@@ -256,8 +256,9 @@ class Repository implements IRepository {
 				return null;
 			}
 
-
+			getSelectCardFieldStatementU();
 			loadCardFieldsFromDB(game);
+
 
 
 			return game;
