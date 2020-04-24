@@ -256,9 +256,9 @@ class Repository implements IRepository {
 				return null;
 			}
 
-			/* TOODO this method needs to be implemented first
+
 			loadCardFieldsFromDB(game);
-			*/
+
 
 			return game;
 		} catch (SQLException e) {
@@ -344,14 +344,14 @@ class Repository implements IRepository {
 		rs.close();
 	}
 
-	/* private void loadCardFieldsFromDB (Board game) throws SQLException (
+	private void loadCardFieldsFromDB (Board game) throws SQLException {
 
 			PreparedStatement ps = getSelectCardFieldStatement();
 			ps.setInt( 1, game.getGameId());
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-			int playerId = rs.getInt(FIELD_PLAYERID):
+			int playerId = rs.getInt(FIELD_PLAYERID);
 			Player player = game.getPlayer(playerId);
 			int type = rs.getInt(FIELD_TYPE);
 			int pos = rs.getInt(FIELD_POS);
@@ -374,9 +374,9 @@ class Repository implements IRepository {
 			}
 			rs.close();
 }
-			)
 
- */
+
+
 	private void updatePlayersInDB(Board game) throws SQLException {
 		PreparedStatement ps = getSelectPlayersStatementU();
 		ps.setInt(1, game.getGameId());
@@ -469,8 +469,7 @@ class Repository implements IRepository {
 			if (select_card_field_stmt == null) {
 					Connection connection = connector.getConnection();
 					try {
-							select_card_field_stmt = connection.prepareStatement {
-									SQL_SELECT_CARD_FIELDS);
+							select_card_field_stmt = connection.prepareStatement(SQL_SELECT_CARD_FIELDS);
 							} catch (SQLException e) {
 								// TODO error handling
 								e.printStackTrace();
@@ -479,16 +478,16 @@ class Repository implements IRepository {
 			return select_card_field_stmt;
 	}
 
-	private PreparedStatement select_card_field_stmt = null;
+	private PreparedStatement select_card_field_stmt_u = null;
 
 	private PreparedStatement getSelectCardFieldStatementU() {
 		if (select_card_field_stmt_u == null) {
 			Connection connection = connector.getConnection();
 			try {
-				select_card_field_stmt_u == connection.prepareStatement {
-					SQL_SELECT_CARD_FIELDS;
-					Resultset.TYPE_FORWARD_ONLY,
-					Resultset.CONCUR_UPDATABLE;
+				select_card_field_stmt_u = connection.prepareStatement(
+					SQL_SELECT_CARD_FIELDS,
+					ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_UPDATABLE);
 				} catch (SQLException e){
 					// TODO error handling
 
