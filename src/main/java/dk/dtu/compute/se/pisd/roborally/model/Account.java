@@ -35,8 +35,10 @@ public class Account {
     }
 
     public void setSecondCheckPoint(int secondCheckPoint) {
+        System.out.println(secondCheckPoint);
         if (firstCheckPoint && secondCheckPoint == 2) {
             this.secondCheckPoint = true;
         }
+        System.out.println(this.secondCheckPoint);
     }
 }
