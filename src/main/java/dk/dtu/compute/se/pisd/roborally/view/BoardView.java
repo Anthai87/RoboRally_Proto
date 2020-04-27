@@ -138,7 +138,7 @@ import javafx.scene.layout.VBox;
                         } else {
                             gameController.moveForward(player);
                         }
-                        event.consume();
+                                event.consume();
                     }
                 }
             }

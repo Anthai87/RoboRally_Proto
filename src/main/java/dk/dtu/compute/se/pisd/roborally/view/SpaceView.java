@@ -140,6 +140,12 @@ public class SpaceView extends StackPane implements ViewObserver {
                     this.setStyle("-fx-background-color: purple");
                 } else if (action instanceof Checkpoint) {
                     this.setStyle("-fx-background-color: yellow");
+                    Circle circle = new Circle();
+                    circle.setCenterX(20.0f);
+                    circle.setCenterY(20.0f);
+                    circle.setRadius(10.0f);
+                    this.getChildren().add(circle);
+                   // this.setStyle("-fx-background-color: purple");
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);

@@ -2,6 +2,7 @@
   "width":  8,
   "height": 8,
   "spaces": [
+
     {
       "walls": [
         "SOUTH"
@@ -162,14 +163,6 @@
       ],
       "x": 7,
       "y": 7
-    },
-    {
-      "images": {
-        "checkpoint": "checkPoint.jpg",
-        "Gear": "Gear.jpg",
-        "energySpace": "energySpace.jpg",
-        "laser": "laser.jpg"
-      }
     }
   ]
 }
