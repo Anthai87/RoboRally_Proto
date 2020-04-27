@@ -193,13 +193,15 @@ public class GameController {
     void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // make sure the move to here is possible in principle
         Player other = space.getPlayer();
+
+        Space target = board.getNeighbour(space, heading);
         if (other != null) {
-            Space target = board.getNeighbour(space, heading);
             if (target != null) {
                 // XXX Note that there might be additional problems with
                 //     infinite recursion here (in some special cases)!
                 //     We will come back to that!
                 moveToSpace(other, target, heading);
+
 
                 // Note that we do NOT embed the above statement in a try catch block, since
                 // the thrown exception is supposed to be passed on to the caller
@@ -210,6 +212,17 @@ public class GameController {
             }
         }
         player.setSpace(space);
+
+        //Checking for actions of the field you just landed on
+        for (FieldAction action : space.getActions()) {
+//            if (action instanceof ConveyorBelt) {
+//                action.doAction(this, space);
+//                System.out.println("Conveyor");
+//            }
+
+            //do all in this line
+            action.doAction(this, space);
+        }
     }
 
     class ImpossibleMoveException extends Exception {

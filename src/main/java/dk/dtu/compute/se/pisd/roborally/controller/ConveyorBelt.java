@@ -31,7 +31,6 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class ConveyorBelt extends FieldAction {
 
@@ -49,16 +48,17 @@ public class ConveyorBelt extends FieldAction {
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
         // TODO needs to be implemented
         Board board = space.board;
-        if(board != null && gameController.board == board){
+        if (board != null && gameController.board == board) {
             Player player = space.getPlayer();
-            getHeading();
-            if (player != null){
-                Space target = board.getNeighbour(space,heading);
+            heading = getHeading();
+            if (player != null) {
+                Space target = board.getNeighbour(space, heading);
 
-                if (target!= null){
+                if (target != null) {
                     try {
                         gameController.moveToSpace(player, target, heading);
-                    }catch (GameController.ImpossibleMoveException e){}
+                    } catch (GameController.ImpossibleMoveException e) {
+                    }
                     return true;
                 }
             }
