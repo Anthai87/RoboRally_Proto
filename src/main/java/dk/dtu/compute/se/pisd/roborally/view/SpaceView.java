@@ -21,8 +21,10 @@ package dk.dtu.compute.se.pisd.roborally.view;
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
+
 import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.Checkpoint;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.controller.Gear;
@@ -37,11 +39,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 
+import java.awt.*;
+
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 // ViewObserver er for updateView metoden, bestemmer hvordan felterne skal se ud.
 // StackPane layout, det der kommer først ligger nederst i layoutet.
@@ -69,11 +72,13 @@ public class SpaceView extends StackPane implements ViewObserver {
         } else {
             this.setStyle("-fx-background-color: black");
         }
+
+        /*
         if (space.getCheckpoint() == 1) {
 
-            /*  Image image = new Image("images/checkPoint.jpg");
+            Image image = new Image("images/checkPoint.jpg");
             this.getChildren().add(new ImageView(image));
-           */
+
 
             this.setStyle("-fx-background-color: yellow");
 
@@ -81,6 +86,9 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (space.getCheckpoint() == 2) {
             this.setStyle("-fx-background-color: yellow");
         }
+
+         */
+
 
         //updatePlayer();
 
@@ -94,21 +102,20 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (player != null) {
             Polygon figure = new Polygon(0.0, 0.0,
                     10.0, 20.0,
-                    20.0, 0.0 );
+                    20.0, 0.0);
             try {
                 figure.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {
                 figure.setFill(Color.MEDIUMPURPLE);
             }
-            figure.setRotate((90*player.getHeading().ordinal())%360);
-           this.getChildren().add(figure);
-        } else  {
-           this.setStyle(null);
+            figure.setRotate((90 * player.getHeading().ordinal()) % 360);
+            this.getChildren().add(figure);
+        } else {
+            this.setStyle(null);
         }
         // update the style of the space according to the changes;
         //updatePlayer();
     }
-
 
 
     @Override
@@ -117,12 +124,12 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().clear();
 
 
-            for (FieldAction action : space.getActions()){
+            for (FieldAction action : space.getActions()) {
 
                 // tjekkes for om det er en Conveyorbelt
                 if (action instanceof ConveyorBelt) {
                     ConveyorBelt belt = (ConveyorBelt) action;
-                    Polygon arrow = new Polygon(0.0,0.0,30.0,60.0,60.0,0.0);
+                    Polygon arrow = new Polygon(0.0, 0.0, 30.0, 60.0, 60.0, 0.0);
                     arrow.setFill(Color.LIGHTGRAY);
                     arrow.setRotate((90 * belt.getHeading().ordinal()) % 360);
                     this.getChildren().add(arrow);
@@ -131,50 +138,54 @@ public class SpaceView extends StackPane implements ViewObserver {
 //                    circle.setFill(Color.BLUE);
 //                    this.getChildren().add(circle);
                     this.setStyle("-fx-background-color: purple");
+                } else if (action instanceof Checkpoint) {
+                    this.setStyle("-fx-background-color: yellow");
                 }
             }
-            Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
+            Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setStroke(Color.RED);
             gc.setLineWidth(5);
             gc.setLineCap(StrokeLineCap.ROUND);
-            for (Heading wall:space.getWalls()) {
+            for (Heading wall : space.getWalls()) {
                 switch (wall) {
                     case SOUTH:
-                        gc.strokeLine(2,SPACE_HEIGHT-2,SPACE_WIDTH-2,SPACE_HEIGHT-2);
+                        gc.strokeLine(2, SPACE_HEIGHT - 2, SPACE_WIDTH - 2, SPACE_HEIGHT - 2);
                         break;
                     case WEST:
-                        gc.strokeLine(2,2,2,SPACE_HEIGHT-2);
+                        gc.strokeLine(2, 2, 2, SPACE_HEIGHT - 2);
                         break;
                     case NORTH:
-                        gc.strokeLine(2,2,SPACE_WIDTH-2,2);
+                        gc.strokeLine(2, 2, SPACE_WIDTH - 2, 2);
                         break;
                     case EAST:
-                        gc.strokeLine(SPACE_WIDTH-2,2,SPACE_WIDTH-2,SPACE_HEIGHT-2);
+                        gc.strokeLine(SPACE_WIDTH - 2, 2, SPACE_WIDTH - 2, SPACE_HEIGHT - 2);
                         break;
                 }
             }
             this.getChildren().add(canvas);
 
             Player player = space.getPlayer();
-            if(player != null){
+            if (player != null) {
                 Polygon arrow = new Polygon(0.0, 0.0, 10.0, 20.0, 20.0, 0.0);
                 try {
                     // farverne kommer fra klassen Player.
                     arrow.setFill(Color.valueOf(player.getColor()));
-                }catch (Exception e){
+                } catch (Exception e) {
                     arrow.setFill(Color.MEDIUMPURPLE);
                 }
-                arrow.setRotate((90*player.getHeading().ordinal())%360);
+                arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
                 this.getChildren().add(arrow);
             }
 
-            if (space.getCheckpoint() == 1) {
+            /*if (space.getCheckpoint() == 1) {
                 gc.setFill(Color.RED);
             }
             if (space.getCheckpoint() == 2) {
                 gc.setFill(Color.BLUE);
             }
+
+             */
 
         }
     }
