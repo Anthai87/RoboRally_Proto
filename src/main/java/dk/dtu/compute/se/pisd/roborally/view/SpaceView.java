@@ -30,14 +30,10 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
-
-import java.io.FileInputStream;
 
 /**
  * ...
@@ -49,8 +45,8 @@ import java.io.FileInputStream;
 // StackPane layout, det der kommer først ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 55;
-    final public static int SPACE_WIDTH = 55;
+    final public static int SPACE_HEIGHT = 75;
+    final public static int SPACE_WIDTH = 75;
 
     public final Space space;
 
@@ -72,18 +68,16 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: black");
         }
         if (space.getCheckpoint() == 1) {
-            this.setStyle("-fx-background-color: red");
-            //Image image = new Image(new FileInputStream("C:\\Users\\haida\\OneDrive\\Desktop\\checkPoint.jpg"));
-        }
-        if (space.getCheckpoint() == 2) {
-            this.setStyle("-fx-background-color: blue");
-        }
 
-        if (space.getCheckpoint() == 1) {
-            this.setStyle("-fx-background-color: blue");
+            /*  Image image = new Image("images/checkPoint.jpg");
+            this.getChildren().add(new ImageView(image));
+           */
+
+            this.setStyle("-fx-background-color: yellow");
+
         }
         if (space.getCheckpoint() == 2) {
-            this.setStyle("-fx-background-color: red");
+            this.setStyle("-fx-background-color: yellow");
         }
 
         //updatePlayer();
@@ -119,6 +113,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     public void updateView(Subject subject) {
         if (subject == this.space) {
             this.getChildren().clear();
+
 
             for (FieldAction action : space.getActions()){
 
@@ -166,6 +161,14 @@ public class SpaceView extends StackPane implements ViewObserver {
                 arrow.setRotate((90*player.getHeading().ordinal())%360);
                 this.getChildren().add(arrow);
             }
+
+            if (space.getCheckpoint() == 1) {
+                gc.setFill(Color.RED);
+            }
+            if (space.getCheckpoint() == 2) {
+                gc.setFill(Color.BLUE);
+            }
+
         }
     }
 }

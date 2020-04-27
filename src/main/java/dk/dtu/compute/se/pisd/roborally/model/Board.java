@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -35,11 +36,6 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class Board extends Subject {
-   /* private final int tileSize = Constants.TILE_SIZE;
-    private final int columns = Constants.NUM_COLS;
-    private final int rows = Constants.NUM_ROWS;
-    private final int width = (tileSize * columns) + columns;
-    private final int height = (tileSize * rows) + rows;*/
 
     public final int width;
 

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 /*
      *  This file is part of the initial project provided for the
      *  course "Project in Software Development (02362)" held at

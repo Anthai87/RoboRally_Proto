@@ -72,7 +72,7 @@ public class AppController {
             }
         }
     }
-    public void loadGame(){
+    public void loadGame() {
         if(gameController == null){
             List<GameInDB> games = RepositoryAccess.getRepository().getGames();
             if(!games.isEmpty()){

@@ -29,6 +29,7 @@ import java.util.List;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
+ * I listen gemmes spaces, hvorpå sker noget.
  *
  */
 public class BoardTemplate {
