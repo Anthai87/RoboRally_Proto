@@ -37,22 +37,15 @@
     {
       "walls": [],
       "actions": [
-      ],
-      "x": 1,
-      "y": 3
-    },
-    {
-      "walls": [],
-      "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
           "INSTANCE": {
             "heading": "NORTH"
           }
         }
       ],
       "x": 1,
-      "y": 4
+      "y": 3
     },
     {
       "walls": [],

@@ -25,6 +25,7 @@ import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.controller.Gear;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
@@ -32,6 +33,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 
@@ -124,6 +126,11 @@ public class SpaceView extends StackPane implements ViewObserver {
                     arrow.setFill(Color.LIGHTGRAY);
                     arrow.setRotate((90 * belt.getHeading().ordinal()) % 360);
                     this.getChildren().add(arrow);
+                } else if (action instanceof Gear) {
+//                    Circle circle = new Circle();
+//                    circle.setFill(Color.BLUE);
+//                    this.getChildren().add(circle);
+                    this.setStyle("-fx-background-color: purple");
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
