@@ -127,10 +127,12 @@ public class SpaceView extends StackPane implements ViewObserver {
                     arrow.setRotate((90 * belt.getHeading().ordinal()) % 360);
                     this.getChildren().add(arrow);
                 } else if (action instanceof Gear) {
-//                    Circle circle = new Circle();
-//                    circle.setFill(Color.BLUE);
-//                    this.getChildren().add(circle);
-                    this.setStyle("-fx-background-color: purple");
+                    Circle circle = new Circle();
+                    circle.setCenterX(20.0f);
+                    circle.setCenterY(20.0f);
+                    circle.setRadius(10.0f);
+                    this.getChildren().add(circle);
+                   // this.setStyle("-fx-background-color: purple");
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
@@ -175,7 +177,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (space.getCheckpoint() == 2) {
                 gc.setFill(Color.BLUE);
             }
-
         }
     }
 }
