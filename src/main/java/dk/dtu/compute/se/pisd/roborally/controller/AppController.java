@@ -20,7 +20,7 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "magneta", "cyan");
-    final private String fieldChoice[] = {"Default", "Difficult", "blaBla"};
+    final private String fieldChoice[] = {"Default", "Dizzy Highway", "Risky Crossing","High Octane","BurnOut"};
 
     private RoboRally roboRally;
     private GameController gameController;
@@ -40,8 +40,9 @@ public class AppController {
             ChoiceDialog d = new ChoiceDialog(fieldChoice[0], fieldChoice);
             d.setHeaderText("Field Choice");
             d.setContentText("Please select the Field you wanna game on");
-            d.showAndWait();
+            Optional<String> optional = d.showAndWait();
 
+            if (optional.isPresent())
             if (gameController != null)
                // if (!stopGame()){
                     return;
