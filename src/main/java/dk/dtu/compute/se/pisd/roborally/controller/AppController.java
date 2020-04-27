@@ -9,6 +9,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ChoiceDialog;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "magneta", "cyan");
+    final private String fieldChoice[] = {"Default", "Difficult", "blaBla"};
 
     private RoboRally roboRally;
     private GameController gameController;
@@ -35,11 +37,16 @@ public class AppController {
         Optional<Integer> result = dialog.showAndWait();
 
         if (result.isPresent()) {
-            if (gameController != null) {
+            ChoiceDialog d = new ChoiceDialog(fieldChoice[0], fieldChoice);
+            d.setHeaderText("Field Choice");
+            d.setContentText("Please select the Field you wanna game on");
+            d.showAndWait();
 
+            if (gameController != null)
                // if (!stopGame()){
                     return;
                 }
+
 
             Board board = LoadBoard.loadBoard(null);
             gameController = new GameController(board);
@@ -57,10 +64,8 @@ public class AppController {
 
             RepositoryAccess.getRepository().createGameInDB(board);
            // attachSaveNeedObserver();
-
-
             }
-        }
+
 
     public void saveGame() {
         //TODO need to be implemented

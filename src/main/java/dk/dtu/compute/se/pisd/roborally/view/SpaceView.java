@@ -47,8 +47,8 @@ import javafx.scene.shape.StrokeLineCap;
 // StackPane layout, det der kommer først ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 45;
-    final public static int SPACE_WIDTH = 45;
+    final public static int SPACE_HEIGHT = 75;
+    final public static int SPACE_WIDTH = 75;
 
     public final Space space;
 
@@ -67,7 +67,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: white");
         } else {
-            this.setStyle("-fx-background-color: black");
+            this.setStyle("-fx-background-color: darkgray");
         }
         if (space.getCheckpoint() == 1) {
 
