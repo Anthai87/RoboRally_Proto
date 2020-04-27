@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Game (
   step tinyint,
   currentPlayer tinyint NULL,
   
-  PRIMARY KEY (gameID),
+  PRIMARY KEY (gameID)
 
 );
   

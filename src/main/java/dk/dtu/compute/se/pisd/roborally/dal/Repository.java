@@ -24,6 +24,7 @@ package dk.dtu.compute.se.pisd.roborally.dal;
 import com.mysql.cj.protocol.Resultset;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import dk.dtu.compute.se.pisd.roborally.view.CardFieldView;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -189,9 +190,15 @@ class Repository implements IRepository {
 			rs.close();
 
 			updatePlayersInDB(game);
-			/* TODO this method needs to be implemented first
-			updateCardFieldsInDB(game);
-			*/
+
+			// TODO this method needs to be implemented first
+
+
+
+
+
+
+
 
             connection.commit();
             connection.setAutoCommit(true);
@@ -212,6 +219,26 @@ class Repository implements IRepository {
 
 		return false;
 	}
+
+	/*private void updateCardFieldInDB(Board game) throws SQLException {
+		PreparedStatement ps = getSelectCardFieldstatementU();
+		ps.setInt(1, game.getGameId());
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			int fieldID = rs.getInt(FIELD_PLAYERID);
+;			CommandCardField commandcard = new CommandCardField();
+			rs.updateInt(FIELD_VISIBLE, cardField.isVisible());
+			// TODO error handling
+			// TODO take care of case when number of players changes, etc
+			rs.updateRow();
+		}
+		rs.close();
+
+		// TODO error handling/consistency check: check whether all players were updated
+	}
+
+	 */
 	
 	@Override
 	public Board loadGameFromDB(int id) {
@@ -256,10 +283,7 @@ class Repository implements IRepository {
 				return null;
 			}
 
-			getSelectCardFieldStatementU();
 			loadCardFieldsFromDB(game);
-
-
 
 			return game;
 		} catch (SQLException e) {
@@ -292,6 +316,27 @@ class Repository implements IRepository {
 		}
 		return result;		
 	}
+/*
+	private void createCardFieldsInDB(Board game) throws SQLException {
+		PreparedStatement ps = getSelectCardFieldStatementU();
+		ps.setInt(1, game.getGameId());
+
+		ResultSet rs = ps.executeQuery();
+		for (int i = 0; i < game.getPlayersNumber(); i++)
+		{
+
+			Player player = game.getPlayer(i);
+			rs.moveToInsertRow();
+			rs.updateInt(FIELD_GAMEID, game.getGameId());
+			rs.updateInt(FIELD_PLAYERID, i);
+			rs.updateInt(FIELD_TYPE, );
+			rs.updateInt(FIELD_POS, )
+			rs.updateInt (FIELD_VISIBLE,)
+			rs.updateInt(FIELD_COMMAND, player.getCardField(i).getCard().command.ordinal());
+		}
+	}
+
+ */
 
 	private void createPlayersInDB(Board game) throws SQLException {
 		// TODO code should be more defensive
