@@ -33,6 +33,8 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -126,7 +128,6 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             for (FieldAction action : space.getActions()) {
 
-                // tjekkes for om det er en Conveyorbelt
                 if (action instanceof ConveyorBelt) {
                     ConveyorBelt belt = (ConveyorBelt) action;
                     Polygon arrow = new Polygon(0.0, 0.0, 30.0, 60.0, 60.0, 0.0);
@@ -134,19 +135,22 @@ public class SpaceView extends StackPane implements ViewObserver {
                     arrow.setRotate((90 * belt.getHeading().ordinal()) % 360);
                     this.getChildren().add(arrow);
                 } else if (action instanceof Gear) {
-//                    Circle circle = new Circle();
-//                    circle.setFill(Color.BLUE);
-//                    this.getChildren().add(circle);
-                    this.setStyle("-fx-background-color: purple");
-                    Circle circle = new Circle();
-                    circle.setCenterX(20.0f);
-                    circle.setCenterY(20.0f);
-                    circle.setRadius(10.0f);
-                    this.getChildren().add(circle);
-                } else if (action instanceof Checkpoint) {
-                    this.setStyle("-fx-background-color: yellow");
+                    Image image = new Image("images/Gear.jpg");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setImage(image);
+                    imageView.setRotate(-90);
+                    imageView.setFitHeight(SPACE_HEIGHT);
+                    imageView.setFitWidth(SPACE_WIDTH);
+                    this.getChildren().add(imageView);
 
-                   // this.setStyle("-fx-background-color: purple");
+                } else if (action instanceof Checkpoint) {
+                    Image checkPoint = new Image("images/checkPoint.jpg");
+                    ImageView imageView1 = new ImageView(checkPoint);
+                    imageView1.setImage(checkPoint);
+                    imageView1.setRotate(-90);
+                    imageView1.setFitHeight(SPACE_HEIGHT);
+                    imageView1.setFitWidth(SPACE_WIDTH);
+                    this.getChildren().add(imageView1);
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);

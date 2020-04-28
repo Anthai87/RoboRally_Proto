@@ -7,6 +7,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Account;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
+import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
