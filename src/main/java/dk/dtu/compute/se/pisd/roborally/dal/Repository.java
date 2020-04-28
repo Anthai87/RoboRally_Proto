@@ -69,7 +69,7 @@ class Repository implements IRepository {
 
 	private static final String FIELD_TYPE = "type";
 
-	private static final int  FIELD_TYPE_REGISTER = 0;
+	private static final int  FIELD_TYPE_REGISTER = 1;
 
 	private static final int  FIELD_TYPE_HAND = 0;
 
@@ -325,22 +325,23 @@ class Repository implements IRepository {
 		ResultSet rs = ps.executeQuery();
 		for (int i = 0; i < game.getPlayersNumber(); i++)
 		{
-			for (CommandCardField program:game.getCurrentPlayer().getProgram()
-				 ) {
+            for (int j = 0; j < Player.NO_REGISTERS ; j++) {
+                Player player
+
+
 
 
 
 			}
 
-			for (CommandCardField cards:game.getCurrentPlayer().getCards()
-			) {
+            for (int j = 0; j < Player.NO_CARDS; j++) {
 				Player player = game.getPlayer(i);
 				rs.moveToInsertRow();
 				rs.updateInt(FIELD_GAMEID, game.getGameId());
 				rs.updateInt(FIELD_PLAYERID, i);
 				rs.updateInt(FIELD_TYPE, FIELD_TYPE_HAND);
-				rs.updateInt(FIELD_POS, );
-				rs.updateInt(FIELD_COMMAND, player.getCardField(i).getCard().command.ordinal());
+				rs.updateInt(FIELD_POS, j);
+				rs.updateInt(FIELD_COMMAND, player.getCardField(j).getCard().command.ordinal());
 				rs.insertRow();
 
 			}
