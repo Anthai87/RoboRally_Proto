@@ -31,9 +31,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import org.omg.PortableInterceptor.ACTIVE;
-
-import javax.swing.*;
 import java.util.List;
 
 /**

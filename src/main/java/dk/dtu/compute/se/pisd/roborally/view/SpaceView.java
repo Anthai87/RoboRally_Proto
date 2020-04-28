@@ -24,10 +24,7 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.Checkpoint;
-import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
-import dk.dtu.compute.se.pisd.roborally.controller.Gear;
+import dk.dtu.compute.se.pisd.roborally.controller.*;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
@@ -37,11 +34,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
-
-import java.awt.*;
 
 /**
  * ...
@@ -74,23 +68,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         } else {
             this.setStyle("-fx-background-color: darkgray");
         }
-
-        /*
-        if (space.getCheckpoint() == 1) {
-
-            Image image = new Image("images/checkPoint.jpg");
-            this.getChildren().add(new ImageView(image));
-
-
-            this.setStyle("-fx-background-color: yellow");
-
-        }
-        if (space.getCheckpoint() == 2) {
-            this.setStyle("-fx-background-color: yellow");
-        }
-
-         */
-
 
         //updatePlayer();
 
@@ -129,6 +106,8 @@ public class SpaceView extends StackPane implements ViewObserver {
             for (FieldAction action : space.getActions()) {
 
                 if (action instanceof ConveyorBelt) {
+
+
                     ConveyorBelt belt = (ConveyorBelt) action;
                     Polygon arrow = new Polygon(0.0, 0.0, 30.0, 60.0, 60.0, 0.0);
                     arrow.setFill(Color.LIGHTGRAY);
@@ -149,6 +128,15 @@ public class SpaceView extends StackPane implements ViewObserver {
                     imageView1.setFitHeight(SPACE_HEIGHT);
                     imageView1.setFitWidth(SPACE_WIDTH);
                     this.getChildren().add(imageView1);
+
+                } else if (action instanceof Pits){
+                    Image Pits = new Image("images/Pits.jpg");
+                    ImageView imageView2 = new ImageView(Pits);
+                    imageView2.setImage(Pits);
+                    imageView2.setFitHeight(SPACE_HEIGHT);
+                    imageView2.setFitWidth(SPACE_WIDTH);
+                    this.getChildren().add(imageView2);
+
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
@@ -186,16 +174,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                 arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
                 this.getChildren().add(arrow);
             }
-
-            /*if (space.getCheckpoint() == 1) {
-                gc.setFill(Color.RED);
-            }
-            if (space.getCheckpoint() == 2) {
-                gc.setFill(Color.BLUE);
-            }
-
-             */
-
         }
     }
 }
