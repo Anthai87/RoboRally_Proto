@@ -138,7 +138,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                     Image image = new Image("images/Gear.jpg");
                     ImageView imageView = new ImageView(image);
                     imageView.setImage(image);
-                    imageView.setRotate(-90);
                     imageView.setFitHeight(SPACE_HEIGHT);
                     imageView.setFitWidth(SPACE_WIDTH);
                     this.getChildren().add(imageView);
@@ -147,7 +146,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                     Image checkPoint = new Image("images/checkPoint.jpg");
                     ImageView imageView1 = new ImageView(checkPoint);
                     imageView1.setImage(checkPoint);
-                    imageView1.setRotate(-90);
                     imageView1.setFitHeight(SPACE_HEIGHT);
                     imageView1.setFitWidth(SPACE_WIDTH);
                     this.getChildren().add(imageView1);
