@@ -326,12 +326,15 @@ class Repository implements IRepository {
 		for (int i = 0; i < game.getPlayersNumber(); i++)
 		{
             for (int j = 0; j < Player.NO_REGISTERS ; j++) {
-                Player player
-
-
-
-
-
+                Player player = game.getPlayer(i);
+                rs.moveToInsertRow();
+                rs.updateInt(FIELD_GAMEID, game.getGameId());
+                rs.updateInt(FIELD_PLAYERID, i);
+                rs.updateInt(FIELD_TYPE, FIELD_TYPE_REGISTER);
+                rs.updateInt(FIELD_POS, j);
+                rs.updateBoolean(FIELD_VISIBLE, player.getProgramField(j).isVisible());
+                rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().command.ordinal());
+				rs.insertRow();
 			}
 
             for (int j = 0; j < Player.NO_CARDS; j++) {
@@ -341,12 +344,11 @@ class Repository implements IRepository {
 				rs.updateInt(FIELD_PLAYERID, i);
 				rs.updateInt(FIELD_TYPE, FIELD_TYPE_HAND);
 				rs.updateInt(FIELD_POS, j);
+				rs.updateBoolean(FIELD_VISIBLE, player.getCardField(j).isVisible());
 				rs.updateInt(FIELD_COMMAND, player.getCardField(j).getCard().command.ordinal());
 				rs.insertRow();
 
 			}
-
-
 		}
 
 		rs.close();
