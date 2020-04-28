@@ -130,6 +130,7 @@ import javafx.scene.layout.VBox;
                     Space space = spaceView.space;
                     Board board = space.board;
                     Player player = space.getPlayer();
+                    //TODO: slå fra, for endelig version. Kun for testing
                     if (player != null && board == gameController.board) {
                         if (event.isShiftDown()) {
                             gameController.turnRight(player);
