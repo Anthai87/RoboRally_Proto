@@ -43,7 +43,7 @@ import javafx.scene.shape.StrokeLineCap;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 // ViewObserver er for updateView metoden, bestemmer hvordan felterne skal se ud.
-// StackPane layout, det der kommer først ligger nederst i layoutet.
+// StackPane layout; Det der kommer først på ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
     final public static int SPACE_HEIGHT = 75;
@@ -63,11 +63,12 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        if ((space.x + space.y) % 2 == 0) {
-            this.setStyle("-fx-background-color: white");
-        } else {
+      if ((space.x + space.y) % 2 == 0) {
+            this.setStyle("-fx-background-color: lightgray");
+      }
+      else {
             this.setStyle("-fx-background-color: darkgray");
-        }
+      }
 
         //updatePlayer();
 
@@ -102,7 +103,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (subject == this.space) {
             this.getChildren().clear();
 
-
             for (FieldAction action : space.getActions()) {
 
                 if (action instanceof ConveyorBelt) {
@@ -124,12 +124,23 @@ public class SpaceView extends StackPane implements ViewObserver {
                     this.getChildren().add(imageView);
                 }
                 else if (action instanceof Checkpoint) {
-                    Image checkPoint = new Image("images/checkPoint.jpg");
-                    ImageView imageView1 = new ImageView(checkPoint);
-                    imageView1.setImage(checkPoint);
-                    imageView1.setFitHeight(SPACE_HEIGHT);
-                    imageView1.setFitWidth(SPACE_WIDTH);
-                    this.getChildren().add(imageView1);
+                    if(this.space.x == 1 && this.space.y == 1) {
+                        Image checkPoint = new Image("images/checkPoint.jpg");
+                        ImageView imageView1 = new ImageView(checkPoint);
+                        imageView1.setImage(checkPoint);
+                        imageView1.setFitHeight(SPACE_HEIGHT);
+                        imageView1.setFitWidth(SPACE_WIDTH);
+                        this.getChildren().add(imageView1);
+                    }
+                    else{
+                        Image checkPoint2 = new Image("images/checkPoint2.jpg");
+                        ImageView imageView2 = new ImageView(checkPoint2);
+                        imageView2.setImage(checkPoint2);
+                        imageView2.setFitHeight(SPACE_HEIGHT);
+                        imageView2.setFitWidth(SPACE_WIDTH);
+                        this.getChildren().add(imageView2);
+
+                    }
 
                 } else if (action instanceof Pits){
                     Image Pits = new Image("images/Pits.jpg");
