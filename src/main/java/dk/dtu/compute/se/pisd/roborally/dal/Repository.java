@@ -127,6 +127,7 @@ class Repository implements IRepository {
 				/* TODO this method needs to be implemented first
 				   createCardFieldsInDB(game);
 				 */
+				createCardFieldsInDB(game);
 
 				// since current player is a foreign key, it can oly be
 				// inserted after the players are created, since MySQL does
@@ -316,7 +317,7 @@ class Repository implements IRepository {
 		}
 		return result;		
 	}
-/*
+
 	private void createCardFieldsInDB(Board game) throws SQLException {
 		PreparedStatement ps = getSelectCardFieldStatementU();
 		ps.setInt(1, game.getGameId());
@@ -324,19 +325,33 @@ class Repository implements IRepository {
 		ResultSet rs = ps.executeQuery();
 		for (int i = 0; i < game.getPlayersNumber(); i++)
 		{
+			for (CommandCardField program:game.getCurrentPlayer().getProgram()
+				 ) {
 
-			Player player = game.getPlayer(i);
-			rs.moveToInsertRow();
-			rs.updateInt(FIELD_GAMEID, game.getGameId());
-			rs.updateInt(FIELD_PLAYERID, i);
-			rs.updateInt(FIELD_TYPE, );
-			rs.updateInt(FIELD_POS, )
-			rs.updateInt (FIELD_VISIBLE,)
-			rs.updateInt(FIELD_COMMAND, player.getCardField(i).getCard().command.ordinal());
+
+
+			}
+
+			for (CommandCardField cards:game.getCurrentPlayer().getCards()
+			) {
+				Player player = game.getPlayer(i);
+				rs.moveToInsertRow();
+				rs.updateInt(FIELD_GAMEID, game.getGameId());
+				rs.updateInt(FIELD_PLAYERID, i);
+				rs.updateInt(FIELD_TYPE, FIELD_TYPE_HAND);
+				rs.updateInt(FIELD_POS, );
+				rs.updateInt(FIELD_COMMAND, player.getCardField(i).getCard().command.ordinal());
+				rs.insertRow();
+
+			}
+
+
 		}
+
+		rs.close();
 	}
 
- */
+
 
 	private void createPlayersInDB(Board game) throws SQLException {
 		// TODO code should be more defensive

@@ -94,6 +94,14 @@ public class Player extends Subject {
         }
     }
 
+    public CommandCardField[] getProgram() {
+        return program;
+    }
+
+    public CommandCardField[] getCards() {
+        return cards;
+    }
+
     public Space getSpace() {
         return space;
     }
@@ -135,3 +143,4 @@ public class Player extends Subject {
         return cards[i];
     }
 }
+
