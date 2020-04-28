@@ -46,8 +46,8 @@ import javafx.scene.shape.StrokeLineCap;
 // StackPane layout, det der kommer først ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 45;
-    final public static int SPACE_WIDTH = 45;
+    final public static int SPACE_HEIGHT = 75;
+    final public static int SPACE_WIDTH = 75;
 
     public final Space space;
 
@@ -106,22 +106,24 @@ public class SpaceView extends StackPane implements ViewObserver {
             for (FieldAction action : space.getActions()) {
 
                 if (action instanceof ConveyorBelt) {
-
-
                     ConveyorBelt belt = (ConveyorBelt) action;
-                    Polygon arrow = new Polygon(0.0, 0.0, 30.0, 60.0, 60.0, 0.0);
-                    arrow.setFill(Color.LIGHTGRAY);
-                    arrow.setRotate((90 * belt.getHeading().ordinal()) % 360);
-                    this.getChildren().add(arrow);
-                } else if (action instanceof Gear) {
+                    Image arrow = new Image("images/conveyorBelt.jpg");
+                    ImageView conveyBelt = new ImageView(arrow);
+                    conveyBelt.setImage(arrow);
+                    conveyBelt.setFitHeight(SPACE_HEIGHT);
+                    conveyBelt.setFitWidth(SPACE_WIDTH);
+                    conveyBelt.setRotate((90 * belt.getHeading().ordinal()) % 360);
+                    this.getChildren().add(conveyBelt);
+                }
+                else if (action instanceof Gear) {
                     Image image = new Image("images/Gear.jpg");
                     ImageView imageView = new ImageView(image);
                     imageView.setImage(image);
                     imageView.setFitHeight(SPACE_HEIGHT);
                     imageView.setFitWidth(SPACE_WIDTH);
                     this.getChildren().add(imageView);
-
-                } else if (action instanceof Checkpoint) {
+                }
+                else if (action instanceof Checkpoint) {
                     Image checkPoint = new Image("images/checkPoint.jpg");
                     ImageView imageView1 = new ImageView(checkPoint);
                     imageView1.setImage(checkPoint);
@@ -136,7 +138,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                     imageView2.setFitHeight(SPACE_HEIGHT);
                     imageView2.setFitWidth(SPACE_WIDTH);
                     this.getChildren().add(imageView2);
-
                 }
             }
             Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);

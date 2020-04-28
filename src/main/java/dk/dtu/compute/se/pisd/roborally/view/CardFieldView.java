@@ -55,7 +55,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
     final public static int CARDFIELD_WIDTH = 65; // 65
     final public static int CARDFIELD_HEIGHT = 100;
 
-    final public static Border BORDER = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(3)));
+    final public static Border BORDER = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(3)));
 
     final public static Background BG_DEFAULT = new Background(new BackgroundFill(Color.WHITE, null, null));
     final public static Background BG_DRAG = new Background(new BackgroundFill(Color.GRAY, null, null));
