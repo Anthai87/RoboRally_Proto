@@ -133,8 +133,10 @@ public class GameController {
                 }
             }
 
-            //check for win
-            if (currentPlayer.getAccount().isThirdCheckPoint()) {
+            //Check for win - bliver kaldt for man har executed step
+            //Kan være det skal flyttes til et andet sted
+            //TODO: implementér kode til at afslutte spillet
+            if (currentPlayer.getAccount().isSecondCheckPoint()) {
                 board.setGameWon(true);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(currentPlayer.getName() + " has won");
@@ -211,10 +213,6 @@ public class GameController {
 
         //Checking for actions of the field you just landed on
         for (FieldAction action : space.getActions()) {
-//            if (action instanceof ConveyorBelt) {
-//                action.doAction(this, space);
-//                System.out.println("Conveyor");
-//            }
 
             //do all in this line
             action.doAction(this, space);
