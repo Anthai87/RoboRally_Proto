@@ -211,10 +211,6 @@ public class GameController {
 
         //Checking for actions of the field you just landed on
         for (FieldAction action : space.getActions()) {
-//            if (action instanceof ConveyorBelt) {
-//                action.doAction(this, space);
-//                System.out.println("Conveyor");
-//            }
 
             //do all in this line
             action.doAction(this, space);
