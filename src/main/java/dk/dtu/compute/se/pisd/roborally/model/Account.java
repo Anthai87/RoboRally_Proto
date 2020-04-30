@@ -3,18 +3,23 @@ package dk.dtu.compute.se.pisd.roborally.model;
 public class Account {
     private boolean firstCheckPoint;
     private boolean secondCheckPoint;
+    private boolean thirdCheckPoint;
 
     public Account() {
         this.firstCheckPoint = false;
         this.secondCheckPoint = false;
+        this.thirdCheckPoint = false;
     }
 
     public int getCheckpointBalance() {
         if (firstCheckPoint && !secondCheckPoint) {
             return 1;
-        } else if (secondCheckPoint) {
+        } else if (secondCheckPoint && !thirdCheckPoint) {
             return 2;
+        } else if (thirdCheckPoint){
+            return 3;
         }
+
         return 0;
     }
 
@@ -41,4 +46,17 @@ public class Account {
         }
         System.out.println(this.secondCheckPoint);
     }
-}
+
+    public boolean isThirdCheckPoint(){
+        return thirdCheckPoint;
+    }
+
+    public void setThirdCheckPoint (int thirdCheckPoint) {
+        System.out.println(thirdCheckPoint);
+        if (firstCheckPoint && secondCheckPoint && thirdCheckPoint ==3){
+            this.thirdCheckPoint = true;
+        }
+        System.out.println(this.thirdCheckPoint);
+    }
+
+    }

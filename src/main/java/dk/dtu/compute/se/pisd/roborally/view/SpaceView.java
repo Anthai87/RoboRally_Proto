@@ -132,10 +132,19 @@ public class SpaceView extends StackPane implements ViewObserver {
                         imageView1.setFitWidth(SPACE_WIDTH);
                         this.getChildren().add(imageView1);
                     }
-                    else{
+                    else if(((Checkpoint) action).getCheckpoint()==2) {
                         Image checkPoint2 = new Image("images/checkPoint2.jpg");
                         ImageView imageView2 = new ImageView(checkPoint2);
                         imageView2.setImage(checkPoint2);
+                        imageView2.setFitHeight(SPACE_HEIGHT);
+                        imageView2.setFitWidth(SPACE_WIDTH);
+                        this.getChildren().add(imageView2);
+
+                    }
+                     else {
+                        Image checkPoint3 = new Image("images/checkPoint2.jpg");
+                        ImageView imageView2 = new ImageView(checkPoint3);
+                        imageView2.setImage(checkPoint3);
                         imageView2.setFitHeight(SPACE_HEIGHT);
                         imageView2.setFitWidth(SPACE_WIDTH);
                         this.getChildren().add(imageView2);
