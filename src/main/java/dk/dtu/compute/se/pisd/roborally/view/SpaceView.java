@@ -124,7 +124,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                     this.getChildren().add(imageView);
                 }
                 else if (action instanceof Checkpoint) {
-                    if(this.space.x == 1 && this.space.y == 1) {
+                    if(((Checkpoint) action).getCheckpoint()==1) {
                         Image checkPoint = new Image("images/checkPoint.jpg");
                         ImageView imageView1 = new ImageView(checkPoint);
                         imageView1.setImage(checkPoint);

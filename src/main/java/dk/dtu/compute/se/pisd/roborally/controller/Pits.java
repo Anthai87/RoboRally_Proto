@@ -10,8 +10,18 @@ public class Pits extends FieldAction {
         Board board = space.board;
         if (board != null && gameController.board == board) {
             Player player = space.getPlayer();
-            if (space.getPlayer() != null) {
-                player.setHeading(player.getHeading().next());
+            if (player != null) {
+                Space target = board.getSpace(player.getStartX(), player.getStartY());
+                if (target!=null){
+                    try {
+                        gameController.moveToSpace(player,target,player.getHeading());
+                    } catch (GameController.ImpossibleMoveException e) {
+                        e.printStackTrace();
+
+                    }
+
+                    return true;
+                }
             }
         }
         return false;

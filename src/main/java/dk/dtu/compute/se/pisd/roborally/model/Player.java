@@ -37,7 +37,13 @@ public class Player extends Subject {
     final public static int NO_REGISTERS = 5; // Spilleren har 5 skridt ad gangen
     final public static int NO_CARDS = 8; // antal kort spilleren har ved hånden.
 
+   private int startX=0;
+   private int startY=0;
+
+
     final public Board board;
+
+
 
     private String name;
     private String color;
@@ -140,4 +146,18 @@ public class Player extends Subject {
     public CommandCardField getCardField(int i) {
         return cards[i];
     }
+
+    public void setStartingpoint(int X, int Y) {
+        this.startX=X;
+        this.startY=Y;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
 }

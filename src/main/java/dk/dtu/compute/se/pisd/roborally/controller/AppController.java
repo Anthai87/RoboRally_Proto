@@ -58,6 +58,8 @@ public class AppController {
                 Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1), i, new Account());
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(i%board.width,i));
+                player.setStartingpoint(i%board.width,i);
+
             }
 
             board.setCurrentPlayer(board.getPlayer(0));
