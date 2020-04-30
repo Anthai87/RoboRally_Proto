@@ -24,7 +24,10 @@ package dk.dtu.compute.se.pisd.roborally.dal;
 import com.mysql.cj.util.StringUtils;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.IOUtil;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * ...
@@ -36,9 +39,9 @@ class Connector {
 	
     private static final String HOST     = "localhost";
     private static final int    PORT     = 3306;
-    private static final String DATABASE = "pisu";
+    private static final String DATABASE = "PISU";
     private static final String USERNAME = "root"; 
-    private static final String PASSWORD = "D!amanten2020";
+    private static final String PASSWORD = "sara2000";
 
     private static final String DELIMITER = ";;";
     
@@ -46,7 +49,7 @@ class Connector {
         
     Connector() {
         try {
-			//String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
+			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 

@@ -24,6 +24,9 @@ public class Checkpoint extends FieldAction {
             } else if (checkpoint == 2) {
                 space.getPlayer().getAccount().setSecondCheckPoint(checkpoint);
             }
+            else if (checkpoint == 3){
+                space.getPlayer().getAccount().setThirdCheckPoint(checkpoint);
+            }
         }
 
         return false;

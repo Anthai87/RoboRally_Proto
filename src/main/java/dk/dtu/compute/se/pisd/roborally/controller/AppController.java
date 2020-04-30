@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ChoiceDialog;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "magneta", "cyan");
-    final private String fieldChoice[] = {"Default", "Dizzy Highway", "Risky Crossing", "High Octane", "BurnOut"};
+    final private String fieldChoice[] = {"Default", "Difficult", "Risky Crossing", "High Octane", "BurnOut"};
 
     private RoboRally roboRally;
     private GameController gameController;
@@ -38,20 +39,31 @@ public class AppController {
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
 
+        String chosenBoard = null;
+
         if (result.isPresent()) {
             ChoiceDialog d = new ChoiceDialog(fieldChoice[0], fieldChoice);
             d.setHeaderText("Field Choice");
             d.setContentText("Please select the Field you wanna game on");
             Optional<String> optional = d.showAndWait();
 
+
+            if (optional.get().equals("Default")) {
+                chosenBoard = "defaultboard";
+
+            } else if (optional.get().equals("Difficult")) {
+                chosenBoard = "difficult";
+
+            }
             if (optional.isPresent())
                 if (gameController != null)
                     // if (!stopGame()){
                     return;
         }
 
+
         //TODO: her skal der vælges hvilket board der skal bruges
-        Board board = LoadBoard.loadBoard(null);
+        Board board = LoadBoard.loadBoard(chosenBoard);
         gameController = new GameController(board);
 
         int no = result.get();
@@ -60,6 +72,8 @@ public class AppController {
             board.addPlayer(player);
             //her bliver spillere sat
             player.setSpace(board.getSpace(i % board.width, i));
+            player.setStartingpoint(i % board.width, i);
+
         }
 
         board.setCurrentPlayer(board.getPlayer(0));

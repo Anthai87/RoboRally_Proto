@@ -1,279 +1,295 @@
 {
-  "width": 13,
-  "height": 10,
+  "width":  12,
+  "height": 12,
   "spaces": [
-    {"startPlayer": 0, "x": 1, "y": 4},
-    {"startPlayer": 1, "x": 1, "y": 5},
-    {"startPlayer": 2, "x": 0, "y": 3},
-    {"startPlayer": 3, "x": 0, "y": 6},
-    {"startPlayer": 4, "x": 1, "y": 1},
-    {"startPlayer": 5, "x": 1, "y": 8},
-    {"walls": ["SOUTH"], "x": 1, "y": 7},
-    {"walls": ["SOUTH"], "x": 6, "y": 4},
-    {"walls": ["SOUTH"], "x": 9, "y": 6},
-    {"walls": ["NORTH"], "x": 1, "y": 2},
-    {"walls": ["NORTH"], "x": 6, "y": 3},
-    {"walls": ["NORTH"], "x": 9, "y": 5},
-    {"walls": ["WEST"], "x": 6, "y": 6},
-    {"walls": ["WEST"], "x": 8, "y": 3},
-    {"walls": ["EAST"], "x": 2, "y": 4},
-    {"walls": ["EAST"], "x": 2, "y": 5},
-    {"walls": ["EAST"], "x": 7, "y": 6},
-    {"walls": ["EAST"], "x": 9, "y": 3},
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.CheckPoint",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 6, "y": 5
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "actions": [
+
+      ],
+      "x": 2,
+      "y": 9
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.FinalCheckPoint",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 12, "y": 3
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "actions": [
+
+      ],
+      "x": 3,
+      "y": 9
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 3, "y": 9
+    {
+      "walls": [
+        "WEST"
+      ],
+      "actions": [
+
+      ],
+      "x": 6,
+      "y": 8
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 5, "y": 2
+    {
+      "walls": [
+        "WEST"
+      ],
+      "actions": [
+
+      ],
+      "x": 6,
+      "y": 9
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 7, "y": 5
+
+    {
+      "walls": [
+        "WEST"
+      ],
+      "actions": [
+
+      ],
+      "x": 6,
+      "y": 10
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 8, "y": 4
+
+
+
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoint": 1
+          }
+        }
+      ],
+      "x": 1,
+      "y": 10
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 10, "y": 7
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoint": 3
+          }
+        }
+      ],
+      "x": 3,
+      "y": 1
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.EnergyBoost",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 12, "y": 0
+    {
+      "walls": [
+        "SOUTH"
+      ],
+      "actions": [
+      ],
+      "x": 10,
+      "y": 6
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.LeftGear",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 7, "y": 3
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
+          "INSTANCE": {
+            "heading": "NORTH"
+          }
+        }
+      ],
+      "x": 9,
+      "y": 9
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.Pit",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 3, "y": 2
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Pits",
+          "INSTANCE": {
+            "Pits": 1
+          }
+        }
+      ],
+      "x": 3,
+      "y": 6
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.GreenConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 2, "y": 9
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Pits",
+          "INSTANCE": {
+            "Pits": 1
+          }
+        }
+      ],
+      "x": 7,
+      "y": 2
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.GreenConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 2, "y": 0
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Pits",
+          "INSTANCE": {
+            "Pits": 1
+          }
+        }
+      ],
+      "x": 8,
+      "y": 3
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 3, "y": 7
+
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST"
+          }
+        }
+      ],
+      "x": 5,
+      "y": 2
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 3, "y": 8
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST"
+          }
+        }
+      ],
+      "x": 6,
+      "y": 2
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 4, "y": 8
+    {
+      "walls": [
+        "WEST"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH"
+          }
+        }
+      ],
+      "x": 8,
+      "y": 4
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 5, "y": 8
+    {
+      "walls": [
+        "EAST"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH"
+          }
+        }
+      ],
+      "x": 8,
+      "y": 5
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 5, "y": 8
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH"
+          }
+        }
+      ],
+      "x": 8,
+      "y": 6
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 6, "y": 8
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH"
+          }
+        }
+      ],
+      "x": 1,
+      "y": 6
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 7, "y": 8
+
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH"
+          }
+        }
+      ],
+      "x": 1,
+      "y": 7
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 8, "y": 8
+
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
+          "INSTANCE": {
+            "heading": "EAST"
+          }
+        }
+      ],
+      "x": 10,
+      "y": 4
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 9, "y": 8
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
+          "INSTANCE": {
+            "heading": "EAST"
+          }
+        }
+      ],
+      "x": 4,
+      "y": 2
     },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "EAST" } }],
-      "x": 10, "y": 8
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 0
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 2
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 3
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 4
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 5
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 6
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 7
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 4, "y": 8
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "SOUTH" } }],
-      "x": 5, "y": 0
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 5, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 6, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 7, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 8, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 9, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 10, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 11, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 12, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "WEST" } }],
-      "x": 12, "y": 2
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 10, "y": 9
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 1
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 2
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 3
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 4
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 5
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 6
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 7
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 8
-    },
-    {"walls": [], "actions": [
-      { "CLASSNAME": "dk.dtu.compute.se.pisd.initial.controller.action.BlueConveyorBelt",
-        "INSTANCE": { "heading": "NORTH" } }],
-      "x": 11, "y": 9
+    {
+      "action": [
+        "EAST"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoint": 2
+          }
+        }
+      ],
+      "x": 10,
+      "y": 1
     }
   ]
 }
