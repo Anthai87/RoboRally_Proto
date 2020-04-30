@@ -3,8 +3,12 @@ package dk.dtu.compute.se.pisd.roborally.view;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -32,23 +36,24 @@ public class ConfirmBox {
         window.setTitle(title);
         window.setMinWidth(400);
         window.setMinHeight(150);
+        window.centerOnScreen();
+
+
         Text label = new Text(text);
         label.setText(text);
-        label.setFont(Font.font(null, FontWeight.SEMI_BOLD, 18));
-        label.setFill(Color.rgb(255, 255, 255));
+        label.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
+        label.setFill(Color.rgb(0, 0, 0));
 
 
-        GridPane teksten = new GridPane();
+        VBox teksten = new VBox();
         teksten.getChildren().add(label);
 
         // creating two buttons (yes, no)
         Button yes = new Button(" Yes ");
         yes.setStyle("-fx-font-size: 11pt");
-        yes.setStyle("-fx-background-color: lightblue");
 
         Button no = new Button(" No ");
         no.setStyle("-fx-font-size: 11pt");
-        no.setStyle("-fx-background-color: lightblue");
 
         // lambda expression
         yes.setOnAction(event -> {
@@ -71,7 +76,6 @@ public class ConfirmBox {
         heleLayout.setVgap(10);
         heleLayout.add(teksten, 2, 1);
         heleLayout.add(buttons, 2, 2);
-        heleLayout.setStyle("-fx-background-color: gray;");
 
         Scene scene = new Scene(heleLayout);
         window.setScene(scene);

@@ -43,7 +43,6 @@ import java.util.List;
 public class PlayerView extends Tab implements ViewObserver {
 
     private Player player;
-
     private VBox top;
 
     private Label programLabel;
