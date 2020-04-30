@@ -17,9 +17,7 @@ public class Pits extends FieldAction {
                         gameController.moveToSpace(player,target,player.getHeading());
                     } catch (GameController.ImpossibleMoveException e) {
                         e.printStackTrace();
-
                     }
-
                     return true;
                 }
             }

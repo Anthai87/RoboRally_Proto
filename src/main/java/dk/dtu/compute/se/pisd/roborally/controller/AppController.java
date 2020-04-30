@@ -23,7 +23,7 @@ public class AppController {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "magneta", "cyan");
-    final private String fieldChoice[] = {"Default", "Difficult", "Pro", "High Octane", "BurnOut"};
+    final private String fieldChoice[] = {"Default", "Difficult", "Pro"};
 
     private RoboRally roboRally;
     private GameController gameController;

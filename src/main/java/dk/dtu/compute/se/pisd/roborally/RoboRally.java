@@ -27,7 +27,10 @@ import dk.dtu.compute.se.pisd.roborally.view.BoardView;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -38,6 +41,8 @@ import javafx.stage.Stage;
  */
 public class RoboRally extends Application {
     private static final int MIN_APP_WIDTH  = 600;
+    private static final int MIN_APP_HEIGHT  = 600;
+
     private Stage stage;
     private BorderPane boardRoot;
 
@@ -55,13 +60,20 @@ public class RoboRally extends Application {
 
        // creates the view (for the model)
 
+        Image roborally_start = new Image("images/roborally_start.jpg");
+        ImageView imageView = new ImageView(roborally_start);
+        imageView.setFitWidth(MIN_APP_WIDTH);
+        imageView.setFitWidth(MIN_APP_HEIGHT);
+
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
-         boardRoot= new BorderPane();
+         boardRoot= new BorderPane(imageView);
          VBox vBox = new VBox(menuBar,boardRoot);
          vBox.setMinWidth(MIN_APP_WIDTH);
          Scene primaryScene = new Scene(vBox);
 
         stage.setScene(primaryScene);
+        stage.setMinHeight(MIN_APP_HEIGHT);
+
         stage.setOnCloseRequest(
                 e -> {
                     e.consume();

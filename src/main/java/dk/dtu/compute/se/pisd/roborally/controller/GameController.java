@@ -138,9 +138,11 @@ public class GameController {
             //TODO: implementér kode til at afslutte spillet
             if (currentPlayer.getAccount().isSecondCheckPoint()) {
                 board.setGameWon(true);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle(currentPlayer.getName() + " has won");
                 alert.setHeaderText("Congratz");
+
+
                 alert.showAndWait();
                 return;
             }
