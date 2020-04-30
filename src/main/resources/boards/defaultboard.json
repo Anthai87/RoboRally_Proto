@@ -31,6 +31,20 @@
     {
       "walls": [],
       "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoint": 3
+          }
+        }
+      ],
+      "x": 3,
+      "y": 1
+    },
+
+    {
+      "walls": [],
+      "actions": [
       ],
       "x": 1,
       "y": 2

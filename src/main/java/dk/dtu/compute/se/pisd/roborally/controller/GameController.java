@@ -134,7 +134,7 @@ public class GameController {
             }
 
             //check for win
-            if (currentPlayer.getAccount().isSecondCheckPoint()) {
+            if (currentPlayer.getAccount().isThirdCheckPoint()) {
                 board.setGameWon(true);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(currentPlayer.getName() + " has won");

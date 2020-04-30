@@ -142,7 +142,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
                     }
                      else {
-                        Image checkPoint3 = new Image("images/checkPoint2.jpg");
+                        Image checkPoint3 = new Image("images/checkPoint3.jpg");
                         ImageView imageView2 = new ImageView(checkPoint3);
                         imageView2.setImage(checkPoint3);
                         imageView2.setFitHeight(SPACE_HEIGHT);
