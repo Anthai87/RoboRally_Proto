@@ -212,7 +212,7 @@ public class GameController {
         //Checking for actions of the field you just landed on
         for (FieldAction action : space.getActions()) {
 
-            //do all in this line
+            //do all in this line /
             action.doAction(this, space);
         }
     }
