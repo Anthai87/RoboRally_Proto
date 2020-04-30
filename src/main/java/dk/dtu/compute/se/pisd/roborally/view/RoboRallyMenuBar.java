@@ -35,22 +35,9 @@ public class RoboRallyMenuBar extends MenuBar{
 
         this.getMenus().addAll(file);
 
-        // edit menu
-        Menu editMenu = new Menu("_Edit");
-        editMenu.getItems().add(new MenuItem("Undo..."));
-        editMenu.getItems().add(new MenuItem("Redo..."));
-        editMenu.getItems().add(new SeparatorMenuItem());
-        editMenu.getItems().add(new MenuItem("Cut..."));
-        editMenu.getItems().add(new MenuItem("Copy..."));
-        editMenu.getItems().add(new SeparatorMenuItem());
-        editMenu.getItems().add(new MenuItem("Delete..."));
-        this.getMenus().addAll(editMenu);
-
         // Help Menu
         Menu helpMenu = new Menu("_Help");
-        helpMenu.getItems().add(new MenuItem("Find Action..."));
         helpMenu.getItems().add(new MenuItem("Contact..."));
-        helpMenu.getItems().add(new SeparatorMenuItem());
         helpMenu.getItems().add(new MenuItem("About..."));
 
         this.getMenus().addAll(helpMenu);
