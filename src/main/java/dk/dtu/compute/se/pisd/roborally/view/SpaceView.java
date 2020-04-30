@@ -46,8 +46,8 @@ import javafx.scene.shape.StrokeLineCap;
 // StackPane layout; Det der kommer først på ligger nederst i layoutet.
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 75;
-    final public static int SPACE_WIDTH = 75;
+    final public static int SPACE_HEIGHT = 55;
+    final public static int SPACE_WIDTH = 55;
 
     public final Space space;
 

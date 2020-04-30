@@ -49,7 +49,7 @@ public class AppController {
                     return;
                 }
 
-
+            //TODO: her skal der vælges hvilket board der skal bruges
             Board board = LoadBoard.loadBoard(null);
             gameController = new GameController(board);
 
@@ -57,6 +57,7 @@ public class AppController {
             for (int i = 0; i < no ; i++) {
                 Player player = new Player(board,PLAYER_COLORS.get(i),"Player " + (i+1), i, new Account());
                 board.addPlayer(player);
+                //her bliver spillere sat
                 player.setSpace(board.getSpace(i%board.width,i));
                 player.setStartingpoint(i%board.width,i);
 

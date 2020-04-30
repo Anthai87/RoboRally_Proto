@@ -109,7 +109,6 @@ public class GameController {
     public void executeStep() {
         board.setStepMode(true);
         executeStep(null);
-
     }
 
     private void executeStep(Command option) {
