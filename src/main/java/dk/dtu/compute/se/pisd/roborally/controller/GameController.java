@@ -133,7 +133,9 @@ public class GameController {
                 }
             }
 
-            //check for win
+            //Check for win - bliver kaldt for man har executed step
+            //Kan være det skal flyttes til et andet sted
+            //TODO: implementér kode til at afslutte spillet
             if (currentPlayer.getAccount().isSecondCheckPoint()) {
                 board.setGameWon(true);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
