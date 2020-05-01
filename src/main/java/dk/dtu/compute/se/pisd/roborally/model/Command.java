@@ -21,6 +21,10 @@
  */
 package dk.dtu.compute.se.pisd.roborally.model;
 
+import com.mysql.cj.x.protobuf.MysqlxExpr;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+import sun.plugin.javascript.navig.Array;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +54,7 @@ public enum Command {
         this.displayName = displayName;
         this.options = Collections.unmodifiableList(Arrays.asList(options));
     }
+
 
     public boolean isInteractive() {
         return !options.isEmpty();

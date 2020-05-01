@@ -37,6 +37,9 @@ public class CommandCard extends Subject {
     public CommandCard(@NotNull Command command) {
         this.command = command;
     }
+    public Command getCommand() {
+        return command;
+    }
 
     public String getName() {
         return command.displayName;

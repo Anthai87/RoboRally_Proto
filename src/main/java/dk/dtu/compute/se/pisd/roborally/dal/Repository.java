@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static dk.dtu.compute.se.pisd.roborally.model.Command.*;
+
 /**
  * ...
  *
@@ -82,7 +84,7 @@ class Repository implements IRepository {
 
 
 	private Connector connector;
-	
+
 	Repository(Connector connector){
 		this.connector = connector;
 	}
@@ -193,13 +195,6 @@ class Repository implements IRepository {
 			updatePlayersInDB(game);
 
 			// TODO this method needs to be implemented first
-
-
-
-
-
-
-
 
             connection.commit();
             connection.setAutoCommit(true);
@@ -325,21 +320,19 @@ class Repository implements IRepository {
 		ResultSet rs = ps.executeQuery();
 		for (int i = 0; i < game.getPlayersNumber(); i++)
 		{
+			rs.moveToInsertRow();
+			Player player = game.getPlayer(i);
             for (int j = 0; j < Player.NO_REGISTERS ; j++) {
-                Player player = game.getPlayer(i);
-                rs.moveToInsertRow();
                 rs.updateInt(FIELD_GAMEID, game.getGameId());
                 rs.updateInt(FIELD_PLAYERID, i);
                 rs.updateInt(FIELD_TYPE, FIELD_TYPE_REGISTER);
                 rs.updateInt(FIELD_POS, j);
                 rs.updateBoolean(FIELD_VISIBLE, player.getProgramField(j).isVisible());
-                rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().command.ordinal());
+                rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().getCommand().ordinal());
+                //rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().command.ordinal());
 				rs.insertRow();
 			}
-
             for (int j = 0; j < Player.NO_CARDS; j++) {
-				Player player = game.getPlayer(i);
-				rs.moveToInsertRow();
 				rs.updateInt(FIELD_GAMEID, game.getGameId());
 				rs.updateInt(FIELD_PLAYERID, i);
 				rs.updateInt(FIELD_TYPE, FIELD_TYPE_HAND);
@@ -349,9 +342,10 @@ class Repository implements IRepository {
 				rs.insertRow();
 
 			}
+            rs.close();
 		}
 
-		rs.close();
+
 	}
 
 
@@ -431,13 +425,28 @@ class Repository implements IRepository {
 				field.setVisible(rs.getBoolean(FIELD_VISIBLE));
 				Object c = rs.getObject(FIELD_COMMAND);
 				if (c != null) {
-					Command card = Command.values() [rs.getInt(FIELD_COMMAND)];
+					Command card = values() [rs.getInt(FIELD_COMMAND)];
 					field.setCard (new CommandCard(card));
 				}
 			}
 			}
 			rs.close();
 }
+
+
+    private void updateCardFieldsInDB(Board game) throws SQLException {
+	    PreparedStatement ps = getSelectCardFieldStatementU();
+	    ps.setInt(1, game.getGameId());
+
+	    ResultSet rs = ps.executeQuery();
+	    while (rs.next()) {
+	        int playerId = rs.getInt(PLAYER_PLAYERID);
+	        Player player = game.getPlayer(playerId);
+
+
+
+        }
+    }
 
 
 
