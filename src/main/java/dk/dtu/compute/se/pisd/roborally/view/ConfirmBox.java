@@ -24,9 +24,9 @@ import javafx.stage.Stage;
  */
 
 public class ConfirmBox {
-    static boolean svar;
+    private static boolean svar;
 
-    public static Boolean display(String title, String text) {
+    public static Boolean displayBox(String title, String text) {
         Stage window = new Stage();
 
         // blocks input events or user interaction with other windows untill this one is taking care of.
@@ -39,14 +39,14 @@ public class ConfirmBox {
         window.centerOnScreen();
 
 
-        Text label = new Text(text);
-        label.setText(text);
-        label.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
-        label.setFill(Color.rgb(0, 0, 0));
+        Text text1 = new Text(text);
+        text1.setText(text);
+        text1.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
+        text1.setFill(Color.rgb(0, 0, 0));
 
 
         VBox teksten = new VBox();
-        teksten.getChildren().add(label);
+        teksten.getChildren().add(text1);
 
         // creating two buttons (yes, no)
         Button yes = new Button(" Yes ");
