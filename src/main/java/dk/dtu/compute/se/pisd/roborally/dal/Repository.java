@@ -329,7 +329,6 @@ class Repository implements IRepository {
                 rs.updateInt(FIELD_POS, j);
                 rs.updateBoolean(FIELD_VISIBLE, player.getProgramField(j).isVisible());
                 rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().getCommand().ordinal());
-                //rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().command.ordinal());
 				rs.insertRow();
 			}
             for (int j = 0; j < Player.NO_CARDS; j++) {
