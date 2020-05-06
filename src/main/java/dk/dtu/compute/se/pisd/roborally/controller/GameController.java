@@ -22,6 +22,8 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
+import dk.dtu.compute.se.pisd.roborally.view.WinnerOfTheGame;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
 
@@ -138,12 +140,14 @@ public class GameController {
             //TODO: implementér kode til at afslutte spillet
             if (currentPlayer.getAccount().isSecondCheckPoint()) {
                 board.setGameWon(true);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+               /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle(currentPlayer.getName() + " has won");
-                alert.setHeaderText("Congratz");
+                alert.setHeaderText("Congratz");*/
+                WinnerOfTheGame.display("Winner","The winner is " +currentPlayer.getName());
 
 
-                alert.showAndWait();
+
+               // alert.showAndWait();
                 return;
             }
 

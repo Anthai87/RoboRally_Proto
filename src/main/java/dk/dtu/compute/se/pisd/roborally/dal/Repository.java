@@ -326,7 +326,8 @@ class Repository implements IRepository {
 		rs.close();
 	}
 
-	/* private void loadCardFieldsFromDB (Board game) throws SQLException (
+	/*
+	 private void loadCardFieldsFromDB (Board game) throws SQLException (
 
 			PreparedStatement ps = getSelectCardFieldStatement();
 			ps.setInt( 1, game.getGameId());
