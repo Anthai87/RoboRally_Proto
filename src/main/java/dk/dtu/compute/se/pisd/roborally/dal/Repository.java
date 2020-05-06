@@ -337,7 +337,7 @@ class Repository implements IRepository {
 				rs.updateInt(FIELD_TYPE, FIELD_TYPE_HAND);
 				rs.updateInt(FIELD_POS, j);
 				rs.updateBoolean(FIELD_VISIBLE, player.getCardField(j).isVisible());
-				rs.updateInt(FIELD_COMMAND, player.getCardField(j).getCard().command.ordinal());
+				rs.updateInt(FIELD_COMMAND, player.getCardField(j).getCard().getCommand().ordinal());
 				rs.insertRow();
 
 			}
@@ -431,21 +431,6 @@ class Repository implements IRepository {
 			}
 			rs.close();
 }
-
-
-    private void updateCardFieldsInDB(Board game) throws SQLException {
-	    PreparedStatement ps = getSelectCardFieldStatementU();
-	    ps.setInt(1, game.getGameId());
-
-	    ResultSet rs = ps.executeQuery();
-	    while (rs.next()) {
-	        int playerId = rs.getInt(PLAYER_PLAYERID);
-	        Player player = game.getPlayer(playerId);
-
-
-
-        }
-    }
 
 
 

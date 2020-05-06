@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS Game (
   PRIMARY KEY (gameID),
   FOREIGN KEY (gameID, currentPlayer) REFERENCES Player(gameID, playerID)
 );;
+
+
   
 CREATE TABLE IF NOT EXISTS Player (
   gameID int NOT NULL,
