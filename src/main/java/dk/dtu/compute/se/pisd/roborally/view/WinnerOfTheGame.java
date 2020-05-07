@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
+import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 public class WinnerOfTheGame {
         private static boolean svar;
 
-        public static Boolean display(String title, String text) {
+        public static Boolean display(String title, String text, AppController appController) {
             Stage window = new Stage();
 
             // blocks input events or user interaction with other windows untill this one is taking care of.
@@ -47,7 +48,7 @@ public class WinnerOfTheGame {
             // lambda expression
             yes.setOnAction(event -> {
                 window.close();
-
+                appController.newGame();
             });
 
             no.setOnAction(event -> {

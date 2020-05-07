@@ -35,9 +35,11 @@ import org.jetbrains.annotations.NotNull;
 public class GameController {
 
     final public Board board;
+    private AppController appController;
 
-    public GameController(Board board) {
+    public GameController(Board board, AppController appController) {
         this.board = board;
+        this.appController = appController;
     }
 
     public void finishProgrammingPhase() {
@@ -74,6 +76,18 @@ public class GameController {
 
 
             executeStep(null);
+        }
+        //Check for win - bliver kaldt for man har executed step
+        //Kan være det skal flyttes til et andet sted
+        //TODO: implementér kode til at afslutte spillet
+        if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
+            board.setGameWon(true);
+               /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle(currentPlayer.getName() + " has won");
+                alert.setHeaderText("Congratz");*/
+            WinnerOfTheGame.display("Winner","The winner is " +board.getCurrentPlayer().getName(), appController);
+            // alert.showAndWait();
+            return;
         }
     }
 
@@ -133,22 +147,6 @@ public class GameController {
                         board.setCurrentPlayer(board.getPlayer(0));
                     }
                 }
-            }
-
-            //Check for win - bliver kaldt for man har executed step
-            //Kan være det skal flyttes til et andet sted
-            //TODO: implementér kode til at afslutte spillet
-            if (currentPlayer.getAccount().isSecondCheckPoint()) {
-                board.setGameWon(true);
-               /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(currentPlayer.getName() + " has won");
-                alert.setHeaderText("Congratz");*/
-                WinnerOfTheGame.display("Winner","The winner is " +currentPlayer.getName());
-
-
-
-               // alert.showAndWait();
-                return;
             }
 
             if (board.getPhase() == Phase.ACTIVATION && (step < 0 || step >= Player.NO_REGISTERS)) {

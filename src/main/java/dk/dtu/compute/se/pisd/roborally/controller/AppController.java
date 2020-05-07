@@ -60,16 +60,13 @@ public class AppController {
                 chosenBoard = "pro";
             }
 
-            if (optional.isPresent())
-                if (gameController != null)
-                    // if (!stopGame()){
-                    return;
+//            if (optional.isPresent());
         }
 
 
         //TODO: her skal der vælges hvilket board der skal bruges
         Board board = LoadBoard.loadBoard(chosenBoard);
-        gameController = new GameController(board);
+        gameController = new GameController(board, this);
 
         int no = result.get();
         for (int i = 0; i < no; i++) {
@@ -113,7 +110,7 @@ public class AppController {
                 if (result.isPresent()) {
                     Board board = RepositoryAccess.getRepository().loadGameFromDB(result.get().id);
                     if (board != null) {
-                        gameController = new GameController(board);
+                        gameController = new GameController(board, this);
                         //  attachSaveNeedObserver();
                         roboRally.createBoardView(gameController);
                     } else {
