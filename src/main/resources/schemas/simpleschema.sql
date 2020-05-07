@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS Game (
     gameID int NOT NULL UNIQUE AUTO_INCREMENT,
 
@@ -33,7 +34,7 @@ CREATE TABLE IF NOT EXISTS CardField (
     position  tinyint NOT NULL,
 
     visible BIT NOT NULL,
-    command tinyint,
+    command tinyint DEFAULT NULL,
 
     PRIMARY KEY (gameID, playerID, type, position ),
     FOREIGN KEY (gameID) REFERENCES Game(gameID),
