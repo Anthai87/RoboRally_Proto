@@ -21,16 +21,19 @@ package dk.dtu.compute.se.pisd.roborally.view;
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
+
 import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import java.util.List;
 
 /**
@@ -91,17 +94,27 @@ public class PlayerView extends Tab implements ViewObserver {
         //     players, but on the PlayersView (view for all players). This should be
         //     refactored.
         finishButton = new Button("Finish Programming");
-        finishButton.setOnAction( e -> {
-            gameController.finishProgrammingPhase();
+        finishButton.setOnAction(e -> {
+            if (player.getProgramField(0).getCard() != null &&
+                    player.getProgramField(1).getCard() != null &&
+                    player.getProgramField(2).getCard() != null &&
+                    player.getProgramField(3).getCard() != null &&
+                    player.getProgramField(4).getCard() != null) {
+                gameController.finishProgrammingPhase();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Please pick 5 cards");
+                alert.showAndWait();
+            }
         });
 
         executeButton = new Button("Execute Program");
-        executeButton.setOnAction( e-> {
+        executeButton.setOnAction(e -> {
             gameController.executePrograms();
         });
 
         stepButton = new Button("Execute Current Register");
-        stepButton.setOnAction( e-> {
+        stepButton.setOnAction(e -> {
             gameController.executeStep();
         });
 
@@ -173,7 +186,7 @@ public class PlayerView extends Tab implements ViewObserver {
 
                             if (player.board.getStep() == i) {
                                 programCardViews[i].setBackground(CardFieldView.BG_ACTIVE);
-                            }else if(player.board.getStep() > i){
+                            } else if (player.board.getStep() > i) {
                                 programCardViews[i].setBackground(CardFieldView.BG_DONE);
 
                             } else {
@@ -204,10 +217,12 @@ public class PlayerView extends Tab implements ViewObserver {
                             Command command = card.command;
                             if (command.isInteractive()) {
                                 List<Command> commands = command.getOptions();
-                                for (Command option: commands) {
+                                for (Command option : commands) {
                                     Button button = new Button(option.displayName);
                                     playerInteractionPanel.getChildren().add(button);
-                                    button.setOnAction( e-> {gameController.executePlayersOption(player,option);});
+                                    button.setOnAction(e -> {
+                                        gameController.executePlayersOption(player, option);
+                                    });
                                 }
                             }
                         }
