@@ -43,6 +43,11 @@ public class GameController {
     }
 
     public void finishProgrammingPhase() {
+        /**
+         *
+         * Logic implemented by Anton, s163053
+         *
+         */
         if (!board.getCurrentPlayer().isCommandCardsFull()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please pick 5 cards");
