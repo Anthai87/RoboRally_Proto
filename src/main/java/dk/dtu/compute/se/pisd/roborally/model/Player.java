@@ -30,19 +30,17 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class Player extends Subject {
 
     final public static int NO_REGISTERS = 5; // Spilleren har 5 skridt ad gangen
     final public static int NO_CARDS = 8; // antal kort spilleren har ved hånden.
 
-   private int startX=0;
-   private int startY=0;
+    private int startX = 0;
+    private int startY = 0;
 
 
     final public Board board;
-
 
 
     private String name;
@@ -57,7 +55,7 @@ public class Player extends Subject {
     private CommandCardField[] cards;
     private Account account;
 
-    public Player(@NotNull Board board, String color, @NotNull String name,int no, Account account) {
+    public Player(@NotNull Board board, String color, @NotNull String name, int no, Account account) {
         this.board = board;
         this.name = name;
         this.color = color;
@@ -148,8 +146,8 @@ public class Player extends Subject {
     }
 
     public void setStartingpoint(int X, int Y) {
-        this.startX=X;
-        this.startY=Y;
+        this.startX = X;
+        this.startY = Y;
     }
 
     public int getStartX() {
@@ -167,4 +165,14 @@ public class Player extends Subject {
     public CommandCardField[] getCards() {
         return cards;
     }
+
+    public boolean isCommandCardsFull() {
+        for (int i = 0; i < getProgram().length; i++) {
+            if (getProgramField(i).getCard() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

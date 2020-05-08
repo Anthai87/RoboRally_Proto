@@ -95,17 +95,20 @@ public class PlayerView extends Tab implements ViewObserver {
         //     refactored.
         finishButton = new Button("Finish Programming");
         finishButton.setOnAction(e -> {
-            if (player.getProgramField(0).getCard() != null &&
-                    player.getProgramField(1).getCard() != null &&
-                    player.getProgramField(2).getCard() != null &&
-                    player.getProgramField(3).getCard() != null &&
-                    player.getProgramField(4).getCard() != null) {
+//            if (player.getProgramField(0).getCard() != null &&
+//                    player.getProgramField(1).getCard() != null &&
+//                    player.getProgramField(2).getCard() != null &&
+//                    player.getProgramField(3).getCard() != null &&
+//                    player.getProgramField(4).getCard() != null) {
+
+
+//                gameController.board.setCurrentPlayer(gameController.nextPlayer());
                 gameController.finishProgrammingPhase();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Please pick 5 cards");
-                alert.showAndWait();
-            }
+//            } else {
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setContentText("Please pick 5 cards");
+//                alert.showAndWait();
+//            }
         });
 
         executeButton = new Button("Execute Program");

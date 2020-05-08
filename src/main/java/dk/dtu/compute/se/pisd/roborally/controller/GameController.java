@@ -43,11 +43,34 @@ public class GameController {
     }
 
     public void finishProgrammingPhase() {
+        if (!board.getCurrentPlayer().isCommandCardsFull()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please pick 5 cards");
+            alert.showAndWait();
+            return;
+        }
+        board.setCurrentPlayer(board.getPlayer(nextPlayer()));
+
+        for (Player player :
+                board.getPlayers()) {
+            if (!player.isCommandCardsFull()) {
+                return;
+            }
+        }
+
+
         makeProgramFieldsInvisible();
         makeProgramFieldsVisible(0);
         board.setPhase(Phase.ACTIVATION);
-        board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
+    }
+
+    public int nextPlayer() {
+        if (board.getCurrentPlayer().no + 1 < board.getPlayersNumber()) {
+            return board.getCurrentPlayer().no + 1;
+        } else {
+            return 0;
+        }
     }
 
     private void makeProgramFieldsInvisible() {
@@ -84,7 +107,7 @@ public class GameController {
          */
         if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
             board.setGameWon(true);
-            WinnerOfTheGame.display("Winner","The winner is " +board.getCurrentPlayer().getName(), appController);
+            WinnerOfTheGame.display("Winner", "The winner is " + board.getCurrentPlayer().getName(), appController);
         }
     }
 

@@ -223,4 +223,8 @@ public class Board extends Subject {
     public void setGameWon(boolean gameWon) {
         isGameWon = gameWon;
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }
