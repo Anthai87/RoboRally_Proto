@@ -66,11 +66,11 @@ public class RoboRally extends Application {
         imageView.setFitWidth(MIN_APP_HEIGHT);
 
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
-         boardRoot= new BorderPane(imageView);
-         VBox vBox = new VBox(menuBar,boardRoot);
-         vBox.setMinWidth(MIN_APP_WIDTH);
+        boardRoot= new BorderPane(imageView);
+        VBox vBox = new VBox(menuBar,boardRoot);
+        vBox.setMinWidth(MIN_APP_WIDTH);
 
-         Scene primaryScene = new Scene(vBox);
+        Scene primaryScene = new Scene(vBox);
 
         stage.setScene(primaryScene);
         stage.setMinHeight(MIN_APP_HEIGHT);

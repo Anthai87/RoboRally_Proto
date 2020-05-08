@@ -80,11 +80,12 @@ public class GameController {
         //Check for win - bliver kaldt for man har executed step
         //Kan være det skal flyttes til et andet sted
         //TODO: implementér kode til at afslutte spillet
+        /**
+         * @made_by: Anthony og Anton
+         */
         if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
             board.setGameWon(true);
-               /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(currentPlayer.getName() + " has won");
-                alert.setHeaderText("Congratz");*/
+
             WinnerOfTheGame.display("Winner","The winner is " +board.getCurrentPlayer().getName(), appController);
             // alert.showAndWait();
             return;
@@ -170,9 +171,6 @@ public class GameController {
             return false;
         }
     }
-
-    // TODO lot of stuff missing here
-
 
     public void moveForward(@NotNull Player player) {
         if (player.board == board) {

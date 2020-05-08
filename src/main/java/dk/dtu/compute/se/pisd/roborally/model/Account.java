@@ -1,5 +1,11 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
+/**
+ *
+ * @authors s163053,
+ *
+ */
+
 public class Account {
     private boolean firstCheckPoint;
     private boolean secondCheckPoint;

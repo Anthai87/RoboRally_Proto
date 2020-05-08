@@ -3,6 +3,13 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 
+/**
+ *
+ * @author Anton Østergaard Schmidt, s163053
+ *
+ */
+
+
 public class Checkpoint extends FieldAction {
     private int checkpoint;
 

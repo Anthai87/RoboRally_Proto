@@ -4,6 +4,12 @@ import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 
+/**
+ *
+ * @author Anton Østergaard Schmidt, s163053
+ *
+ */
+
 public class Pits extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {

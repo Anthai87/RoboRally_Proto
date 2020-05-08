@@ -34,6 +34,11 @@ public class AppController {
     }
 
     public void newGame() {
+        /**
+         *
+         * @authors: Anthony, Sara og Anton
+         *
+         */
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -59,8 +64,6 @@ public class AppController {
             else if (optional.get().equals("Pro")){
                 chosenBoard = "pro";
             }
-
-//            if (optional.isPresent());
         }
 
 

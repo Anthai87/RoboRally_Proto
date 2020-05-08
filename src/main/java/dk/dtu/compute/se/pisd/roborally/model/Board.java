@@ -62,21 +62,8 @@ public class Board extends Subject {
         this.height = height;
         spaces = new Space[width][height];
 
-
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                //TODO: sleeet
-                /*
-                int checkpoint = 0;
-                if (x == 7 && y == 0) {
-                    checkpoint = 1;
-                }
-                if (x == 3 && y == 6) {
-                    checkpoint = 2;
-                }
-
-                 */
-
 
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
