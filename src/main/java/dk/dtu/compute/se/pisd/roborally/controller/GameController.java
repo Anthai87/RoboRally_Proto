@@ -77,18 +77,14 @@ public class GameController {
 
             executeStep(null);
         }
-        //Check for win - bliver kaldt for man har executed step
-        //Kan være det skal flyttes til et andet sted
+        //Check for win
         //TODO: implementér kode til at afslutte spillet
         /**
          * @made_by: Anthony og Anton
          */
         if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
             board.setGameWon(true);
-
             WinnerOfTheGame.display("Winner","The winner is " +board.getCurrentPlayer().getName(), appController);
-            // alert.showAndWait();
-            return;
         }
     }
 
