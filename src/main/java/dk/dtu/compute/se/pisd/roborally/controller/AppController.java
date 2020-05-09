@@ -7,6 +7,7 @@ import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Account;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import dk.dtu.compute.se.pisd.roborally.model.Space;
 import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import dk.dtu.compute.se.pisd.roborally.view.RoboRallyMenuBar;
 import javafx.application.Platform;
@@ -59,13 +60,10 @@ public class AppController {
             } else if (optional.get().equals("Difficult")) {
                 chosenBoard = "difficult";
 
-            }
-
-            else if (optional.get().equals("Pro")){
+            } else if (optional.get().equals("Pro")) {
                 chosenBoard = "pro";
             }
         }
-
 
         //TODO: her skal der vælges hvilket board der skal bruges
         Board board = LoadBoard.loadBoard(chosenBoard);
@@ -75,9 +73,22 @@ public class AppController {
         for (int i = 0; i < no; i++) {
             Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1), i, new Account());
             board.addPlayer(player);
-            //her bliver spillere sat
-            player.setSpace(board.getSpace(i % board.width, i));
-            player.setStartingpoint(i % board.width, i);
+            System.out.println("BOARD: " + board.getSpaces().length);
+            for (int j = 0; j < board.getSpaces()[0].length; j++) {
+                for (int k = 0; k < board.getSpaces()[1].length; k++) {
+                    if (board.getSpace(j, k).getStartFelt() == player.no + 1) {
+                        System.out.println("FANDT HAM: " + player.getName());
+                        player.setSpace(board.getSpace(j,k));
+                        player.setStartingpoint(j,k);
+                    }
+                }
+            }
+
+            if (player.getSpace() == null) {
+                System.out.println("Player = null");
+                player.setSpace(board.getSpace(i % board.width, i));
+                player.setStartingpoint(i % board.width, i);
+            }
 
         }
 

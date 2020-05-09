@@ -74,6 +74,13 @@ public class LoadBoard {
 			    if (space != null) {
                     space.getActions().addAll(spaceTemplate.actions);
                     space.getWalls().addAll(spaceTemplate.walls);
+                    if (space.x == 1 && space.y == 2) {
+
+                    }
+                    space.setStartFelt(spaceTemplate.startFelt);
+                    if (space.x == 1 && space.y == 2) {
+
+                    }
                 }
             }
 			reader.close();

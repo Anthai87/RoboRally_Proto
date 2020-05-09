@@ -167,6 +167,10 @@ public class Board extends Subject {
         }
     }
 
+    public Space[][] getSpaces() {
+        return spaces;
+    }
+
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space

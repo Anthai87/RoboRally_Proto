@@ -34,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 
@@ -67,6 +68,21 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: dimgrey");
       else
             this.setStyle("-fx-background-color: grey");
+
+        for (Player player :
+                space.board.getPlayers()) {
+            if (player.no + 1 == space.getStartFelt()) {
+                Circle circle = new Circle();
+                circle.setCenterX(50);
+                circle.setCenterY(50);
+                circle.setRadius(20);
+                circle.setFill(Color.WHITE);
+//                this.getChildren().add(circle);
+                System.out.println("circle");
+//                this.setStyle("-fx-background-color: indianred");
+
+            }
+        }
 
         // This space view should listen to changes of the space
         space.attach(this);
