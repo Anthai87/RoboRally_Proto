@@ -66,6 +66,7 @@ class Connector {
 
     	String createTablesStatement =
 				IOUtil.readResource("schemas/createschema.sql");
+    			//IOUtil.readResource("schemas/simpleschema.sql");
 
     	try {
     		connection.setAutoCommit(false);

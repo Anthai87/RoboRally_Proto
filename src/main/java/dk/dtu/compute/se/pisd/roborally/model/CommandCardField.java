@@ -63,5 +63,6 @@ public class CommandCardField extends Subject {
             this.visible = visible;
             notifyChange();
         }
+
     }
 }
