@@ -315,7 +315,7 @@ class Repository implements IRepository {
 			if (i++ == playerId) {
 				String name = rs.getString(PLAYER_NAME);
 				String colour = rs.getString(PLAYER_COLOUR);
-				Player player = new Player(game, colour, name, playerId);
+				Player player = new Player(game, colour, name, playerId, new Account());
 				game.addPlayer(player);
 
 				int x = rs.getInt(PLAYER_POSITION_X);
