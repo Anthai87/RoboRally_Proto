@@ -64,6 +64,7 @@ public class RoboRally extends Application {
         ImageView imageView = new ImageView(roborally_start);
         imageView.setFitWidth(MIN_APP_WIDTH);
         imageView.setFitWidth(MIN_APP_HEIGHT);
+        ////
 
         RoboRallyMenuBar menuBar = new RoboRallyMenuBar(appController);
         boardRoot= new BorderPane(imageView);

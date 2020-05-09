@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS Game (
   PRIMARY KEY (gameID),
   FOREIGN KEY (gameID, currentPlayer) REFERENCES Player(gameID, playerID)
 );;
+
+
   
 CREATE TABLE IF NOT EXISTS Player (
   gameID int NOT NULL,
@@ -44,4 +46,9 @@ CARDS5   ENUM('FORWARD','RIGHT','LEFT','FAST_FORWARD','OPTION_LEFT_RIGHT'),
 
 
 SET FOREIGN_KEY_CHECKS = 1
+
+
+
+
+
 
