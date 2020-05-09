@@ -64,26 +64,30 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-      if ((space.x + space.y) % 2 == 0)
+        if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: dimgrey");
-      else
+        } else {
             this.setStyle("-fx-background-color: grey");
-
+        }
         for (Player player :
                 space.board.getPlayers()) {
             if (player.no + 1 == space.getStartFelt()) {
+                space.setStartFelt(player.no);
+                /*this.setStyle("-fx-background-color: white");
+                this.setStyle("-fx-border-color: black");
+                this.setStyle("-fx-border-radius: 30");
+                this.setStyle("-fx-border-style: solid");
+
+                 */
                 Circle circle = new Circle();
-                circle.setCenterX(50);
-                circle.setCenterY(50);
-                circle.setRadius(20);
-                circle.setFill(Color.WHITE);
-//                this.getChildren().add(circle);
-                System.out.println("circle");
-//                this.setStyle("-fx-background-color: indianred");
-
+                circle.setRadius(55);
+                circle.setCenterX(300.0f);
+                circle.setCenterY(135.0f);
+                circle.setRadius(100.0f);
+                this.getChildren().add(circle);
             }
-        }
 
+        }
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
