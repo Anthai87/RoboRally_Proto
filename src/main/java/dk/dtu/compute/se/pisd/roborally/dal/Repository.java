@@ -81,6 +81,16 @@ class Repository implements IRepository {
 
 	private static final String FIELD_COMMAND = "command";
 
+	private static final String ACCOUNT_GAMEID = "gameID";
+
+	private static final String ACCOUNT_PLAYERID = "playerID";
+
+	private static final String ACCOUNT_FIRSTCHECKPOINT = "firstCheckpoint";
+
+	private static final String ACCOUNT_SECONDCHECKPOINT = "secondCheckpoint";
+
+	private static final String ACCOUNT_THIRDCHECKPOINT = "thirdCheckpoint";
+
 
 	private Connector connector;
 
@@ -112,6 +122,8 @@ class Repository implements IRepository {
 				createPlayersInDB(game);
 
 				createCardFieldsInDB(game);
+
+				createAccountsInDB(game);
 
 				ps = getSelectGameStatementU();
 				ps.setInt(1, game.getGameId());
@@ -165,7 +177,10 @@ class Repository implements IRepository {
 			rs.close();
 
 			updatePlayersInDB(game);
+
 			updateCardFieldsInDB(game);
+
+			updateAccountsInDB(game);
 
 			connection.commit();
 			connection.setAutoCommit(true);
@@ -212,6 +227,7 @@ class Repository implements IRepository {
 			game.setGameId(id);
 			loadPlayersFromDB(game);
 			loadCardFieldsFromDB(game);
+			loadAccountsFromDB(game);
 
 			if (playerNo >= 0 && playerNo < game.getPlayersNumber()) {
 				game.setCurrentPlayer(game.getPlayer(playerNo));
@@ -282,6 +298,24 @@ class Repository implements IRepository {
 		rs.close();
 	}
 
+	private void createAccountsInDB(Board game) throws SQLException {
+		PreparedStatement ps = getSelectAccountStatementU();
+		ps.setInt(1, game.getGameId());
+
+		ResultSet rs = ps.executeQuery();
+		for (int i = 0; i < game.getPlayersNumber(); i++) {
+			Player player = game.getPlayer(i);
+			rs.moveToInsertRow();
+			rs.updateInt(ACCOUNT_GAMEID, game.getGameId());
+			rs.updateInt(ACCOUNT_PLAYERID, i);
+			rs.updateBoolean(ACCOUNT_FIRSTCHECKPOINT, player.getAccount().isFirstCheckPoint());
+			rs.updateBoolean(ACCOUNT_SECONDCHECKPOINT, player.getAccount().isSecondCheckPoint());
+			rs.updateBoolean(ACCOUNT_THIRDCHECKPOINT, player.getAccount().isThirdCheckPoint());
+			rs.insertRow();
+		}
+		rs.close();
+	}
+
 
 	private void createPlayersInDB(Board game) throws SQLException {
 		PreparedStatement ps = getSelectPlayersStatementU();
@@ -304,6 +338,8 @@ class Repository implements IRepository {
 		rs.close();
 	}
 
+
+
 	private void loadPlayersFromDB(Board game) throws SQLException {
 		PreparedStatement ps = getSelectPlayersASCStatement();
 		ps.setInt(1, game.getGameId());
@@ -325,6 +361,34 @@ class Repository implements IRepository {
 				player.setHeading(Heading.values()[heading]);
 			} else {
 				System.err.println("Game in DB does not have a player with id " + i + "!");
+			}
+		}
+		rs.close();
+	}
+
+	private void loadAccountsFromDB (Board game) throws SQLException {
+		PreparedStatement ps = getSelectAccountStatement();
+		ps.setInt(1, game.getGameId());
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			int playerId = rs.getInt(ACCOUNT_PLAYERID);
+			Player player = game.getPlayer(playerId);
+			boolean firstcheckpoint = rs.getBoolean(ACCOUNT_FIRSTCHECKPOINT);
+			boolean secondcheckpoint = rs.getBoolean(ACCOUNT_SECONDCHECKPOINT);
+			boolean thirdcheckpoint = rs.getBoolean(ACCOUNT_THIRDCHECKPOINT);
+			if (firstcheckpoint == false) {
+				player.getAccount().setFirstCheckPoint(0);
+		} else if (firstcheckpoint == true) {
+				player.getAccount().setFirstCheckPoint(1);
+			} if (secondcheckpoint == false) {
+				player.getAccount().setSecondCheckPoint(0);
+			} else if (secondcheckpoint) {
+				player.getAccount().setSecondCheckPoint(1);
+			} if (thirdcheckpoint == false) {
+				player.getAccount().setThirdCheckPoint(0);
+			} else if (thirdcheckpoint == true) {
+				player.getAccount().setThirdCheckPoint(1);
 			}
 		}
 		rs.close();
@@ -396,16 +460,31 @@ class Repository implements IRepository {
 		rs.close();
 	}
 
-
-	private void updatePlayersInDB(Board game) throws SQLException {
-		PreparedStatement ps = getSelectPlayersStatementU();
+	private void updateAccountsInDB (Board game) throws SQLException {
+		PreparedStatement ps = getSelectAccountStatementU();
 		ps.setInt(1, game.getGameId());
-		
+
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			int playerId = rs.getInt(PLAYER_PLAYERID);
 			Player player = game.getPlayer(playerId);
-			// rs.updateString(PLAYER_NAME, player.getName()); // not needed: player's names does not change
+			rs.updateBoolean(ACCOUNT_FIRSTCHECKPOINT, player.getAccount().isFirstCheckPoint());
+			rs.updateBoolean(ACCOUNT_SECONDCHECKPOINT,player.getAccount().isSecondCheckPoint());
+			rs.updateBoolean(ACCOUNT_THIRDCHECKPOINT, player.getAccount().isThirdCheckPoint());
+			rs.updateRow();
+		}
+		rs.close();
+	}
+
+
+	private void updatePlayersInDB(Board game) throws SQLException {
+		PreparedStatement ps = getSelectPlayersStatementU();
+		ps.setInt(1, game.getGameId());
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			int playerId = rs.getInt(PLAYER_PLAYERID);
+			Player player = game.getPlayer(playerId);
 			rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
 			rs.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
 			rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
@@ -435,9 +514,9 @@ class Repository implements IRepository {
 
 	private static final String SQL_SELECT_GAME =
 			"SELECT * FROM Game WHERE gameID = ?";
-	
+
 	private PreparedStatement select_game_stmt = null;
-	
+
 	private PreparedStatement getSelectGameStatementU() {
 		if (select_game_stmt == null) {
 			Connection connection = connector.getConnection();
@@ -452,7 +531,7 @@ class Repository implements IRepository {
 		}
 		return select_game_stmt;
 	}
-		
+
 	private static final String SQL_SELECT_PLAYERS =
 			"SELECT * FROM Player WHERE gameID = ?";
 
@@ -470,7 +549,40 @@ class Repository implements IRepository {
 				e.printStackTrace();
 			}
 		}
-		return select_players_stmt;												/////////////
+		return select_players_stmt;
+	}
+
+	private static final String SQL_SELECT_ACCOUNTS = "SELECT * FROM Account WHERE gameID = ?";
+
+	private PreparedStatement select_accounts_stmt = null;
+
+	private PreparedStatement getSelectAccountStatement() {
+		if (select_accounts_stmt == null) {
+			Connection connection = connector.getConnection();
+			try {
+					select_accounts_stmt = connection.prepareStatement(SQL_SELECT_ACCOUNTS);
+				} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return select_accounts_stmt;
+	}
+
+	private PreparedStatement select_accounts_stmt_u = null;
+
+	private PreparedStatement getSelectAccountStatementU() {
+		if (select_accounts_stmt == null) {
+			Connection connection = connector.getConnection();
+			try {
+				select_card_field_stmt_u = connection.prepareStatement(
+						SQL_SELECT_ACCOUNTS,
+						ResultSet.TYPE_FORWARD_ONLY,
+						ResultSet.CONCUR_UPDATABLE);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return select_accounts_stmt_u;
 	}
 
 	private static final String SQL_SELECT_CARD_FIELDS = "SELECT * FROM CardField WHERE gameID = ?";
@@ -508,16 +620,15 @@ class Repository implements IRepository {
 
 
 
-	private static final String SQL_SELECT_PLAYERS_ASC =						/////////////
+	private static final String SQL_SELECT_PLAYERS_ASC =
 			"SELECT * FROM Player WHERE gameID = ? ORDER BY playerID ASC";
-	
+
 	private PreparedStatement select_players_asc_stmt = null;
-	
+
 	private PreparedStatement getSelectPlayersASCStatement() {
 		if (select_players_asc_stmt == null) {
 			Connection connection = connector.getConnection();
 			try {
-				// This statement does not need to be updatable
 				select_players_asc_stmt = connection.prepareStatement(
 						SQL_SELECT_PLAYERS_ASC);
 			} catch (SQLException e) {
@@ -526,12 +637,12 @@ class Repository implements IRepository {
 		}
 		return select_players_asc_stmt;
 	}
-	
+
 	private static final String SQL_SELECT_GAMES =
 			"SELECT gameID, name FROM Game";
-	
+
 	private PreparedStatement select_games_stmt = null;
-	
+
 	private PreparedStatement getSelectGameIdsStatement() {
 		if (select_games_stmt == null) {
 			Connection connection = connector.getConnection();
