@@ -37,7 +37,7 @@ public class AppController {
     public void newGame() {
         /**
          *
-         * @authors: S195388, S163053, S141479
+         * @author: S195388, S163053, S141479
          *
          */
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
