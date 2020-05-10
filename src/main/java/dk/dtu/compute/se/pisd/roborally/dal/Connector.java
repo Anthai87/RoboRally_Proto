@@ -41,7 +41,7 @@ class Connector {
     private static final int    PORT     = 3306;
     private static final String DATABASE = "pisu";
     private static final String USERNAME = "root"; 
-    private static final String PASSWORD = "joontae2";
+    private static final String PASSWORD = "D!amanten2020";
 
     private static final String DELIMITER = ";;";
     
@@ -55,10 +55,8 @@ class Connector {
 			createDatabaseSchema();
 
 		} catch (SQLException e) {
-			// TODO we should try to diagnose and fix some problems here and
-			//      exit in a more graceful way
+
 			e.printStackTrace();
-			// Platform.exit();
 		}
     }
     

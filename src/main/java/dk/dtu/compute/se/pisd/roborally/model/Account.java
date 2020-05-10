@@ -32,11 +32,9 @@ public class Account {
     }
 
     public void setFirstCheckPoint(int firstCheckPoint) {
-        System.out.println(firstCheckPoint);
         if (firstCheckPoint == 1) {
             this.firstCheckPoint = true;
         }
-        System.out.println(this.firstCheckPoint);
     }
 
     public boolean isSecondCheckPoint() {
@@ -44,11 +42,9 @@ public class Account {
     }
 
     public void setSecondCheckPoint(int secondCheckPoint) {
-        System.out.println(secondCheckPoint);
         if (firstCheckPoint && secondCheckPoint == 2) {
             this.secondCheckPoint = true;
         }
-        System.out.println(this.secondCheckPoint);
     }
 
     public boolean isThirdCheckPoint() {
@@ -56,12 +52,9 @@ public class Account {
     }
 
     public void setThirdCheckPoint(int thirdCheckPoint) {
-        System.out.println(thirdCheckPoint);
         if (firstCheckPoint && secondCheckPoint && thirdCheckPoint == 3) {
             this.thirdCheckPoint = true;
         }
-        System.out.println(thirdCheckPoint);
-        System.out.println(this.thirdCheckPoint);
     }
 
 }
