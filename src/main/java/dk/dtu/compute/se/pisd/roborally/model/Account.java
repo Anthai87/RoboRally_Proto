@@ -2,7 +2,7 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 /**
  *
- * @authors s163053,
+ * @authors s163053, s195388
  *
  */
 
@@ -58,10 +58,12 @@ public class Account {
     }
 
     public void setThirdCheckPoint (int thirdCheckPoint) {
-        System.out.println(thirdCheckPoint);
         if (firstCheckPoint && secondCheckPoint && thirdCheckPoint ==3){
             this.thirdCheckPoint = true;
         }
+
+
+        System.out.println(thirdCheckPoint);
         System.out.println(this.thirdCheckPoint);
     }
 

@@ -73,11 +73,9 @@ public class AppController {
         for (int i = 0; i < no; i++) {
             Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1), i, new Account());
             board.addPlayer(player);
-            System.out.println("BOARD: " + board.getSpaces().length);
             for (int j = 0; j < board.getSpaces()[0].length; j++) {
                 for (int k = 0; k < board.getSpaces()[1].length; k++) {
                     if (board.getSpace(j, k).getStartFelt() == player.no + 1) {
-                        System.out.println("FANDT HAM: " + player.getName());
                         player.setSpace(board.getSpace(j,k));
                         player.setStartingpoint(j,k);
                     }
