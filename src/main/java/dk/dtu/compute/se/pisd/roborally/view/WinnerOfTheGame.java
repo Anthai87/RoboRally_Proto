@@ -46,7 +46,7 @@ public class WinnerOfTheGame {
             VBox teksten = new VBox();
             teksten.getChildren().add(text1);
 
-            // creating two buttons (yes, no)
+            // creating two buttons (New Game, Exit)
             Button yes = new Button(" New Game ");
             yes.setStyle("-fx-font-size: 11pt");
 

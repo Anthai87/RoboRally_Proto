@@ -133,16 +133,16 @@ import javafx.scene.layout.VBox;
 
 
 
-//                    if (player != null && board == gameController.board) {
-//                        if (event.isShiftDown()) {
-//                            gameController.turnRight(player);
-//                        } else if (event.isControlDown()) {
-//                            gameController.turnLeft(player);
-//                        } else {
-//                            gameController.moveForward(player);
-//                        }
-//                                event.consume();
-//                    }
+                    if (player != null && board == gameController.board) {
+                        if (event.isShiftDown()) {
+                            gameController.turnRight(player);
+                        } else if (event.isControlDown()) {
+                            gameController.turnLeft(player);
+                        } else {
+                            gameController.moveForward(player);
+                        }
+                                event.consume();
+                    }
                 }
             }
         }

@@ -87,15 +87,12 @@ public class AppController {
                 player.setSpace(board.getSpace(i % board.width, i));
                 player.setStartingpoint(i % board.width, i);
             }
-
         }
-
         board.setCurrentPlayer(board.getPlayer(0));
         roboRally.createBoardView(gameController);
         gameController.initializeProgrammingPhase();
 
         RepositoryAccess.getRepository().createGameInDB(board);
-        // attachSaveNeedObserver();
     }
 
 
@@ -143,7 +140,7 @@ public class AppController {
 
     public void exit() {
         // Checking the answer, if yes, it terminates the game.
-        Boolean svar = ConfirmBox.displayBox("Confirm Exit", "Are you sure you want to exit RoboRally?",this);
+        Boolean svar = ConfirmBox.displayBox("Confirm Exit", "Are you sure you want to exit RoboRally?");
         if (svar)
             Platform.exit();
     }

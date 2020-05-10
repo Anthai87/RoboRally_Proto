@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class ConfirmBox {
     private static boolean svar;
 
-    public static Boolean displayBox(String title, String text, AppController appController) {
+    public static Boolean displayBox(String title, String text) {
         Stage window = new Stage();
 
         // blocks input events or user interaction with other windows untill this one is taking care of.
@@ -60,7 +60,7 @@ public class ConfirmBox {
         yes.setOnAction(event -> {
             svar = true;
             window.close();
-            appController.saveGame();
+            Platform.exit();
 
         });
 

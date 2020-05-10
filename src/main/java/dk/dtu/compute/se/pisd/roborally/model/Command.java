@@ -21,9 +21,6 @@
  */
 package dk.dtu.compute.se.pisd.roborally.model;
 
-import com.mysql.cj.x.protobuf.MysqlxExpr;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import sun.plugin.javascript.navig.Array;
 
 import java.util.Arrays;
 import java.util.Collections;
