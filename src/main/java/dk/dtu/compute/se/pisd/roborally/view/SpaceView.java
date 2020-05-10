@@ -114,6 +114,14 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
+    /**
+     * ...
+     *
+     * @author S195388, S163053, S141479
+     *
+     */
+
+
     @Override
     public void updateView(Subject subject) {
         if (subject == this.space) {

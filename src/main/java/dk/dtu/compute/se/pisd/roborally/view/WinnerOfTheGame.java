@@ -13,6 +13,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * ...
+ *
+ * @author S163053 & S141479
+ *
+ */
+
+
 public class WinnerOfTheGame {
         private static boolean svar;
 

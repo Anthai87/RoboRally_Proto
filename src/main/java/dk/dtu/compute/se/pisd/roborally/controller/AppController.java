@@ -37,7 +37,7 @@ public class AppController {
     public void newGame() {
         /**
          *
-         * @authors: Anthony, Sara og Anton
+         * @authors: S195388, S163053, S141479
          *
          */
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -65,7 +65,7 @@ public class AppController {
             }
         }
 
-        //TODO: her skal der vælges hvilket board der skal bruges
+        //Her skal der vælges hvilket board der skal bruges
         Board board = LoadBoard.loadBoard(chosenBoard);
         gameController = new GameController(board, this);
 

@@ -6,7 +6,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 
 /**
  *
- * @author Anton Østergaard Schmidt, s163053
+ * @author S163053 & S195388
  *
  */
 

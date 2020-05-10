@@ -130,17 +130,19 @@ import javafx.scene.layout.VBox;
                     Space space = spaceView.space;
                     Board board = space.board;
                     Player player = space.getPlayer();
-                    //TODO: slå fra, for endelig version. Kun for testing
-                    if (player != null && board == gameController.board) {
-                        if (event.isShiftDown()) {
-                            gameController.turnRight(player);
-                        } else if (event.isControlDown()) {
-                            gameController.turnLeft(player);
-                        } else {
-                            gameController.moveForward(player);
-                        }
-                                event.consume();
-                    }
+
+
+
+//                    if (player != null && board == gameController.board) {
+//                        if (event.isShiftDown()) {
+//                            gameController.turnRight(player);
+//                        } else if (event.isControlDown()) {
+//                            gameController.turnLeft(player);
+//                        } else {
+//                            gameController.moveForward(player);
+//                        }
+//                                event.consume();
+//                    }
                 }
             }
         }

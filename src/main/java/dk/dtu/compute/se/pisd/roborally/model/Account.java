@@ -2,7 +2,7 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 /**
  *
- * @authors s163053,
+ * @authors S195388, S163053, S141479
  *
  */
 
