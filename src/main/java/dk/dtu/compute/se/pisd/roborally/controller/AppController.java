@@ -69,6 +69,10 @@ public class AppController {
         Board board = LoadBoard.loadBoard(chosenBoard);
         gameController = new GameController(board, this);
 
+        if (!result.isPresent()) {
+            return;
+        }
+
         int no = result.get();
         for (int i = 0; i < no; i++) {
             Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1), i, new Account());
