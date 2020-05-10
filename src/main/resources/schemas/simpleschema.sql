@@ -40,3 +40,16 @@ CREATE TABLE IF NOT EXISTS CardField (
     FOREIGN KEY (gameID) REFERENCES Game(gameID),
     FOREIGN KEY (gameID, playerID) REFERENCES Player(gameID, playerID)
 );
+
+CREATE TABLE IF NOT EXISTS Account (
+    gameID int NOT NULL,
+    playerID tinyint NOT NULL,
+
+    firstCheckpoint BIT NOT NULL,
+    secondCheckpoint BIT NOT NULL,
+    thirdCheckpoint BIT NOT NULL,
+
+    PRIMARY KEY (gameID, playerID),
+    FOREIGN KEY (gameID) REFERENCES Game(gameID),
+    FOREIGN KEY (gameID, playerID) REFERENCES Player (gameID, playerID)
+);
