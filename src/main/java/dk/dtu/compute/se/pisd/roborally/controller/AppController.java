@@ -147,4 +147,5 @@ public class AppController {
         if (svar)
             Platform.exit();
     }
+
 }

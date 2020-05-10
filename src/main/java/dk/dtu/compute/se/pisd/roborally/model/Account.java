@@ -1,7 +1,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 /**
- * @authors s163053, s195388
+ * @authors s163053, s195388,
  */
 
 public class Account {

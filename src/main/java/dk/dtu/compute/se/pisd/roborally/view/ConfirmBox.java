@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
+import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * ...
  *
- * @author Anthony Haidari, s141479
+ * @author s141479
  *
  */
 
@@ -59,7 +60,6 @@ public class ConfirmBox {
         yes.setOnAction(event -> {
             svar = true;
             window.close();
-            Platform.exit();
         });
 
         no.setOnAction(event -> {
