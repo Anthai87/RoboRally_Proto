@@ -41,7 +41,7 @@ class Connector {
     private static final int    PORT     = 3306;
     private static final String DATABASE = "pisu";
     private static final String USERNAME = "root"; 
-    private static final String PASSWORD = "diinmor2";
+    private static final String PASSWORD = "joontae2";
 
     private static final String DELIMITER = ";;";
     
@@ -49,7 +49,6 @@ class Connector {
         
     Connector() {
         try {
-			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 			createDatabaseSchema();
@@ -64,8 +63,6 @@ class Connector {
 
     	String createTablesStatement =
 				IOUtil.readResource("schemas/createschema.sql");
-    			//IOUtil.readResource("schemas/simpleschema.sql");
-
     	try {
     		connection.setAutoCommit(false);
     		Statement statement = connection.createStatement();
@@ -80,7 +77,6 @@ class Connector {
     		connection.commit();
     	} catch (SQLException e) {
     		e.printStackTrace();
-    		// TODO error handling
     		try {
 				connection.rollback();
 			} catch (SQLException e1) {}
