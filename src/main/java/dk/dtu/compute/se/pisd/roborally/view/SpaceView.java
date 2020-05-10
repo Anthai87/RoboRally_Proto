@@ -22,7 +22,6 @@ package dk.dtu.compute.se.pisd.roborally.view;
  *
  */
 
-import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.*;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
@@ -37,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * ...

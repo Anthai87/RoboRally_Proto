@@ -22,7 +22,6 @@ package dk.dtu.compute.se.pisd.roborally.view;
  *
  */
 
-import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.CommandCard;
@@ -39,6 +38,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * ...

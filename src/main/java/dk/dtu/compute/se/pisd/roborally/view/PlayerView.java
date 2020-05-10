@@ -22,7 +22,6 @@ package dk.dtu.compute.se.pisd.roborally.view;
  *
  */
 
-import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.*;
@@ -33,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

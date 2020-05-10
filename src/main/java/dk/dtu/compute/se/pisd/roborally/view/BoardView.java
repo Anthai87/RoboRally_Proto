@@ -1,7 +1,6 @@
 
 package dk.dtu.compute.se.pisd.roborally.view;
 
-import com.sun.istack.internal.NotNull;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
@@ -13,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.jetbrains.annotations.NotNull;
 
 /*
      *  This file is part of the initial project provided for the

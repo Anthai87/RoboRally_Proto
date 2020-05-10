@@ -273,7 +273,7 @@ public class GameController {
         }
     }
 
-    private void executeCommandCard(@com.sun.istack.internal.NotNull Player player, CommandCard card) {
+    private void executeCommandCard(@NotNull Player player, CommandCard card) {
         if (card != null) {
             executeCommand(player, card.command);
         }
@@ -304,7 +304,7 @@ public class GameController {
         moveForward(player);
     }
 
-    private void executeCommand(@com.sun.istack.internal.NotNull Player player, Command command) {
+    private void executeCommand(@NotNull Player player, Command command) {
         if (player.board == board && command != null) {
             // XXX This is an very simplistic way of dealing with some basic cards and
             //     their execution. This should eventually be done in a much more elegant way
