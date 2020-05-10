@@ -150,6 +150,11 @@ public class GameController {
     public void executeStep() {
         board.setStepMode(true);
         executeStep(null);
+
+        if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
+            board.setGameWon(true);
+            WinnerOfTheGame.display("Winner", "The winner is " + board.getCurrentPlayer().getName(), appController);
+        }
     }
 
     private void executeStep(Command option) {
@@ -162,6 +167,15 @@ public class GameController {
                 } else {
                     executeCommandCard(currentPlayer, currentPlayer.getProgramField(step).getCard());
                 }
+
+                if (!board.isGameWon()) {
+                    if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
+                        board.setGameWon(true);
+                        WinnerOfTheGame.display("Winner", "The winner is " + board.getCurrentPlayer().getName(), appController);
+                    }
+                }
+
+
                 if (board.getPhase() == Phase.ACTIVATION) {
                     if (currentPlayer.no + 1 < board.getPlayersNumber()) {
                         board.setCurrentPlayer(board.getPlayer(currentPlayer.no + 1));

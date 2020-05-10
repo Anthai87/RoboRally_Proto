@@ -119,6 +119,7 @@ public class PlayerView extends Tab implements ViewObserver {
         stepButton = new Button("Execute Current Register");
         stepButton.setOnAction(e -> {
             gameController.executeStep();
+
         });
 
         buttonPanel = new VBox(finishButton, executeButton, stepButton);
