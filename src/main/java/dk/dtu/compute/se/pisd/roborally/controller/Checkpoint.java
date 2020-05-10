@@ -25,7 +25,6 @@ public class Checkpoint extends FieldAction {
     public boolean doAction(GameController gameController, Space space) {
         Board board = space.board;
         if (board != null && gameController.board == board) {
-
             if (checkpoint == 1) {
                 space.getPlayer().getAccount().setFirstCheckPoint(checkpoint);
             } else if (checkpoint == 2) {
