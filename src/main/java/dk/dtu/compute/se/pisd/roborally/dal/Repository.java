@@ -21,17 +21,15 @@
  */
 package dk.dtu.compute.se.pisd.roborally.dal;
 
-import com.mysql.cj.protocol.Resultset;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.*;
-import dk.dtu.compute.se.pisd.roborally.view.CardFieldView;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static dk.dtu.compute.se.pisd.roborally.model.Command.*;
+import static dk.dtu.compute.se.pisd.roborally.model.Command.values;
 
 /**
  * ...

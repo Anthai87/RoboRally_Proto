@@ -22,7 +22,6 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
-import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import dk.dtu.compute.se.pisd.roborally.view.WinnerOfTheGame;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
