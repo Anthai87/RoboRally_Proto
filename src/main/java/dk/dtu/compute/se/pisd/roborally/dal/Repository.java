@@ -574,7 +574,7 @@ class Repository implements IRepository {
 		if (select_accounts_stmt == null) {
 			Connection connection = connector.getConnection();
 			try {
-				select_card_field_stmt_u = connection.prepareStatement(
+				select_accounts_stmt_u = connection.prepareStatement(
 						SQL_SELECT_ACCOUNTS,
 						ResultSet.TYPE_FORWARD_ONLY,
 						ResultSet.CONCUR_UPDATABLE);

@@ -33,9 +33,9 @@ public class Account {
         return firstCheckPoint;
     }
 
-    public void setFirstCheckPoint(int firstCheckPoint) {
-        System.out.println(firstCheckPoint);
-        if (firstCheckPoint == 1) {
+    public void setFirstCheckPoint(int firstCheckPointInt) {
+        System.out.println(firstCheckPointInt);
+        if (firstCheckPointInt == 1) {
             this.firstCheckPoint = true;
         }
         System.out.println(this.firstCheckPoint);
@@ -59,10 +59,11 @@ public class Account {
 
     public void setThirdCheckPoint (int thirdCheckPoint) {
         System.out.println(thirdCheckPoint);
-        if (firstCheckPoint && secondCheckPoint && thirdCheckPoint ==3){
+        if (firstCheckPoint && secondCheckPoint && thirdCheckPoint == 3){
             this.thirdCheckPoint = true;
         }
         System.out.println(this.thirdCheckPoint);
     }
+
 
     }
