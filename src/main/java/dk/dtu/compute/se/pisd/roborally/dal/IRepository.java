@@ -25,20 +25,12 @@ import dk.dtu.compute.se.pisd.roborally.model.Board;
 
 import java.util.List;
 
-// An interface can only method headers and class constans.
-
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-// abstract methods (we only declare their names and signatures; we dont
-	// specify how they will be implemented.
-	// an interface cannot be instantiated; that is, you cannot create objects of its type
-	// in our case, any code trying to create a new Irepository() would not compile.
-	// it is however legal to declare variables of type IRepository that can refer to any
-	// object that implements the Irepository interface.
 public interface IRepository {
 	
  	boolean createGameInDB(Board game);
