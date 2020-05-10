@@ -1,9 +1,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 /**
- *
  * @authors s163053, s195388
- *
  */
 
 public class Account {
@@ -22,7 +20,7 @@ public class Account {
             return 1;
         } else if (secondCheckPoint && !thirdCheckPoint) {
             return 2;
-        } else if (thirdCheckPoint){
+        } else if (thirdCheckPoint) {
             return 3;
         }
 
@@ -53,17 +51,17 @@ public class Account {
         System.out.println(this.secondCheckPoint);
     }
 
-    public boolean isThirdCheckPoint(){
+    public boolean isThirdCheckPoint() {
         return thirdCheckPoint;
     }
 
-    public void setThirdCheckPoint (int thirdCheckPoint) {
+    public void setThirdCheckPoint(int thirdCheckPoint) {
         System.out.println(thirdCheckPoint);
-        if (firstCheckPoint && secondCheckPoint && thirdCheckPoint ==3){
+        if (firstCheckPoint && secondCheckPoint && thirdCheckPoint == 3) {
             this.thirdCheckPoint = true;
         }
         System.out.println(thirdCheckPoint);
         System.out.println(this.thirdCheckPoint);
     }
 
-    }
+}
