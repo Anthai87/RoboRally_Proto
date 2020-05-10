@@ -73,18 +73,20 @@ public class SpaceView extends StackPane implements ViewObserver {
                 space.board.getPlayers()) {
             if (player.no + 1 == space.getStartFelt()) {
                 space.setStartFelt(player.no);
-                /*this.setStyle("-fx-background-color: white");
+                this.setStyle("-fx-background-color: white");
                 this.setStyle("-fx-border-color: black");
                 this.setStyle("-fx-border-radius: 30");
                 this.setStyle("-fx-border-style: solid");
 
-                 */
-                Circle circle = new Circle();
+
+               /* Circle circle = new Circle();
                 circle.setRadius(55);
                 circle.setCenterX(300.0f);
                 circle.setCenterY(135.0f);
                 circle.setRadius(100.0f);
                 this.getChildren().add(circle);
+
+                */
             }
 
         }
