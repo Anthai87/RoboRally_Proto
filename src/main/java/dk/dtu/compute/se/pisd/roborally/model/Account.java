@@ -58,11 +58,10 @@ public class Account {
     }
 
     public void setThirdCheckPoint (int thirdCheckPoint) {
+        System.out.println(thirdCheckPoint);
         if (firstCheckPoint && secondCheckPoint && thirdCheckPoint ==3){
             this.thirdCheckPoint = true;
         }
-
-
         System.out.println(thirdCheckPoint);
         System.out.println(this.thirdCheckPoint);
     }
