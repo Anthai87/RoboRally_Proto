@@ -143,7 +143,7 @@ public class AppController {
 
     public void exit() {
         // Checking the answer, if yes, it terminates the game.
-        Boolean svar = ConfirmBox.displayBox("Confirm Exit", "Are you sure you want to exit RoboRally?");
+        Boolean svar = ConfirmBox.displayBox("Confirm Exit", "Are you sure you want to exit RoboRally?",this);
         if (svar)
             Platform.exit();
     }
