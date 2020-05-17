@@ -569,7 +569,7 @@ class Repository implements IRepository {
     private PreparedStatement select_accounts_stmt_u = null;
 
     private PreparedStatement getSelectAccountStatementU() {
-        if (select_accounts_stmt == null) {
+        if (select_accounts_stmt_u == null) {
             Connection connection = connector.getConnection();
             try {
                 select_accounts_stmt_u = connection.prepareStatement(
