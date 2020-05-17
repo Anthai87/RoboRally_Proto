@@ -132,17 +132,17 @@ import org.jetbrains.annotations.NotNull;
                     Player player = space.getPlayer();
 
 
-
-                    if (player != null && board == gameController.board) {
-                        if (event.isShiftDown()) {
-                            gameController.turnRight(player);
-                        } else if (event.isControlDown()) {
-                            gameController.turnLeft(player);
-                        } else {
-                            gameController.moveForward(player);
-                        }
-                                event.consume();
-                    }
+                    //TODO: testing via click - do not remove TODO
+//                    if (player != null && board == gameController.board) {
+//                        if (event.isShiftDown()) {
+//                            gameController.turnRight(player);
+//                        } else if (event.isControlDown()) {
+//                            gameController.turnLeft(player);
+//                        } else {
+//                            gameController.moveForward(player);
+//                        }
+//                                event.consume();
+//                    }
                 }
             }
         }
