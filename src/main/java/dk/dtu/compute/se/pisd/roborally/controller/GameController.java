@@ -44,9 +44,10 @@ public class GameController {
     public void finishProgrammingPhase() {
         /**
          *
-         * Logic implemented by Anton, s163053
+         * @author: Logic implemented by Anton, s163053
          *
          */
+        if (board.isGameWon()) return;
         if (!board.getCurrentPlayer().isCommandCardsFull()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please pick 5 cards");
@@ -98,6 +99,7 @@ public class GameController {
     }
 
     public void executePrograms() {
+        if (board.isGameWon()) return;
         board.setStepMode(false);
         while (board.getPhase() == Phase.ACTIVATION) {
 
@@ -147,6 +149,7 @@ public class GameController {
     }
 
     public void executeStep() {
+        if (board.isGameWon()) return;
         board.setStepMode(true);
         executeStep(null);
 
