@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_07-05-2020_16_37_[Default_Changelist]" date="1588862269520" recycled="true" deleted="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07-05-2020_16_37_[Default_Changelist]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 07-05-2020 16:37 [Default Changelist]" />
-  <binary>
-    <option name="BEFORE_PATH" value="target/classes/dk/dtu/compute/se/pisd/roborally/dal/Connector.class" />
-    <option name="AFTER_PATH" value="target/classes/dk/dtu/compute/se/pisd/roborally/dal/Connector.class" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07-05-2020_16_37_[Default_Changelist]/Connector.class" />
-  </binary>
-</changelist>
