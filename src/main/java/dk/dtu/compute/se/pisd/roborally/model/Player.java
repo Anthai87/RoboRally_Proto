@@ -33,7 +33,7 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
  */
 public class Player extends Subject {
 
-    final public static int NO_REGISTERS = 5; // Spilleren har 5 skridt ad gangen
+    final public static int NO_REGISTERS = 5; // Spilleren har 5 kort ad gangen
     final public static int NO_CARDS = 8; // antal kort spilleren har ved hånden.
 
     private int startX = 0;
@@ -62,12 +62,12 @@ public class Player extends Subject {
         this.space = null;
         this.no = no;
         this.account = account;
-
+        //Oprettes array med plads til 5 kort for hver spiller
         program = new CommandCardField[NO_REGISTERS];
         for (int i = 0; i < program.length; i++) {
             program[i] = new CommandCardField(this);
         }
-
+//Oprettes array med plads til 8 kort for hver spiller
         cards = new CommandCardField[NO_CARDS];
         for (int i = 0; i < cards.length; i++) {
             cards[i] = new CommandCardField(this);
@@ -107,7 +107,7 @@ public class Player extends Subject {
     public Space getSpace() {
         return space;
     }
-
+    //Hver gang spilleren rykker, flyttes han fra oldspace
     public void setSpace(Space space) {
         Space oldSpace = this.space;
         if (space != oldSpace &&
@@ -122,7 +122,7 @@ public class Player extends Subject {
             notifyChange();
         }
     }
-
+    //Observere ændring i Heading
     public Heading getHeading() {
         return heading;
     }
@@ -144,7 +144,7 @@ public class Player extends Subject {
     public CommandCardField getCardField(int i) {
         return cards[i];
     }
-
+    //Spillernes startfelt
     public void setStartingpoint(int X, int Y) {
         this.startX = X;
         this.startY = Y;
@@ -165,7 +165,7 @@ public class Player extends Subject {
     public CommandCardField[] getCards() {
         return cards;
     }
-
+    //Der skal vælges 5 commandcards før man kan aktivere dem
     public boolean isCommandCardsFull() {
         for (int i = 0; i < getProgram().length; i++) {
             if (getProgramField(i).getCard() == null) {

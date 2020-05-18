@@ -16,8 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class AppController {
 
+public class AppController {
+    //Deklarerer array List som metode til valg af antal spillere og dertilhørende farve.
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "brown", "cyan");
     final private String fieldChoice[] = {"Default", "Difficult", "Pro"};
@@ -26,27 +27,31 @@ public class AppController {
     private GameController gameController;
     private boolean saveNeeded;
 
+    //Konstruktør som kaldes når man skal bruge instans af klassen.
     public AppController(RoboRally roboRally) {
         this.roboRally = roboRally;
     }
 
+    //Valg af antal spillere, hver spiller får tildelt en farve hvorefter man skal vælge mellem de 3 spilleplader.
     public void newGame() {
         /**
          *
          * @author: S195388, S163053, S141479
          *
          */
+        //ArrayList som tager objektet integer.
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
 
         String chosenBoard = null;
-
+        //Tjekker for det valgt Board.
         if (result.isPresent()) {
             ChoiceDialog d = new ChoiceDialog(fieldChoice[0], fieldChoice);
             d.setHeaderText("Field Choice");
             d.setContentText("Please select the Field you wanna game on");
+            //showAndWait gør, at man ikke kan komme videre i spillet, før ovenstående er udfyldt.
             Optional<String> optional = d.showAndWait();
 
 
@@ -61,18 +66,19 @@ public class AppController {
             }
         }
 
-        //Her skal der vælges hvilket board der skal bruges
+        //Her installeres det valgt board, og hvis ikke der er et valgt board, returnerer den ingenting.
         Board board = LoadBoard.loadBoard(chosenBoard);
         gameController = new GameController(board, this);
 
         if (!result.isPresent()) {
             return;
         }
-
+        //Oprettes spillerprofilerne
         int no = result.get();
         for (int i = 0; i < no; i++) {
             Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1), i, new Account());
             board.addPlayer(player);
+            //Sæt spillerne på startfelter
             for (int j = 0; j < board.getSpaces()[0].length; j++) {
                 for (int k = 0; k < board.getSpaces()[1].length; k++) {
                     if (board.getSpace(j, k).getStartFelt() == player.no + 1) {
@@ -81,17 +87,16 @@ public class AppController {
                     }
                 }
             }
-
             if (player.getSpace() == null) {
                 System.out.println("Player = null");
                 player.setSpace(board.getSpace(i % board.width, i));
                 player.setStartingpoint(i % board.width, i);
             }
         }
+        //Spillerne blive sat på boardet, kalder derefter på GUI.
         board.setCurrentPlayer(board.getPlayer(0));
         roboRally.createBoardView(gameController);
         gameController.initializeProgrammingPhase();
-
         RepositoryAccess.getRepository().createGameInDB(board);
     }
 
@@ -102,7 +107,6 @@ public class AppController {
             Board board = gameController.board;
             if (board.getGameId() != null) {
                 RepositoryAccess.getRepository().updateGameInDB(board);
-
             }
         }
     }

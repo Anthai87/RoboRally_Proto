@@ -161,10 +161,8 @@ class Repository implements IRepository {
         Connection connection = connector.getConnection();
         try {
             connection.setAutoCommit(false);
-
             PreparedStatement ps = getSelectGameStatementU();
             ps.setInt(1, game.getGameId());
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 rs.updateInt(GAME_CURRENTPLAYER, game.getPlayerNumber(game.getCurrentPlayer()));
@@ -173,13 +171,9 @@ class Repository implements IRepository {
                 rs.updateRow();
             }
             rs.close();
-
             updatePlayersInDB(game);
-
             updateCardFieldsInDB(game);
-
             updateAccountsInDB(game);
-
             connection.commit();
             connection.setAutoCommit(true);
             return true;
@@ -194,7 +188,6 @@ class Repository implements IRepository {
                 e1.printStackTrace();
             }
         }
-
         return false;
     }
 
@@ -231,8 +224,6 @@ class Repository implements IRepository {
             } else {
                 return null;
             }
-
-
             return game;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -288,9 +279,7 @@ class Repository implements IRepository {
                     rs.updateInt(FIELD_COMMAND, player.getCardField(k).getCard().getCommand().ordinal());
                 }
                 rs.insertRow();
-
             }
-
         }
         rs.close();
     }
@@ -331,7 +320,6 @@ class Repository implements IRepository {
             rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
             rs.insertRow();
         }
-
         rs.close();
     }
 

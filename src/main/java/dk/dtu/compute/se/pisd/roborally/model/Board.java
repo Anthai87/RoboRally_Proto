@@ -180,6 +180,7 @@ public class Board extends Subject {
      * @param heading the heading of the neighbour
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
+    //Metoden til at rykke spillerne et felt frem (nabopladsen) + tjekker for om der er walls
     public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
         if (space.getWalls().contains(heading)) {
             return null;
@@ -191,6 +192,7 @@ public class Board extends Subject {
 
         int x = space.x;
         int y = space.y;
+        // Cycklisk board
         switch (heading) {
             case SOUTH:
                 y = (y + 1) % height;

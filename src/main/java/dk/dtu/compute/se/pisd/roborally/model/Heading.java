@@ -29,14 +29,15 @@ package dk.dtu.compute.se.pisd.roborally.model;
  */
 public enum Heading {
     // enum fields
-    SOUTH, WEST, NORTH, EAST;
 
+    SOUTH, WEST, NORTH, EAST;
+    //Drejer spilleren 90 grader med uret
     public Heading next() {
         // ordinal is very much like array indexes.
         // the enum values() method returns all the enum values in an enum array.
         return values()[(this.ordinal() + 1) % values().length];
     }
-
+    //Rykker spilleren 90 grader mod uret
     public Heading prev() {
         return values()[(this.ordinal() + values().length - 1) % values().length];
     }

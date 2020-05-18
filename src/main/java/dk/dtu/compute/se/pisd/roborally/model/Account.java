@@ -14,7 +14,7 @@ public class Account {
         this.secondCheckPoint = false;
         this.thirdCheckPoint = false;
     }
-
+    //Returnere hhv. 1,2 og 3 som følge af at man er landet på de 3 checkpoint i den rigtige rækkefølge.
     public int getCheckpointBalance() {
         if (firstCheckPoint && !secondCheckPoint) {
             return 1;

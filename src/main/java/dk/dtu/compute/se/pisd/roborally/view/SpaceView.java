@@ -129,7 +129,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().clear();
 
             for (FieldAction action : space.getActions()) {
-
+//Tjekker for hvilken Action den lister i Json filen, og sætter billedet derefter
                 if (action instanceof ConveyorBelt) {
                     ConveyorBelt belt = (ConveyorBelt) action;
                     Image arrow = new Image("images/conveyorBelt.jpg");
@@ -185,6 +185,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                     this.getChildren().add(imageView2);
                 }
             }
+            //Tegner en linje mellem felterne, for hver af de 4 wall cases
             Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setStroke(Color.RED);
@@ -206,6 +207,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                         break;
                 }
             }
+            //Javafx som tilføjer alle elementerne til boardet
             this.getChildren().add(canvas);
 
             Player player = space.getPlayer();

@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import dk.dtu.compute.se.pisd.roborally.view.ConfirmBox;
 import dk.dtu.compute.se.pisd.roborally.view.WinnerOfTheGame;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
@@ -44,11 +45,12 @@ public class GameController {
     public void finishProgrammingPhase() {
         /**
          *
-         * @author: Logic implemented by Anton, s163053
+         * Logic implemented by Anton, s163053
          *
          */
-        if (board.isGameWon()) return;
         if (!board.getCurrentPlayer().isCommandCardsFull()) {
+
+            //GUI som kommer frem, hvis ikke man vælger 5 kort
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please pick 5 cards");
             alert.showAndWait();
@@ -63,13 +65,14 @@ public class GameController {
             }
         }
 
-
+        //Kører kortene en efter en for hver spiller
         makeProgramFieldsInvisible();
         makeProgramFieldsVisible(0);
         board.setPhase(Phase.ACTIVATION);
         board.setStep(0);
     }
 
+    //Sætter næste spiller udfra hvor mange spillere der er i spillet
     public int nextPlayer() {
         if (board.getCurrentPlayer().no + 1 < board.getPlayersNumber()) {
             return board.getCurrentPlayer().no + 1;
@@ -78,6 +81,7 @@ public class GameController {
         }
     }
 
+    //Tjekker for at alle spillere ikke har lagt sine 5 kort.
     private void makeProgramFieldsInvisible() {
         for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player player = board.getPlayer(i);
@@ -88,6 +92,7 @@ public class GameController {
         }
     }
 
+    //Eksekvere sine kort, hvis man har programmeret 5 kort
     private void makeProgramFieldsVisible(int register) {
         if (register >= 0 && register < Player.NO_REGISTERS) {
             for (int i = 0; i < board.getPlayersNumber(); i++) {
@@ -98,8 +103,8 @@ public class GameController {
         }
     }
 
+    //Ændre fra Activation phase til stepmode
     public void executePrograms() {
-        if (board.isGameWon()) return;
         board.setStepMode(false);
         while (board.getPhase() == Phase.ACTIVATION) {
 
@@ -111,12 +116,16 @@ public class GameController {
         /**
          * @made_by: Anthony og Anton
          */
+
+        //Tjekker for om spilleren har 3. checkpoint i sin account, heraf vundet.
         if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
             board.setGameWon(true);
             WinnerOfTheGame.display("Winner", "The winner is " + board.getCurrentPlayer().getName(), appController);
         }
     }
 
+
+    //Eksekverer kortene
     private void execute(Command command) {
         executeStep(command);
         if (board.getPhase() == Phase.ACTIVATION && !board.isStepMode()) {
@@ -124,12 +133,14 @@ public class GameController {
         }
     }
 
+    //Genererer Random CommandCard
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
         int random = (int) (Math.random() * commands.length);
         return new CommandCard(commands[random]);
     }
 
+    //Gør at man ikke har nogle programmerede kort i starten at programmerings fasen
     public void initializeProgrammingPhase() {
         board.setPhase(Phase.PROGRAMMING);
         board.setCurrentPlayer(board.getPlayer(0));
@@ -138,9 +149,13 @@ public class GameController {
         for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player player = board.getPlayer(i);
             if (player != null) {
+
+                //Sletter de brugte kort
                 for (int j = 0; j < Player.NO_REGISTERS; j++) {
                     player.getProgramField(j).setCard(null);
                 }
+
+                //Generer nye kort
                 for (int j = 0; j < Player.NO_CARDS; j++) {
                     player.getCardField(j).setCard(generateRandomCommandCard());
                 }
@@ -149,16 +164,17 @@ public class GameController {
     }
 
     public void executeStep() {
-        if (board.isGameWon()) return;
         board.setStepMode(true);
         executeStep(null);
 
+        //Man rykker hen til sidste checkpoint før man får afvide man har vundet.
         if (board.getCurrentPlayer().getAccount().isThirdCheckPoint()) {
             board.setGameWon(true);
             WinnerOfTheGame.display("Winner", "The winner is " + board.getCurrentPlayer().getName(), appController);
         }
     }
 
+    //SPØRG ANTON
     private void executeStep(Command option) {
         Player currentPlayer = board.getCurrentPlayer();
         if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null) {
@@ -200,6 +216,7 @@ public class GameController {
         }
     }
 
+    //Når du programmerer dine 5 kort, så rykkes de 5 kort du vælger fra source til target
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
         CommandCard sourceCard = source.getCard();
         CommandCard targetCard = target.getCard();
@@ -212,6 +229,7 @@ public class GameController {
         }
     }
 
+    //Vha. getNeighbhour metoden rykkes spilleren en fremad mod sin heading.
     public void moveForward(@NotNull Player player) {
         if (player.board == board) {
             Space space = player.getSpace();
@@ -230,6 +248,7 @@ public class GameController {
         }
     }
 
+    //SPØRG ANTON
     void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // make sure the move to here is possible in principle
         Player other = space.getPlayer();
@@ -261,6 +280,7 @@ public class GameController {
         }
     }
 
+    //Exception bliver kastet, når det ikke er muligt at rykke spilleren
     class ImpossibleMoveException extends Exception {
 
         private Player player;
@@ -275,12 +295,14 @@ public class GameController {
         }
     }
 
+    //Eksekverer kortene
     private void executeCommandCard(@NotNull Player player, CommandCard card) {
         if (card != null) {
             executeCommand(player, card.command);
         }
     }
 
+    //Flytter spillerne efter deres commandcards
     public void executePlayersOption(Player player, Command option) {
         if (player != null && player.board == board && board.getCurrentPlayer() == player) {
             board.setPhase(Phase.ACTIVATION);
@@ -288,12 +310,13 @@ public class GameController {
         }
     }
 
+    //Ved brug af next() drejes spilleren en gang til højre
     public void turnRight(Player player) {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().next());
         }
     }
-
+    //Ved brug af prev() drejes spilleren en gang til venstre
     public void turnLeft(Player player) {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
@@ -301,11 +324,13 @@ public class GameController {
         }
     }
 
+    //Bruger metoden moveForward() to gange, for at rykke spilleren to gange frem.
     public void fastForward(Player player) {
         moveForward(player);
         moveForward(player);
     }
 
+    //Tager argumentet i command og eksekverer det på spillerne
     private void executeCommand(@NotNull Player player, Command command) {
         if (player.board == board && command != null) {
             // XXX This is an very simplistic way of dealing with some basic cards and

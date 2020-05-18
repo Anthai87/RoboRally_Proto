@@ -9,9 +9,10 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
  * @author S163053
  *
  */
-
+//Nedarver fra Fieldaction
 public class Pits extends FieldAction {
     @Override
+    //Hvis man lander på en pits, sættes spilleren tilbage på startfeltet.
     public boolean doAction(GameController gameController, Space space) {
         Board board = space.board;
         if (board != null && gameController.board == board) {

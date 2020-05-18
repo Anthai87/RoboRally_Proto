@@ -32,6 +32,7 @@ import java.util.List;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
+//enum klasse opretter konstanter, det vil sige at de ikke kan ændres.
 public enum Command {
 
     // This is a very simplistic way of realizing different commands.

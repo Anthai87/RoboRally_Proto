@@ -9,6 +9,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
  *
  */
 
+//Klassen nedarver fra FieldAction
 
 public class Checkpoint extends FieldAction {
     private int checkpoint;
@@ -24,6 +25,7 @@ public class Checkpoint extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Board board = space.board;
+        //Tjekker for om spilleren er på det første checkpoint felt osv.
         if (board != null && gameController.board == board) {
             if (checkpoint == 1) {
                 space.getPlayer().getAccount().setFirstCheckPoint(checkpoint);

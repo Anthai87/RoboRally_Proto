@@ -39,6 +39,7 @@ public abstract class FieldAction {
      * @param space the space this action should be executed for
      * @return whether the action was successfully executed
      */
+    //Abstrakt klasse, nedarves og er derfor skelet for de andre klasser.
     public abstract boolean doAction(GameController gameController, Space space);
 
 
