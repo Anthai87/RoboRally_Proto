@@ -397,6 +397,8 @@ class Repository implements IRepository {
         PreparedStatement ps = getSelectCardFieldStatement();
         ps.setInt(1, game.getGameId());
 
+        //Vi får alle kortfelterne som er tilknyttet spillerne
+        //Vi itererer over ResultSet så længe der er resultater
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             int playerId = rs.getInt(FIELD_PLAYERID);
@@ -404,14 +406,20 @@ class Repository implements IRepository {
             int type = rs.getInt(FIELD_TYPE);
             int pos = rs.getInt(FIELD_POS);
             CommandCardField field;
+            //Vi finder om spilleren har programmeringskort eller commandcards
+            //Hvis det er et programmeringskort, er if statementet sandt og bliver eksekveret
             if (type == FIELD_TYPE_REGISTER) {
+                //Vi henter nuværende spiller (L.405) og henter/itererer over dens program field, samt deres position
                 field = player.getProgramField(pos);
+                //If statementet bliver eksekveret hvis det er af typen command cards
             } else if (type == FIELD_TYPE_HAND) {
+                //Vi iterer over command cards og deres posiiton for spilleren
                 field = player.getCardField(pos);
             } else {
                 field = null;
             }
             if (field != null) {
+                //Hvis spilleren har commandcard eller programmeringskort, så sætter vi synligheden
                 field.setVisible(rs.getBoolean(FIELD_VISIBLE));
                 Object c = rs.getObject(FIELD_COMMAND);
                 if (c != null) {
