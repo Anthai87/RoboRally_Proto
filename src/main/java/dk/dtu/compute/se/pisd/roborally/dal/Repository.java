@@ -264,9 +264,12 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+        //Itererer over antal spillere
         for (int i = 0; i < game.getPlayersNumber(); i++) {
+            //Rs peger på rækken i tabllen i databasen hvor det skal indsættes
             rs.moveToInsertRow();
             Player player = game.getPlayer(i);
+            //Vi tildeler spilleren deres Command kort felt på 5 felter
             for (int j = 0; j < Player.NO_REGISTERS; j++) {
                 rs.updateInt(FIELD_GAMEID, game.getGameId());
                 rs.updateInt(FIELD_PLAYERID, i);
@@ -276,8 +279,10 @@ class Repository implements IRepository {
                 if (player.getProgramField(j).getCard() != null) {
                     rs.updateInt(FIELD_COMMAND, player.getProgramField(j).getCard().command.ordinal());
                 }
+                //Standværdierne, til når spillet bliver kørt første gang, gemmes i databasen.
                 rs.insertRow();
             }
+            //Vi tildeler spilleren deres programmerings kort felt på 8 felter
             for (int k = 0; k < Player.NO_CARDS; k++) {
                 rs.updateInt(FIELD_GAMEID, game.getGameId());
                 rs.updateInt(FIELD_PLAYERID, i);
@@ -287,6 +292,7 @@ class Repository implements IRepository {
                 if (player.getCardField(k).getCard() != null) {
                     rs.updateInt(FIELD_COMMAND, player.getCardField(k).getCard().getCommand().ordinal());
                 }
+                //Standværdierne, til når spillet bliver kørt første gang, gemmes i databasen.
                 rs.insertRow();
 
             }
@@ -300,8 +306,10 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+        //Iterer over antal spillere
         for (int i = 0; i < game.getPlayersNumber(); i++) {
             Player player = game.getPlayer(i);
+            //Afhængigt af antallet af spillere, så opretter vi dem i databasen, med de tilhørende attributter, som account tabellen har
             rs.moveToInsertRow();
             rs.updateInt(ACCOUNT_GAMEID, game.getGameId());
             rs.updateInt(ACCOUNT_PLAYERID, i);
@@ -319,8 +327,10 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+        //Iterer over antal spillere
         for (int i = 0; i < game.getPlayersNumber(); i++) {
             Player player = game.getPlayer(i);
+            //Vi tildeler hver spiller med nedenstående attributter, med andre ord opretter vi dem i databasen
             rs.moveToInsertRow();
             rs.updateInt(PLAYER_GAMEID, game.getGameId());
             rs.updateInt(PLAYER_PLAYERID, i);
@@ -329,9 +339,10 @@ class Repository implements IRepository {
             rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
             rs.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
             rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
+            //Ordinal: Tager hvilken retning spilleren peger og returnerer hvilken position retning har i heading
+            //(Heading er defineret som en enum)
             rs.insertRow();
         }
-
         rs.close();
     }
 
@@ -342,14 +353,19 @@ class Repository implements IRepository {
 
         ResultSet rs = ps.executeQuery();
         int i = 0;
+
+        //Så længe der er et resultat vil while loopet køre, med andre ord itererer den over antallet af spillere i det pågældende spil
         while (rs.next()) {
             int playerId = rs.getInt(PLAYER_PLAYERID);
+            //Hvis i++ er lig med playerID, så vil if statementet køres, hvor de gemte værdier vil loades til hver spiller.
+            //i=0 i starten, men ved i++ inkrementeres den til 1, dette sker hver gang loopet køres
             if (i++ == playerId) {
                 String name = rs.getString(PLAYER_NAME);
                 String colour = rs.getString(PLAYER_COLOUR);
                 Player player = new Player(game, colour, name, playerId, new Account());
                 game.addPlayer(player);
 
+                //Spillerens værdier opdatereres:
                 int x = rs.getInt(PLAYER_POSITION_X);
                 int y = rs.getInt(PLAYER_POSITION_Y);
                 player.setSpace(game.getSpace(x, y));
@@ -367,12 +383,17 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+
+        //Så længe der er et resultat vil while loopet køre, med andre ord itererer den over antallet af spillere i det pågældende spil
         while (rs.next()) {
+            //Vi sætter værdierne lig værdierne i databasen
             int playerId = rs.getInt(ACCOUNT_PLAYERID);
             Player player = game.getPlayer(playerId);
             boolean firstcheckpoint = rs.getBoolean(ACCOUNT_FIRSTCHECKPOINT);
             boolean secondcheckpoint = rs.getBoolean(ACCOUNT_SECONDCHECKPOINT);
             boolean thirdcheckpoint = rs.getBoolean(ACCOUNT_THIRDCHECKPOINT);
+
+            //Afhænigt af om en spiller har et checkpoint sættes det enten til 0 for falsk og 1 for sandt
             if (firstcheckpoint == false) {
                 player.getAccount().setFirstCheckPoint(0);
             } else if (firstcheckpoint == true) {
@@ -409,17 +430,18 @@ class Repository implements IRepository {
             //Vi finder om spilleren har programmeringskort eller commandcards
             //Hvis det er et programmeringskort, er if statementet sandt og bliver eksekveret
             if (type == FIELD_TYPE_REGISTER) {
-                //Vi henter nuværende spiller (L.405) og henter/itererer over dens program field, samt deres position
+                //Vi henter nuværende spiller og henter/itererer over dens program field, samt deres position
                 field = player.getProgramField(pos);
                 //If statementet bliver eksekveret hvis det er af typen command cards
             } else if (type == FIELD_TYPE_HAND) {
-                //Vi iterer over command cards og deres posiiton for spilleren
+                //Vi iterer over command cards og deres position for spilleren
                 field = player.getCardField(pos);
             } else {
                 field = null;
             }
             if (field != null) {
-                //Hvis spilleren har commandcard eller programmeringskort, så sætter vi synligheden
+                // TODO skriv kommentar
+                //Angiver synligheden for kortene
                 field.setVisible(rs.getBoolean(FIELD_VISIBLE));
                 Object c = rs.getObject(FIELD_COMMAND);
                 if (c != null) {
@@ -439,12 +461,16 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+
+        //Vi itererer over ResultSet så længe der er resultater
         while (rs.next()) {
+            //Den opdaterer alle rækker i CardField tabellen, hvor gameID = ?
             int playerId = rs.getInt(FIELD_PLAYERID);
             Player player = game.getPlayer(playerId);
             int cardType = rs.getInt(FIELD_TYPE);
             int pos = rs.getInt(FIELD_POS);
             CommandCardField field;
+
 
             if (cardType == FIELD_TYPE_HAND) {
                 field = player.getCardField(pos);
@@ -471,7 +497,9 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+        //Vi itererer over ResultSet så længe der er resultater
         while (rs.next()) {
+            //Den opdaterer alle rækker i Account tabellen, hvor gameID = ?
             int playerId = rs.getInt(PLAYER_PLAYERID);
             Player player = game.getPlayer(playerId);
             rs.updateBoolean(ACCOUNT_FIRSTCHECKPOINT, player.getAccount().isFirstCheckPoint());
@@ -488,7 +516,9 @@ class Repository implements IRepository {
         ps.setInt(1, game.getGameId());
 
         ResultSet rs = ps.executeQuery();
+        //Vi itererer over ResultSet så længe der er resultater
         while (rs.next()) {
+            //Den opdaterer alle rækker i Player tabellen, hvor gameID = ?
             int playerId = rs.getInt(PLAYER_PLAYERID);
             Player player = game.getPlayer(playerId);
             rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
@@ -499,14 +529,18 @@ class Repository implements IRepository {
         rs.close();
     }
 
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_INSERT_GAME =
             "INSERT INTO Game(name, currentPlayer, phase, step) VALUES (?, ?, ?, ?)";
 
     private PreparedStatement insert_game_stmt = null;
 
+    //Bliver benyttet i "createGameInDB"
     private PreparedStatement getInsertGameStatementRGK() {
+        //Den tjekker om preparedStatement er "tomt", hvis den er tom skaber den forbindelse til server
         if (insert_game_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 insert_game_stmt = connection.prepareStatement(
                         SQL_INSERT_GAME,
@@ -518,14 +552,17 @@ class Repository implements IRepository {
         return insert_game_stmt;
     }
 
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_SELECT_GAME =
             "SELECT * FROM Game WHERE gameID = ?";
 
     private PreparedStatement select_game_stmt = null;
 
+    //Bliver benyttet i "updateGameInDB" og "loadGameInDB"
     private PreparedStatement getSelectGameStatementU() {
         if (select_game_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_game_stmt = connection.prepareStatement(
                         SQL_SELECT_GAME,
@@ -538,14 +575,17 @@ class Repository implements IRepository {
         return select_game_stmt;
     }
 
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_SELECT_PLAYERS =
             "SELECT * FROM Player WHERE gameID = ?";
 
     private PreparedStatement select_players_stmt = null;
 
+    //Bliver benyttet i "createPlayersInDB" og "updatePlayersInDB"
     private PreparedStatement getSelectPlayersStatementU() {
         if (select_players_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_players_stmt = connection.prepareStatement(
                         SQL_SELECT_PLAYERS,
@@ -558,13 +598,16 @@ class Repository implements IRepository {
         return select_players_stmt;
     }
 
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_SELECT_ACCOUNTS = "SELECT * FROM Account WHERE gameID = ?";
 
     private PreparedStatement select_accounts_stmt = null;
 
+    //Bliver benyttet i "loadAccountFromDB"
     private PreparedStatement getSelectAccountStatement() {
         if (select_accounts_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_accounts_stmt = connection.prepareStatement(SQL_SELECT_ACCOUNTS);
             } catch (SQLException e) {
@@ -576,9 +619,11 @@ class Repository implements IRepository {
 
     private PreparedStatement select_accounts_stmt_u = null;
 
+    //Bliver benyttet i "createPlayersInDB" og "updatePlayersInDB"
     private PreparedStatement getSelectAccountStatementU() {
         if (select_accounts_stmt_u == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_accounts_stmt_u = connection.prepareStatement(
                         SQL_SELECT_ACCOUNTS,
@@ -591,13 +636,16 @@ class Repository implements IRepository {
         return select_accounts_stmt_u;
     }
 
+    //Vi bruger nedenstående string til at kompilere SQL syntaks til databasen
     private static final String SQL_SELECT_CARD_FIELDS = "SELECT * FROM CardField WHERE gameID = ?";
 
     private PreparedStatement select_card_field_stmt = null;
 
+    //Bliver benyttet i "loadCardFieldsFromDB"
     private PreparedStatement getSelectCardFieldStatement() {
         if (select_card_field_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_card_field_stmt = connection.prepareStatement(SQL_SELECT_CARD_FIELDS);
             } catch (SQLException e) {
@@ -609,9 +657,11 @@ class Repository implements IRepository {
 
     private PreparedStatement select_card_field_stmt_u = null;
 
+    //Bliver benyttet i "createCardFieldInDB" og "updateCardFieldsInDB"
     private PreparedStatement getSelectCardFieldStatementU() {
         if (select_card_field_stmt_u == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_card_field_stmt_u = connection.prepareStatement(
                         SQL_SELECT_CARD_FIELDS,
@@ -624,15 +674,17 @@ class Repository implements IRepository {
         return select_card_field_stmt_u;
     }
 
-
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_SELECT_PLAYERS_ASC =
             "SELECT * FROM Player WHERE gameID = ? ORDER BY playerID ASC";
 
     private PreparedStatement select_players_asc_stmt = null;
 
+    //Bliver benyttet i "loadPlayersFromDB"
     private PreparedStatement getSelectPlayersASCStatement() {
         if (select_players_asc_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_players_asc_stmt = connection.prepareStatement(
                         SQL_SELECT_PLAYERS_ASC);
@@ -643,14 +695,17 @@ class Repository implements IRepository {
         return select_players_asc_stmt;
     }
 
+    //Vi bruger nedenstående string til at compilere SQL syntaks til databasen
     private static final String SQL_SELECT_GAMES =
             "SELECT gameID, name FROM Game";
 
     private PreparedStatement select_games_stmt = null;
 
+    //Bliver benyttet i "getGames"
     private PreparedStatement getSelectGameIdsStatement() {
         if (select_games_stmt == null) {
             Connection connection = connector.getConnection();
+            //Den indsætter SQL syntaks i det pågældende preparedStatement
             try {
                 select_games_stmt = connection.prepareStatement(
                         SQL_SELECT_GAMES);
